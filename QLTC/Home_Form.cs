@@ -17,5 +17,22 @@ namespace QLTC
             Booking_Form bookingForm = new Booking_Form();
             bookingForm.ShowDialog();
         }
+
+        private void tslPersonalInfor_Click(object sender, EventArgs e)
+        {
+            PersonalInformation_Form perInfor = new PersonalInformation_Form();
+            perInfor.ShowDialog();
+        }
+
+        private void tslVaccineInfor_Click(object sender, EventArgs e)
+        {
+            Vaccine_Form vaccineForm = new Vaccine_Form();
+            vaccineForm.ShowDialog();
+        }
+
+        private void tslExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -30,11 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home_Form));
             menuStrip1 = new MenuStrip();
-            fileToolStripMenuItem = new ToolStripMenuItem();
-            exitToolStripMenuItem = new ToolStripMenuItem();
+            tslFile = new ToolStripMenuItem();
+            tslExit = new ToolStripMenuItem();
             tslIntroduction = new ToolStripMenuItem();
             tslBooking = new ToolStripMenuItem();
-            tslPriceList = new ToolStripMenuItem();
+            tslVaccineInfor = new ToolStripMenuItem();
+            tslPersonalInfor = new ToolStripMenuItem();
             tslReport = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -42,25 +43,26 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, tslIntroduction, tslBooking, tslPriceList, tslReport });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { tslFile, tslIntroduction, tslBooking, tslVaccineInfor, tslPersonalInfor, tslReport });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1128, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
+            // tslFile
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exitToolStripMenuItem });
-            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(46, 24);
-            fileToolStripMenuItem.Text = "File";
+            tslFile.DropDownItems.AddRange(new ToolStripItem[] { tslExit });
+            tslFile.Name = "tslFile";
+            tslFile.Size = new Size(46, 24);
+            tslFile.Text = "File";
             // 
-            // exitToolStripMenuItem
+            // tslExit
             // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(116, 26);
-            exitToolStripMenuItem.Text = "Exit";
+            tslExit.Name = "tslExit";
+            tslExit.Size = new Size(224, 26);
+            tslExit.Text = "Exit";
+            tslExit.Click += tslExit_Click;
             // 
             // tslIntroduction
             // 
@@ -75,11 +77,19 @@
             tslBooking.Text = "Booking";
             tslBooking.Click += tslBooking_Click;
             // 
-            // tslPriceList
+            // tslVaccineInfor
             // 
-            tslPriceList.Name = "tslPriceList";
-            tslPriceList.Size = new Size(73, 24);
-            tslPriceList.Text = "Vaccine";
+            tslVaccineInfor.Name = "tslVaccineInfor";
+            tslVaccineInfor.Size = new Size(73, 24);
+            tslVaccineInfor.Text = "Vaccine";
+            tslVaccineInfor.Click += tslVaccineInfor_Click;
+            // 
+            // tslPersonalInfor
+            // 
+            tslPersonalInfor.Name = "tslPersonalInfor";
+            tslPersonalInfor.Size = new Size(160, 24);
+            tslPersonalInfor.Text = "Personal Information";
+            tslPersonalInfor.Click += tslPersonalInfor_Click;
             // 
             // tslReport
             // 
@@ -107,11 +117,12 @@
         #endregion
 
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem fileToolStripMenuItem;
-        private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem tslFile;
+        private ToolStripMenuItem tslExit;
         private ToolStripMenuItem tslIntroduction;
         private ToolStripMenuItem tslBooking;
-        private ToolStripMenuItem tslPriceList;
+        private ToolStripMenuItem tslVaccineInfor;
+        private ToolStripMenuItem tslPersonalInfor;
         private ToolStripMenuItem tslReport;
     }
 }
