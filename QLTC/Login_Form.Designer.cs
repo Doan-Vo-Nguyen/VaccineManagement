@@ -32,12 +32,12 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            button1 = new Button();
+            txtEmail = new TextBox();
+            txtPassword = new TextBox();
+            btnLogIn = new Button();
             pictureBox1 = new PictureBox();
             label4 = new Label();
-            linkLabel1 = new LinkLabel();
+            lbSignUp = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -68,28 +68,28 @@
             label3.TabIndex = 2;
             label3.Text = "Password";
             // 
-            // textBox1
+            // txtEmail
             // 
-            textBox1.Location = new Point(451, 181);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(181, 27);
-            textBox1.TabIndex = 3;
+            txtEmail.Location = new Point(451, 181);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(181, 27);
+            txtEmail.TabIndex = 3;
             // 
-            // textBox2
+            // txtPassword
             // 
-            textBox2.Location = new Point(451, 287);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(181, 27);
-            textBox2.TabIndex = 4;
+            txtPassword.Location = new Point(451, 287);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(181, 27);
+            txtPassword.TabIndex = 4;
             // 
-            // button1
+            // btnLogIn
             // 
-            button1.Location = new Point(467, 392);
-            button1.Name = "button1";
-            button1.Size = new Size(105, 29);
-            button1.TabIndex = 5;
-            button1.Text = "LOG IN NOW";
-            button1.UseVisualStyleBackColor = true;
+            btnLogIn.Location = new Point(467, 392);
+            btnLogIn.Name = "btnLogIn";
+            btnLogIn.Size = new Size(105, 29);
+            btnLogIn.TabIndex = 5;
+            btnLogIn.Text = "LOG IN NOW";
+            btnLogIn.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -110,27 +110,27 @@
             label4.TabIndex = 7;
             label4.Text = "Don't have an account";
             // 
-            // linkLabel1
+            // lbSignUp
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(578, 535);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(61, 20);
-            linkLabel1.TabIndex = 8;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Sign Up";
+            lbSignUp.AutoSize = true;
+            lbSignUp.Location = new Point(578, 535);
+            lbSignUp.Name = "lbSignUp";
+            lbSignUp.Size = new Size(61, 20);
+            lbSignUp.TabIndex = 8;
+            lbSignUp.TabStop = true;
+            lbSignUp.Text = "Sign Up";
             // 
             // Login_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1135, 570);
-            Controls.Add(linkLabel1);
+            Controls.Add(lbSignUp);
             Controls.Add(label4);
             Controls.Add(pictureBox1);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(btnLogIn);
+            Controls.Add(txtPassword);
+            Controls.Add(txtEmail);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -146,11 +146,11 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Button button1;
+        private TextBox txtEmail;
+        private TextBox txtPassword;
+        private Button btnLogIn;
         private PictureBox pictureBox1;
         private Label label4;
-        private LinkLabel linkLabel1;
+        private LinkLabel lbSignUp;
     }
 }

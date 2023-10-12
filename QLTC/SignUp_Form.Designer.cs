@@ -34,20 +34,20 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
-            comboBox1 = new ComboBox();
-            textBox3 = new TextBox();
+            txtID = new TextBox();
+            txtName = new TextBox();
+            dtpDate = new DateTimePicker();
+            cbSex = new ComboBox();
+            txtAddress = new TextBox();
             label7 = new Label();
-            textBox4 = new TextBox();
-            button1 = new Button();
+            txtPhoneNum = new TextBox();
+            btnSignUp = new Button();
             label8 = new Label();
-            linkLabel1 = new LinkLabel();
+            lbLogIn = new LinkLabel();
             label9 = new Label();
             label10 = new Label();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
+            txtEmail = new TextBox();
+            txtPassword = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -104,43 +104,43 @@
             label6.TabIndex = 5;
             label6.Text = "Address";
             // 
-            // textBox1
+            // txtID
             // 
-            textBox1.Location = new Point(453, 71);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(250, 27);
-            textBox1.TabIndex = 6;
+            txtID.Location = new Point(453, 71);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(250, 27);
+            txtID.TabIndex = 6;
             // 
-            // textBox2
+            // txtName
             // 
-            textBox2.Location = new Point(453, 129);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(250, 27);
-            textBox2.TabIndex = 7;
+            txtName.Location = new Point(453, 129);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(250, 27);
+            txtName.TabIndex = 7;
             // 
-            // dateTimePicker1
+            // dtpDate
             // 
-            dateTimePicker1.Location = new Point(453, 326);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(110, 27);
-            dateTimePicker1.TabIndex = 8;
+            dtpDate.Location = new Point(453, 326);
+            dtpDate.Name = "dtpDate";
+            dtpDate.Size = new Size(110, 27);
+            dtpDate.TabIndex = 8;
             // 
-            // comboBox1
+            // cbSex
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Male", "Female", "Others" });
-            comboBox1.Location = new Point(584, 325);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(118, 28);
-            comboBox1.TabIndex = 9;
-            comboBox1.Tag = "";
+            cbSex.FormattingEnabled = true;
+            cbSex.Items.AddRange(new object[] { "Male", "Female", "Others" });
+            cbSex.Location = new Point(584, 325);
+            cbSex.Name = "cbSex";
+            cbSex.Size = new Size(118, 28);
+            cbSex.TabIndex = 9;
+            cbSex.Tag = "";
             // 
-            // textBox3
+            // txtAddress
             // 
-            textBox3.Location = new Point(453, 382);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(250, 27);
-            textBox3.TabIndex = 10;
+            txtAddress.Location = new Point(453, 382);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(250, 27);
+            txtAddress.TabIndex = 10;
             // 
             // label7
             // 
@@ -151,21 +151,21 @@
             label7.TabIndex = 11;
             label7.Text = "PhoneNumber";
             // 
-            // textBox4
+            // txtPhoneNum
             // 
-            textBox4.Location = new Point(456, 443);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(247, 27);
-            textBox4.TabIndex = 12;
+            txtPhoneNum.Location = new Point(456, 443);
+            txtPhoneNum.Name = "txtPhoneNum";
+            txtPhoneNum.Size = new Size(247, 27);
+            txtPhoneNum.TabIndex = 12;
             // 
-            // button1
+            // btnSignUp
             // 
-            button1.Location = new Point(500, 501);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 13;
-            button1.Text = "SIGN UP ";
-            button1.UseVisualStyleBackColor = true;
+            btnSignUp.Location = new Point(500, 501);
+            btnSignUp.Name = "btnSignUp";
+            btnSignUp.Size = new Size(94, 29);
+            btnSignUp.TabIndex = 13;
+            btnSignUp.Text = "SIGN UP ";
+            btnSignUp.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -176,15 +176,15 @@
             label8.TabIndex = 14;
             label8.Text = "Already have an account";
             // 
-            // linkLabel1
+            // lbLogIn
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(600, 543);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(50, 20);
-            linkLabel1.TabIndex = 15;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Log in";
+            lbLogIn.AutoSize = true;
+            lbLogIn.Location = new Point(600, 543);
+            lbLogIn.Name = "lbLogIn";
+            lbLogIn.Size = new Size(50, 20);
+            lbLogIn.TabIndex = 15;
+            lbLogIn.TabStop = true;
+            lbLogIn.Text = "Log in";
             // 
             // label9
             // 
@@ -204,39 +204,39 @@
             label10.TabIndex = 17;
             label10.Text = "Password";
             // 
-            // textBox5
+            // txtEmail
             // 
-            textBox5.Location = new Point(453, 204);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(249, 27);
-            textBox5.TabIndex = 18;
+            txtEmail.Location = new Point(453, 204);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(249, 27);
+            txtEmail.TabIndex = 18;
             // 
-            // textBox6
+            // txtPassword
             // 
-            textBox6.Location = new Point(453, 271);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(249, 27);
-            textBox6.TabIndex = 19;
+            txtPassword.Location = new Point(453, 271);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(249, 27);
+            txtPassword.TabIndex = 19;
             // 
             // SignUp_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1128, 572);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
+            Controls.Add(txtPassword);
+            Controls.Add(txtEmail);
             Controls.Add(label10);
             Controls.Add(label9);
-            Controls.Add(linkLabel1);
+            Controls.Add(lbLogIn);
             Controls.Add(label8);
-            Controls.Add(button1);
-            Controls.Add(textBox4);
+            Controls.Add(btnSignUp);
+            Controls.Add(txtPhoneNum);
             Controls.Add(label7);
-            Controls.Add(textBox3);
-            Controls.Add(comboBox1);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtAddress);
+            Controls.Add(cbSex);
+            Controls.Add(dtpDate);
+            Controls.Add(txtName);
+            Controls.Add(txtID);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -257,19 +257,19 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private DateTimePicker dateTimePicker1;
-        private ComboBox comboBox1;
-        private TextBox textBox3;
+        private TextBox txtID;
+        private TextBox txtName;
+        private DateTimePicker dtpDate;
+        private ComboBox cbSex;
+        private TextBox txtAddress;
         private Label label7;
-        private TextBox textBox4;
-        private Button button1;
+        private TextBox txtPhoneNum;
+        private Button btnSignUp;
         private Label label8;
-        private LinkLabel linkLabel1;
+        private LinkLabel lbLogIn;
         private Label label9;
         private Label label10;
-        private TextBox textBox5;
-        private TextBox textBox6;
+        private TextBox txtEmail;
+        private TextBox txtPassword;
     }
 }

@@ -32,18 +32,17 @@
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
-            introductionToolStripMenuItem = new ToolStripMenuItem();
-            bookingToolStripMenuItem = new ToolStripMenuItem();
-            priceListToolStripMenuItem = new ToolStripMenuItem();
-            reportToolStripMenuItem = new ToolStripMenuItem();
-            reportToolStripMenuItem1 = new ToolStripMenuItem();
+            tslIntroduction = new ToolStripMenuItem();
+            tslBooking = new ToolStripMenuItem();
+            tslPriceList = new ToolStripMenuItem();
+            tslReport = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, introductionToolStripMenuItem, bookingToolStripMenuItem, priceListToolStripMenuItem, reportToolStripMenuItem, reportToolStripMenuItem1 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, tslIntroduction, tslBooking, tslPriceList, tslReport });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1128, 28);
@@ -63,35 +62,30 @@
             exitToolStripMenuItem.Size = new Size(116, 26);
             exitToolStripMenuItem.Text = "Exit";
             // 
-            // introductionToolStripMenuItem
+            // tslIntroduction
             // 
-            introductionToolStripMenuItem.Name = "introductionToolStripMenuItem";
-            introductionToolStripMenuItem.Size = new Size(104, 24);
-            introductionToolStripMenuItem.Text = "Introduction";
+            tslIntroduction.Name = "tslIntroduction";
+            tslIntroduction.Size = new Size(104, 24);
+            tslIntroduction.Text = "Introduction";
             // 
-            // bookingToolStripMenuItem
+            // tslBooking
             // 
-            bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
-            bookingToolStripMenuItem.Size = new Size(78, 24);
-            bookingToolStripMenuItem.Text = "Booking";
+            tslBooking.Name = "tslBooking";
+            tslBooking.Size = new Size(78, 24);
+            tslBooking.Text = "Booking";
+            tslBooking.Click += tslBooking_Click;
             // 
-            // priceListToolStripMenuItem
+            // tslPriceList
             // 
-            priceListToolStripMenuItem.Name = "priceListToolStripMenuItem";
-            priceListToolStripMenuItem.Size = new Size(81, 24);
-            priceListToolStripMenuItem.Text = "Price List";
+            tslPriceList.Name = "tslPriceList";
+            tslPriceList.Size = new Size(73, 24);
+            tslPriceList.Text = "Vaccine";
             // 
-            // reportToolStripMenuItem
+            // tslReport
             // 
-            reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            reportToolStripMenuItem.Size = new Size(88, 24);
-            reportToolStripMenuItem.Text = "Searching";
-            // 
-            // reportToolStripMenuItem1
-            // 
-            reportToolStripMenuItem1.Name = "reportToolStripMenuItem1";
-            reportToolStripMenuItem1.Size = new Size(68, 24);
-            reportToolStripMenuItem1.Text = "Report";
+            tslReport.Name = "tslReport";
+            tslReport.Size = new Size(68, 24);
+            tslReport.Text = "Report";
             // 
             // Home_Form
             // 
@@ -115,10 +109,9 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
-        private ToolStripMenuItem introductionToolStripMenuItem;
-        private ToolStripMenuItem bookingToolStripMenuItem;
-        private ToolStripMenuItem priceListToolStripMenuItem;
-        private ToolStripMenuItem reportToolStripMenuItem;
-        private ToolStripMenuItem reportToolStripMenuItem1;
+        private ToolStripMenuItem tslIntroduction;
+        private ToolStripMenuItem tslBooking;
+        private ToolStripMenuItem tslPriceList;
+        private ToolStripMenuItem tslReport;
     }
 }

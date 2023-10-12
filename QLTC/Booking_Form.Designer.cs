@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            comboBox4 = new ComboBox();
+            cbSex = new ComboBox();
             comboBox3 = new ComboBox();
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
-            dateTimePicker1 = new DateTimePicker();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            dtbDate = new DateTimePicker();
+            txtName = new TextBox();
+            txtID = new TextBox();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
@@ -44,33 +44,37 @@
             label3 = new Label();
             label2 = new Label();
             groupBox2 = new GroupBox();
-            comboBox5 = new ComboBox();
-            dateTimePicker2 = new DateTimePicker();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
+            cbPlaceInject = new ComboBox();
+            dtpDateInject = new DateTimePicker();
+            txtPrice = new TextBox();
+            txtVacName = new TextBox();
+            txtIDVaccine = new TextBox();
             label13 = new Label();
             label12 = new Label();
             label11 = new Label();
             label10 = new Label();
             label9 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            btnOK = new Button();
+            btnCancel = new Button();
+            btnClose = new Button();
             label1 = new Label();
+            btnUpdate = new Button();
+            dgvSchedule = new DataGridView();
+            btnDelete = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(comboBox4);
+            groupBox1.Controls.Add(cbSex);
             groupBox1.Controls.Add(comboBox3);
             groupBox1.Controls.Add(comboBox2);
             groupBox1.Controls.Add(comboBox1);
-            groupBox1.Controls.Add(dateTimePicker1);
-            groupBox1.Controls.Add(textBox2);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(dtbDate);
+            groupBox1.Controls.Add(txtName);
+            groupBox1.Controls.Add(txtID);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label6);
@@ -85,13 +89,13 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "INJECTOR INFORMATION";
             // 
-            // comboBox4
+            // cbSex
             // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(64, 105);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(181, 28);
-            comboBox4.TabIndex = 15;
+            cbSex.FormattingEnabled = true;
+            cbSex.Location = new Point(64, 105);
+            cbSex.Name = "cbSex";
+            cbSex.Size = new Size(181, 28);
+            cbSex.TabIndex = 15;
             // 
             // comboBox3
             // 
@@ -117,26 +121,26 @@
             comboBox1.Size = new Size(159, 28);
             comboBox1.TabIndex = 12;
             // 
-            // dateTimePicker1
+            // dtbDate
             // 
-            dateTimePicker1.Location = new Point(440, 103);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(190, 27);
-            dateTimePicker1.TabIndex = 9;
+            dtbDate.Location = new Point(440, 103);
+            dtbDate.Name = "dtbDate";
+            dtbDate.Size = new Size(190, 27);
+            dtbDate.TabIndex = 9;
             // 
-            // textBox2
+            // txtName
             // 
-            textBox2.Location = new Point(440, 30);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(190, 27);
-            textBox2.TabIndex = 8;
+            txtName.Location = new Point(440, 30);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(190, 27);
+            txtName.TabIndex = 8;
             // 
-            // textBox1
+            // txtID
             // 
-            textBox1.Location = new Point(64, 33);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(181, 27);
-            textBox1.TabIndex = 7;
+            txtID.Location = new Point(64, 33);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(181, 27);
+            txtID.TabIndex = 7;
             // 
             // label8
             // 
@@ -203,11 +207,11 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(comboBox5);
-            groupBox2.Controls.Add(dateTimePicker2);
-            groupBox2.Controls.Add(textBox5);
-            groupBox2.Controls.Add(textBox4);
-            groupBox2.Controls.Add(textBox3);
+            groupBox2.Controls.Add(cbPlaceInject);
+            groupBox2.Controls.Add(dtpDateInject);
+            groupBox2.Controls.Add(txtPrice);
+            groupBox2.Controls.Add(txtVacName);
+            groupBox2.Controls.Add(txtIDVaccine);
             groupBox2.Controls.Add(label13);
             groupBox2.Controls.Add(label12);
             groupBox2.Controls.Add(label11);
@@ -218,44 +222,44 @@
             groupBox2.Size = new Size(1069, 196);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
-            groupBox2.Text = "INFORMATION SERVICES";
+            groupBox2.Text = "SERVICE INFORMATION";
             // 
-            // comboBox5
+            // cbPlaceInject
             // 
-            comboBox5.FormattingEnabled = true;
-            comboBox5.Items.AddRange(new object[] { "VFA Long Xuyên", "VFA Vũng Tàu", "VFA Bắc Giang", "VFA Bắc Kạn", "VFA Bạc Liêu", "VFA Bắc Ninh", "VFA Bến Tre", "VFA Quy Nhơn", "VFA Thủ Dầu Một", "VFA Đồng Xoài", "VFA Phan Thiết", "VFA Cà Mau", "VFA Cao Bằng", "VFA Buôn Ma Thuột", "VFA Gia Nghĩa", "VFA Điện Biên Phủ", "VFA Biên Hòa", "VFA Cao Lãnh", "VFA Pleiku", "VFA Hà Giang", "VFA Phủ Lý", "VFA Hà Tĩnh", "VFA Hải Dương", "VFA Vị Thanh", "VFA Hòa Bình", "VFA Hưng Yên", "VFA Nha Trang", "VFA Rạch Giá", "VFA Kon Tum", "VFA Lai Châu", "VFA Đà Lạt", "VFA Lạng Sơn", "VFA Lào Cai", "VFA Tân An", "VFA Nam Định", "VFA Vinh", "VFA Ninh Bình", "VFA Phan Rang – Tháp Chàm", "VFA Việt Trì", "VFA Tuy Hòa", "VFA Đồng Hới", "VFA Tam Kỳ", "VFA Quảng Ngãi", "VFA Hạ Long", "VFA Đông Hà", "VFA Sóc Trăng", "VFA Sơn La", "VFA Tây Ninh", "VFA Thái Bình", "VFA Thái Nguyên", "VFA Thanh Hóa", "VFA Huế", "VFA Mỹ Tho", "VFA Trà Vinh", "VFA Tuyên Quang", "VFA Vĩnh Long", "VFA Vĩnh Yên", "VFA Yên Bái" });
-            comboBox5.Location = new Point(701, 123);
-            comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(256, 28);
-            comboBox5.TabIndex = 9;
+            cbPlaceInject.FormattingEnabled = true;
+            cbPlaceInject.Items.AddRange(new object[] { "VFA Long Xuyên", "VFA Vũng Tàu", "VFA Bắc Giang", "VFA Bắc Kạn", "VFA Bạc Liêu", "VFA Bắc Ninh", "VFA Bến Tre", "VFA Quy Nhơn", "VFA Thủ Dầu Một", "VFA Đồng Xoài", "VFA Phan Thiết", "VFA Cà Mau", "VFA Cao Bằng", "VFA Buôn Ma Thuột", "VFA Gia Nghĩa", "VFA Điện Biên Phủ", "VFA Biên Hòa", "VFA Cao Lãnh", "VFA Pleiku", "VFA Hà Giang", "VFA Phủ Lý", "VFA Hà Tĩnh", "VFA Hải Dương", "VFA Vị Thanh", "VFA Hòa Bình", "VFA Hưng Yên", "VFA Nha Trang", "VFA Rạch Giá", "VFA Kon Tum", "VFA Lai Châu", "VFA Đà Lạt", "VFA Lạng Sơn", "VFA Lào Cai", "VFA Tân An", "VFA Nam Định", "VFA Vinh", "VFA Ninh Bình", "VFA Phan Rang – Tháp Chàm", "VFA Việt Trì", "VFA Tuy Hòa", "VFA Đồng Hới", "VFA Tam Kỳ", "VFA Quảng Ngãi", "VFA Hạ Long", "VFA Đông Hà", "VFA Sóc Trăng", "VFA Sơn La", "VFA Tây Ninh", "VFA Thái Bình", "VFA Thái Nguyên", "VFA Thanh Hóa", "VFA Huế", "VFA Mỹ Tho", "VFA Trà Vinh", "VFA Tuyên Quang", "VFA Vĩnh Long", "VFA Vĩnh Yên", "VFA Yên Bái" });
+            cbPlaceInject.Location = new Point(701, 123);
+            cbPlaceInject.Name = "cbPlaceInject";
+            cbPlaceInject.Size = new Size(256, 28);
+            cbPlaceInject.TabIndex = 9;
             // 
-            // dateTimePicker2
+            // dtpDateInject
             // 
-            dateTimePicker2.Location = new Point(206, 121);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(250, 27);
-            dateTimePicker2.TabIndex = 8;
+            dtpDateInject.Location = new Point(206, 121);
+            dtpDateInject.Name = "dtpDateInject";
+            dtpDateInject.Size = new Size(250, 27);
+            dtpDateInject.TabIndex = 8;
             // 
-            // textBox5
+            // txtPrice
             // 
-            textBox5.Location = new Point(803, 36);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(159, 27);
-            textBox5.TabIndex = 7;
+            txtPrice.Location = new Point(803, 36);
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(159, 27);
+            txtPrice.TabIndex = 7;
             // 
-            // textBox4
+            // txtVacName
             // 
-            textBox4.Location = new Point(440, 38);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(190, 27);
-            textBox4.TabIndex = 6;
+            txtVacName.Location = new Point(440, 38);
+            txtVacName.Name = "txtVacName";
+            txtVacName.Size = new Size(190, 27);
+            txtVacName.TabIndex = 6;
             // 
-            // textBox3
+            // txtIDVaccine
             // 
-            textBox3.Location = new Point(64, 44);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(181, 27);
-            textBox3.TabIndex = 5;
+            txtIDVaccine.Location = new Point(64, 44);
+            txtIDVaccine.Name = "txtIDVaccine";
+            txtIDVaccine.Size = new Size(181, 27);
+            txtIDVaccine.TabIndex = 5;
             // 
             // label13
             // 
@@ -302,32 +306,32 @@
             label9.TabIndex = 0;
             label9.Text = "ID";
             // 
-            // button1
+            // btnOK
             // 
-            button1.Location = new Point(33, 530);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 2;
-            button1.Text = "OK";
-            button1.UseVisualStyleBackColor = true;
+            btnOK.Location = new Point(31, 648);
+            btnOK.Name = "btnOK";
+            btnOK.Size = new Size(94, 29);
+            btnOK.TabIndex = 2;
+            btnOK.Text = "OK";
+            btnOK.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnCancel
             // 
-            button2.Location = new Point(193, 530);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 3;
-            button2.Text = "Cancel";
-            button2.UseVisualStyleBackColor = true;
+            btnCancel.Location = new Point(529, 648);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(94, 29);
+            btnCancel.TabIndex = 3;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnClose
             // 
-            button3.Location = new Point(1006, 530);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 4;
-            button3.Text = "Close";
-            button3.UseVisualStyleBackColor = true;
+            btnClose.Location = new Point(1006, 648);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(94, 29);
+            btnClose.TabIndex = 4;
+            btnClose.Text = "Close";
+            btnClose.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -339,15 +343,46 @@
             label1.TabIndex = 5;
             label1.Text = "REGISTER FOR VACCINATION";
             // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(356, 648);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(94, 29);
+            btnUpdate.TabIndex = 6;
+            btnUpdate.Text = "Update";
+            btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // dgvSchedule
+            // 
+            dgvSchedule.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSchedule.Location = new Point(31, 429);
+            dgvSchedule.Name = "dgvSchedule";
+            dgvSchedule.RowHeadersWidth = 51;
+            dgvSchedule.RowTemplate.Height = 29;
+            dgvSchedule.Size = new Size(1069, 188);
+            dgvSchedule.TabIndex = 7;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(197, 648);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 29);
+            btnDelete.TabIndex = 8;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            // 
             // Booking_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1130, 571);
+            ClientSize = new Size(1130, 689);
+            Controls.Add(btnDelete);
+            Controls.Add(dgvSchedule);
+            Controls.Add(btnUpdate);
             Controls.Add(label1);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnClose);
+            Controls.Add(btnCancel);
+            Controls.Add(btnOK);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "Booking_Form";
@@ -356,6 +391,7 @@
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvSchedule).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -364,11 +400,11 @@
 
         private GroupBox groupBox1;
         private GroupBox groupBox2;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button btnOK;
+        private Button btnCancel;
+        private Button btnClose;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtID;
         private Label label8;
         private Label label7;
         private Label label6;
@@ -377,20 +413,23 @@
         private Label label3;
         private Label label2;
         private ComboBox comboBox1;
-        private DateTimePicker dateTimePicker1;
-        private TextBox textBox2;
-        private ComboBox comboBox4;
+        private DateTimePicker dtbDate;
+        private TextBox txtName;
+        private ComboBox cbSex;
         private ComboBox comboBox3;
         private ComboBox comboBox2;
         private Label label9;
-        private ComboBox comboBox5;
-        private DateTimePicker dateTimePicker2;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
+        private ComboBox cbPlaceInject;
+        private DateTimePicker dtpDateInject;
+        private TextBox txtPrice;
+        private TextBox txtVacName;
+        private TextBox txtIDVaccine;
         private Label label13;
         private Label label12;
         private Label label11;
         private Label label10;
+        private Button btnUpdate;
+        private DataGridView dgvSchedule;
+        private Button btnDelete;
     }
 }

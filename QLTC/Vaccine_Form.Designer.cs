@@ -34,18 +34,19 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            dataGridView1 = new DataGridView();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            txtID = new TextBox();
+            txtVacName = new TextBox();
+            txtVacType = new TextBox();
+            txtVacProc = new TextBox();
+            txtPrice = new TextBox();
+            dgvVacInfor = new DataGridView();
+            btnAdd = new Button();
+            btnDelete = new Button();
+            btnUpdate = new Button();
+            btnCancel = new Button();
+            btnExit = new Button();
+            btnSearch = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvVacInfor).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -103,112 +104,122 @@
             label6.TabIndex = 5;
             label6.Text = "Price";
             // 
-            // textBox1
+            // txtID
             // 
-            textBox1.Location = new Point(167, 76);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(221, 27);
-            textBox1.TabIndex = 6;
+            txtID.Location = new Point(167, 76);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(221, 27);
+            txtID.TabIndex = 6;
             // 
-            // textBox2
+            // txtVacName
             // 
-            textBox2.Location = new Point(167, 145);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(221, 27);
-            textBox2.TabIndex = 7;
+            txtVacName.Location = new Point(167, 145);
+            txtVacName.Name = "txtVacName";
+            txtVacName.Size = new Size(221, 27);
+            txtVacName.TabIndex = 7;
             // 
-            // textBox3
+            // txtVacType
             // 
-            textBox3.Location = new Point(573, 76);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(219, 27);
-            textBox3.TabIndex = 8;
+            txtVacType.Location = new Point(573, 76);
+            txtVacType.Name = "txtVacType";
+            txtVacType.Size = new Size(219, 27);
+            txtVacType.TabIndex = 8;
             // 
-            // textBox4
+            // txtVacProc
             // 
-            textBox4.Location = new Point(573, 149);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(219, 27);
-            textBox4.TabIndex = 9;
+            txtVacProc.Location = new Point(573, 149);
+            txtVacProc.Name = "txtVacProc";
+            txtVacProc.Size = new Size(219, 27);
+            txtVacProc.TabIndex = 9;
             // 
-            // textBox5
+            // txtPrice
             // 
-            textBox5.Location = new Point(926, 76);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(176, 27);
-            textBox5.TabIndex = 10;
+            txtPrice.Location = new Point(926, 76);
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(176, 27);
+            txtPrice.TabIndex = 10;
             // 
-            // dataGridView1
+            // dgvVacInfor
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(28, 205);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1074, 283);
-            dataGridView1.TabIndex = 11;
+            dgvVacInfor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvVacInfor.Location = new Point(28, 205);
+            dgvVacInfor.Name = "dgvVacInfor";
+            dgvVacInfor.RowHeadersWidth = 51;
+            dgvVacInfor.RowTemplate.Height = 29;
+            dgvVacInfor.Size = new Size(1074, 283);
+            dgvVacInfor.TabIndex = 11;
             // 
-            // button1
+            // btnAdd
             // 
-            button1.Location = new Point(28, 528);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 12;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            btnAdd.Location = new Point(28, 528);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(94, 29);
+            btnAdd.TabIndex = 12;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnDelete
             // 
-            button2.Location = new Point(193, 528);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 13;
-            button2.Text = "Delete";
-            button2.UseVisualStyleBackColor = true;
+            btnDelete.Location = new Point(193, 528);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 29);
+            btnDelete.TabIndex = 13;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnUpdate
             // 
-            button3.Location = new Point(373, 528);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 14;
-            button3.Text = "Update";
-            button3.UseVisualStyleBackColor = true;
+            btnUpdate.Location = new Point(373, 528);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(94, 29);
+            btnUpdate.TabIndex = 14;
+            btnUpdate.Text = "Update";
+            btnUpdate.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnCancel
             // 
-            button4.Location = new Point(560, 528);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 29);
-            button4.TabIndex = 15;
-            button4.Text = "Cancel";
-            button4.UseVisualStyleBackColor = true;
+            btnCancel.Location = new Point(723, 528);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(94, 29);
+            btnCancel.TabIndex = 15;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnExit
             // 
-            button5.Location = new Point(1008, 528);
-            button5.Name = "button5";
-            button5.Size = new Size(94, 29);
-            button5.TabIndex = 16;
-            button5.Text = "Exit";
-            button5.UseVisualStyleBackColor = true;
+            btnExit.Location = new Point(1008, 528);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(94, 29);
+            btnExit.TabIndex = 16;
+            btnExit.Text = "Exit";
+            btnExit.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(551, 528);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(94, 29);
+            btnSearch.TabIndex = 17;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
             // 
             // Vaccine_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1134, 569);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(dataGridView1);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(btnSearch);
+            Controls.Add(btnExit);
+            Controls.Add(btnCancel);
+            Controls.Add(btnUpdate);
+            Controls.Add(btnDelete);
+            Controls.Add(btnAdd);
+            Controls.Add(dgvVacInfor);
+            Controls.Add(txtPrice);
+            Controls.Add(txtVacProc);
+            Controls.Add(txtVacType);
+            Controls.Add(txtVacName);
+            Controls.Add(txtID);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -217,7 +228,7 @@
             Controls.Add(label1);
             Name = "Vaccine_Form";
             Text = "Vaccine_Form";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvVacInfor).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -230,16 +241,17 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private DataGridView dataGridView1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
+        private TextBox txtID;
+        private TextBox txtVacName;
+        private TextBox txtVacType;
+        private TextBox txtVacProc;
+        private TextBox txtPrice;
+        private DataGridView dgvVacInfor;
+        private Button btnAdd;
+        private Button btnDelete;
+        private Button btnUpdate;
+        private Button btnCancel;
+        private Button btnExit;
+        private Button btnSearch;
     }
 }

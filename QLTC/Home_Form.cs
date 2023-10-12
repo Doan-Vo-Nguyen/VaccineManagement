@@ -11,5 +11,11 @@ namespace QLTC
         {
             Application.Exit();
         }
+
+        private void tslBooking_Click(object sender, EventArgs e)
+        {
+            Booking_Form bookingForm = new Booking_Form();
+            bookingForm.ShowDialog();
+        }
     }
 }
