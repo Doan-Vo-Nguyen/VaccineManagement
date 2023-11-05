@@ -29,26 +29,24 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            txtPhonenumber = new TextBox();
+            label7 = new Label();
             cbSex = new ComboBox();
-            comboBox3 = new ComboBox();
-            comboBox2 = new ComboBox();
-            comboBox1 = new ComboBox();
-            dtbDate = new DateTimePicker();
+            dtpBirth = new DateTimePicker();
             txtName = new TextBox();
             txtID = new TextBox();
-            label8 = new Label();
-            label7 = new Label();
-            label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
+            cbxProvince = new ComboBox();
+            label6 = new Label();
             groupBox2 = new GroupBox();
-            cbPlaceInject = new ComboBox();
+            cbxVacType = new ComboBox();
+            cbxVacName = new ComboBox();
+            cbxCenterInject = new ComboBox();
             dtpDateInject = new DateTimePicker();
             txtPrice = new TextBox();
-            txtVacName = new TextBox();
-            txtIDVaccine = new TextBox();
             label13 = new Label();
             label12 = new Label();
             label11 = new Label();
@@ -68,16 +66,12 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(txtPhonenumber);
+            groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(cbSex);
-            groupBox1.Controls.Add(comboBox3);
-            groupBox1.Controls.Add(comboBox2);
-            groupBox1.Controls.Add(comboBox1);
-            groupBox1.Controls.Add(dtbDate);
+            groupBox1.Controls.Add(dtpBirth);
             groupBox1.Controls.Add(txtName);
             groupBox1.Controls.Add(txtID);
-            groupBox1.Controls.Add(label8);
-            groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label3);
@@ -89,6 +83,22 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "INJECTOR INFORMATION";
             // 
+            // txtPhonenumber
+            // 
+            txtPhonenumber.Location = new Point(850, 66);
+            txtPhonenumber.Name = "txtPhonenumber";
+            txtPhonenumber.Size = new Size(181, 27);
+            txtPhonenumber.TabIndex = 17;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(703, 69);
+            label7.Name = "label7";
+            label7.Size = new Size(105, 20);
+            label7.TabIndex = 16;
+            label7.Text = "Phone number";
+            // 
             // cbSex
             // 
             cbSex.FormattingEnabled = true;
@@ -97,36 +107,12 @@
             cbSex.Size = new Size(181, 28);
             cbSex.TabIndex = 15;
             // 
-            // comboBox3
+            // dtpBirth
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(803, 131);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(159, 28);
-            comboBox3.TabIndex = 14;
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(803, 77);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(159, 28);
-            comboBox2.TabIndex = 13;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(803, 20);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(159, 28);
-            comboBox1.TabIndex = 12;
-            // 
-            // dtbDate
-            // 
-            dtbDate.Location = new Point(440, 103);
-            dtbDate.Name = "dtbDate";
-            dtbDate.Size = new Size(190, 27);
-            dtbDate.TabIndex = 9;
+            dtpBirth.Location = new Point(440, 103);
+            dtpBirth.Name = "dtpBirth";
+            dtpBirth.Size = new Size(190, 27);
+            dtpBirth.TabIndex = 9;
             // 
             // txtName
             // 
@@ -141,33 +127,6 @@
             txtID.Name = "txtID";
             txtID.Size = new Size(181, 27);
             txtID.TabIndex = 7;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(691, 134);
-            label8.Name = "label8";
-            label8.Size = new Size(50, 20);
-            label8.TabIndex = 6;
-            label8.Text = "Wards";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(691, 80);
-            label7.Name = "label7";
-            label7.Size = new Size(56, 20);
-            label7.TabIndex = 5;
-            label7.Text = "District";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(691, 23);
-            label6.Name = "label6";
-            label6.Size = new Size(65, 20);
-            label6.TabIndex = 4;
-            label6.Text = "Province";
             // 
             // label5
             // 
@@ -190,11 +149,11 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(26, 108);
+            label3.Location = new Point(1, 110);
             label3.Name = "label3";
-            label3.Size = new Size(32, 20);
+            label3.Size = new Size(57, 20);
             label3.TabIndex = 1;
-            label3.Text = "Sex";
+            label3.Text = "Gender";
             // 
             // label2
             // 
@@ -205,15 +164,35 @@
             label2.TabIndex = 0;
             label2.Text = "Fullname";
             // 
+            // cbxProvince
+            // 
+            cbxProvince.FormattingEnabled = true;
+            cbxProvince.Location = new Point(513, 125);
+            cbxProvince.Name = "cbxProvince";
+            cbxProvince.Size = new Size(150, 28);
+            cbxProvince.TabIndex = 12;
+            cbxProvince.SelectedIndexChanged += cbxProvince_SelectedIndexChanged;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(419, 125);
+            label6.Name = "label6";
+            label6.Size = new Size(65, 20);
+            label6.TabIndex = 4;
+            label6.Text = "Province";
+            // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(cbPlaceInject);
+            groupBox2.Controls.Add(cbxVacType);
+            groupBox2.Controls.Add(cbxVacName);
+            groupBox2.Controls.Add(cbxCenterInject);
+            groupBox2.Controls.Add(cbxProvince);
             groupBox2.Controls.Add(dtpDateInject);
             groupBox2.Controls.Add(txtPrice);
-            groupBox2.Controls.Add(txtVacName);
-            groupBox2.Controls.Add(txtIDVaccine);
             groupBox2.Controls.Add(label13);
             groupBox2.Controls.Add(label12);
+            groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(label11);
             groupBox2.Controls.Add(label10);
             groupBox2.Controls.Add(label9);
@@ -224,47 +203,51 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "SERVICE INFORMATION";
             // 
-            // cbPlaceInject
+            // cbxVacType
             // 
-            cbPlaceInject.FormattingEnabled = true;
-            cbPlaceInject.Items.AddRange(new object[] { "VFA Long Xuyên", "VFA Vũng Tàu", "VFA Bắc Giang", "VFA Bắc Kạn", "VFA Bạc Liêu", "VFA Bắc Ninh", "VFA Bến Tre", "VFA Quy Nhơn", "VFA Thủ Dầu Một", "VFA Đồng Xoài", "VFA Phan Thiết", "VFA Cà Mau", "VFA Cao Bằng", "VFA Buôn Ma Thuột", "VFA Gia Nghĩa", "VFA Điện Biên Phủ", "VFA Biên Hòa", "VFA Cao Lãnh", "VFA Pleiku", "VFA Hà Giang", "VFA Phủ Lý", "VFA Hà Tĩnh", "VFA Hải Dương", "VFA Vị Thanh", "VFA Hòa Bình", "VFA Hưng Yên", "VFA Nha Trang", "VFA Rạch Giá", "VFA Kon Tum", "VFA Lai Châu", "VFA Đà Lạt", "VFA Lạng Sơn", "VFA Lào Cai", "VFA Tân An", "VFA Nam Định", "VFA Vinh", "VFA Ninh Bình", "VFA Phan Rang – Tháp Chàm", "VFA Việt Trì", "VFA Tuy Hòa", "VFA Đồng Hới", "VFA Tam Kỳ", "VFA Quảng Ngãi", "VFA Hạ Long", "VFA Đông Hà", "VFA Sóc Trăng", "VFA Sơn La", "VFA Tây Ninh", "VFA Thái Bình", "VFA Thái Nguyên", "VFA Thanh Hóa", "VFA Huế", "VFA Mỹ Tho", "VFA Trà Vinh", "VFA Tuyên Quang", "VFA Vĩnh Long", "VFA Vĩnh Yên", "VFA Yên Bái" });
-            cbPlaceInject.Location = new Point(701, 123);
-            cbPlaceInject.Name = "cbPlaceInject";
-            cbPlaceInject.Size = new Size(256, 28);
-            cbPlaceInject.TabIndex = 9;
+            cbxVacType.FormattingEnabled = true;
+            cbxVacType.Location = new Point(206, 46);
+            cbxVacType.Name = "cbxVacType";
+            cbxVacType.Size = new Size(180, 28);
+            cbxVacType.TabIndex = 11;
+            cbxVacType.SelectedIndexChanged += cbxVacType_SelectedIndexChange;
+            // 
+            // cbxVacName
+            // 
+            cbxVacName.FormattingEnabled = true;
+            cbxVacName.Location = new Point(513, 43);
+            cbxVacName.Name = "cbxVacName";
+            cbxVacName.Size = new Size(150, 28);
+            cbxVacName.TabIndex = 10;
+            cbxVacName.SelectedIndexChanged += cbxVacName_SelectedIndexChanged;
+            // 
+            // cbxCenterInject
+            // 
+            cbxCenterInject.FormattingEnabled = true;
+            cbxCenterInject.Items.AddRange(new object[] { "VFA Long Xuyên", "VFA Vũng Tàu", "VFA Bắc Giang", "VFA Bắc Kạn", "VFA Bạc Liêu", "VFA Bắc Ninh", "VFA Bến Tre", "VFA Quy Nhơn", "VFA Thủ Dầu Một", "VFA Đồng Xoài", "VFA Phan Thiết", "VFA Cà Mau", "VFA Cao Bằng", "VFA Buôn Ma Thuột", "VFA Gia Nghĩa", "VFA Điện Biên Phủ", "VFA Biên Hòa", "VFA Cao Lãnh", "VFA Pleiku", "VFA Hà Giang", "VFA Phủ Lý", "VFA Hà Tĩnh", "VFA Hải Dương", "VFA Vị Thanh", "VFA Hòa Bình", "VFA Hưng Yên", "VFA Nha Trang", "VFA Rạch Giá", "VFA Kon Tum", "VFA Lai Châu", "VFA Đà Lạt", "VFA Lạng Sơn", "VFA Lào Cai", "VFA Tân An", "VFA Nam Định", "VFA Vinh", "VFA Ninh Bình", "VFA Phan Rang – Tháp Chàm", "VFA Việt Trì", "VFA Tuy Hòa", "VFA Đồng Hới", "VFA Tam Kỳ", "VFA Quảng Ngãi", "VFA Hạ Long", "VFA Đông Hà", "VFA Sóc Trăng", "VFA Sơn La", "VFA Tây Ninh", "VFA Thái Bình", "VFA Thái Nguyên", "VFA Thanh Hóa", "VFA Huế", "VFA Mỹ Tho", "VFA Trà Vinh", "VFA Tuyên Quang", "VFA Vĩnh Long", "VFA Vĩnh Yên", "VFA Yên Bái" });
+            cbxCenterInject.Location = new Point(869, 125);
+            cbxCenterInject.Name = "cbxCenterInject";
+            cbxCenterInject.Size = new Size(180, 28);
+            cbxCenterInject.TabIndex = 9;
             // 
             // dtpDateInject
             // 
             dtpDateInject.Location = new Point(206, 121);
             dtpDateInject.Name = "dtpDateInject";
-            dtpDateInject.Size = new Size(250, 27);
+            dtpDateInject.Size = new Size(180, 27);
             dtpDateInject.TabIndex = 8;
             // 
             // txtPrice
             // 
-            txtPrice.Location = new Point(803, 36);
+            txtPrice.Location = new Point(869, 44);
             txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(159, 27);
+            txtPrice.Size = new Size(180, 27);
             txtPrice.TabIndex = 7;
-            // 
-            // txtVacName
-            // 
-            txtVacName.Location = new Point(440, 38);
-            txtVacName.Name = "txtVacName";
-            txtVacName.Size = new Size(190, 27);
-            txtVacName.TabIndex = 6;
-            // 
-            // txtIDVaccine
-            // 
-            txtIDVaccine.Location = new Point(64, 44);
-            txtIDVaccine.Name = "txtIDVaccine";
-            txtIDVaccine.Size = new Size(181, 27);
-            txtIDVaccine.TabIndex = 5;
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(487, 126);
+            label13.Location = new Point(669, 128);
             label13.Name = "label13";
             label13.Size = new Size(181, 20);
             label13.TabIndex = 4;
@@ -282,7 +265,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(701, 38);
+            label11.Location = new Point(703, 49);
             label11.Name = "label11";
             label11.Size = new Size(41, 20);
             label11.TabIndex = 2;
@@ -291,20 +274,20 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(319, 44);
+            label10.Location = new Point(404, 46);
             label10.Name = "label10";
-            label10.Size = new Size(100, 20);
+            label10.Size = new Size(103, 20);
             label10.TabIndex = 1;
-            label10.Text = "Vaccine name";
+            label10.Text = "Vaccine Name";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(25, 45);
+            label9.Location = new Point(25, 51);
             label9.Name = "label9";
-            label9.Size = new Size(24, 20);
+            label9.Size = new Size(94, 20);
             label9.TabIndex = 0;
-            label9.Text = "ID";
+            label9.Text = "Vaccine Type";
             // 
             // btnOK
             // 
@@ -332,14 +315,15 @@
             btnClose.TabIndex = 4;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(387, 10);
             label1.Name = "label1";
-            label1.Size = new Size(339, 35);
+            label1.Size = new Size(361, 35);
             label1.TabIndex = 5;
             label1.Text = "REGISTER FOR VACCINATION";
             // 
@@ -387,6 +371,7 @@
             Controls.Add(groupBox1);
             Name = "Booking_Form";
             Text = "Booking";
+            Load += Booking_Form_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -405,25 +390,19 @@
         private Button btnClose;
         private Label label1;
         private TextBox txtID;
-        private Label label8;
-        private Label label7;
         private Label label6;
         private Label label5;
         private Label label4;
         private Label label3;
         private Label label2;
-        private ComboBox comboBox1;
-        private DateTimePicker dtbDate;
+        private ComboBox cbxProvince;
+        private DateTimePicker dtpBirth;
         private TextBox txtName;
         private ComboBox cbSex;
-        private ComboBox comboBox3;
-        private ComboBox comboBox2;
         private Label label9;
-        private ComboBox cbPlaceInject;
+        private ComboBox cbxCenterInject;
         private DateTimePicker dtpDateInject;
         private TextBox txtPrice;
-        private TextBox txtVacName;
-        private TextBox txtIDVaccine;
         private Label label13;
         private Label label12;
         private Label label11;
@@ -431,5 +410,9 @@
         private Button btnUpdate;
         private DataGridView dgvSchedule;
         private Button btnDelete;
+        private TextBox txtPhonenumber;
+        private Label label7;
+        private ComboBox cbxVacName;
+        private ComboBox cbxVacType;
     }
 }

@@ -52,6 +52,21 @@ namespace QLTC
             return dt;
         }
 
+        // FUNCTION CHANGE DATA WHEN RUN SQL COMMAND( INSERT, UPDATE, DELETE)
+        // Done All
+        public static void runSQL(string sql, string[] name = null, object[] value = null)
+        {
+            cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.Clear();
+            if (value != null)
+            {
+                for (int i = 0; i < value.Length; i++)
+                    cmd.Parameters.AddWithValue(name[i], value[i]);
+            }
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+        }
+
         // CHECK EXIST
         public static int executeScalar(string sql)
         {
@@ -59,6 +74,47 @@ namespace QLTC
             cmd = new SqlCommand(sql, conn);
             i = (int)cmd.ExecuteScalar();
             return i;
+        }
+
+        //CHECK KEY IF EXIST
+        public static bool checkKey(string sql)
+        {
+            adapter = new SqlDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // FUNCTION GET A VALUE FROM A SQL COMMAND AND FILL INTO COMBOBOX
+        public static void fillDataCombo(string sql, ComboBox cbx, string id, string name)
+        {
+            adapter = new SqlDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            cbx.DataSource = dt;
+            cbx.ValueMember = id;
+            cbx.DisplayMember = name;
+        }
+
+        // FUNCTION GET FIELD VALUE
+        public static string getFieldValues(string sql)
+        {
+            string id = "";
+            cmd = new SqlCommand(sql, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                id = reader.GetValue(0).ToString();
+            }
+            reader.Close();
+            return id;
         }
     }
 }

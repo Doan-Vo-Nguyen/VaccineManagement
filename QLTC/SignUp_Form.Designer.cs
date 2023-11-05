@@ -38,7 +38,6 @@
             txtName = new TextBox();
             dtpDate = new DateTimePicker();
             cbSex = new ComboBox();
-            txtAddress = new TextBox();
             label7 = new Label();
             txtPhoneNum = new TextBox();
             btnSignUp = new Button();
@@ -48,14 +47,17 @@
             label10 = new Label();
             txtEmail = new TextBox();
             txtPassword = new TextBox();
+            cbxProvince = new ComboBox();
+            label11 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(518, 15);
+            label1.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(510, 9);
             label1.Name = "label1";
-            label1.Size = new Size(61, 20);
+            label1.Size = new Size(107, 35);
             label1.TabIndex = 0;
             label1.Text = "Sign Up";
             // 
@@ -71,7 +73,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(348, 136);
+            label3.Location = new Point(348, 139);
             label3.Name = "label3";
             label3.Size = new Size(72, 20);
             label3.TabIndex = 2;
@@ -91,9 +93,9 @@
             label5.AutoSize = true;
             label5.Location = new Point(721, 330);
             label5.Name = "label5";
-            label5.Size = new Size(32, 20);
+            label5.Size = new Size(57, 20);
             label5.TabIndex = 4;
-            label5.Text = "Sex";
+            label5.Text = "Gender";
             // 
             // label6
             // 
@@ -106,14 +108,14 @@
             // 
             // txtID
             // 
-            txtID.Location = new Point(453, 71);
+            txtID.Location = new Point(453, 70);
             txtID.Name = "txtID";
-            txtID.Size = new Size(250, 27);
+            txtID.Size = new Size(249, 27);
             txtID.TabIndex = 6;
             // 
             // txtName
             // 
-            txtName.Location = new Point(453, 129);
+            txtName.Location = new Point(453, 136);
             txtName.Name = "txtName";
             txtName.Size = new Size(250, 27);
             txtName.TabIndex = 7;
@@ -135,13 +137,6 @@
             cbSex.TabIndex = 9;
             cbSex.Tag = "";
             // 
-            // txtAddress
-            // 
-            txtAddress.Location = new Point(453, 382);
-            txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(250, 27);
-            txtAddress.TabIndex = 10;
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -160,12 +155,13 @@
             // 
             // btnSignUp
             // 
-            btnSignUp.Location = new Point(500, 501);
+            btnSignUp.Location = new Point(518, 498);
             btnSignUp.Name = "btnSignUp";
             btnSignUp.Size = new Size(94, 29);
             btnSignUp.TabIndex = 13;
             btnSignUp.Text = "SIGN UP ";
             btnSignUp.UseVisualStyleBackColor = true;
+            btnSignUp.Click += btnSignUp_Click;
             // 
             // label8
             // 
@@ -218,11 +214,33 @@
             txtPassword.Size = new Size(249, 27);
             txtPassword.TabIndex = 19;
             // 
+            // cbxProvince
+            // 
+            cbxProvince.FormattingEnabled = true;
+            cbxProvince.Items.AddRange(new object[] { "Hà Nội", "Hồ Chí Minh", "Hải Phòng", "Cần Thơ", "Đà Nẵng", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu", "Bắc Ninh", "Bến Tre", "Bình Định", "Bình Dương", "Bình Phước", "Bình Thuận", "Cà Mau", "Cao Bằng", "Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp", "Gia Lai", "Hà Giang", "Hà Nam", "Hà Tĩnh", "Hải Dương", "Hậu Giang", "Hòa Bình", "Hưng Yên", "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng", "Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Nghệ An", "Ninh Bình", "Ninh Thuận", "Phú Thọ", "Phú Yên", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng", "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa", "Thừa Thiên Huế", "Tiền Giang", "Trà Vinh", "Tuyên Quang", "Vĩnh Long", "Vĩnh Phúc", "Yên Bái", "Quảng Trị" });
+            cbxProvince.Location = new Point(453, 388);
+            cbxProvince.Name = "cbxProvince";
+            cbxProvince.Size = new Size(250, 28);
+            cbxProvince.TabIndex = 20;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.BackColor = Color.Transparent;
+            label11.ForeColor = Color.Red;
+            label11.Location = new Point(721, 70);
+            label11.Name = "label11";
+            label11.Size = new Size(223, 20);
+            label11.TabIndex = 21;
+            label11.Text = "Note: Please enter the correct ID";
+            // 
             // SignUp_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1128, 572);
+            Controls.Add(label11);
+            Controls.Add(cbxProvince);
             Controls.Add(txtPassword);
             Controls.Add(txtEmail);
             Controls.Add(label10);
@@ -232,7 +250,6 @@
             Controls.Add(btnSignUp);
             Controls.Add(txtPhoneNum);
             Controls.Add(label7);
-            Controls.Add(txtAddress);
             Controls.Add(cbSex);
             Controls.Add(dtpDate);
             Controls.Add(txtName);
@@ -244,7 +261,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "SignUp_Form";
-            Text = "SignUp_Form";
+            Text = "Sign Up";
+            Load += SignUp_Form_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -261,7 +279,6 @@
         private TextBox txtName;
         private DateTimePicker dtpDate;
         private ComboBox cbSex;
-        private TextBox txtAddress;
         private Label label7;
         private TextBox txtPhoneNum;
         private Button btnSignUp;
@@ -271,5 +288,7 @@
         private Label label10;
         private TextBox txtEmail;
         private TextBox txtPassword;
+        private ComboBox cbxProvince;
+        private Label label11;
     }
 }

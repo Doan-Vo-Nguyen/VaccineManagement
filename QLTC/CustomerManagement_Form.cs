@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace QLTC
 {
-    public partial class SearchingInformation_Form : Form
+    public partial class CustomerManagement_Form : Form
     {
-        public SearchingInformation_Form()
+        public CustomerManagement_Form()
         {
             InitializeComponent();
         }

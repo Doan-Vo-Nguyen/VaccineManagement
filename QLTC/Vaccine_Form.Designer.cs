@@ -46,6 +46,7 @@
             btnCancel = new Button();
             btnExit = new Button();
             btnSearch = new Button();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvVacInfor).BeginInit();
             SuspendLayout();
             // 
@@ -193,6 +194,7 @@
             btnExit.TabIndex = 16;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // btnSearch
             // 
@@ -203,11 +205,21 @@
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(852, 148);
+            label7.Name = "label7";
+            label7.Size = new Size(50, 20);
+            label7.TabIndex = 18;
+            label7.Text = "label7";
+            // 
             // Vaccine_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1134, 569);
+            Controls.Add(label7);
             Controls.Add(btnSearch);
             Controls.Add(btnExit);
             Controls.Add(btnCancel);
@@ -228,6 +240,7 @@
             Controls.Add(label1);
             Name = "Vaccine_Form";
             Text = "Vaccine_Form";
+            Load += Vaccine_Form_Load;
             ((System.ComponentModel.ISupportInitialize)dgvVacInfor).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -253,5 +266,6 @@
         private Button btnCancel;
         private Button btnExit;
         private Button btnSearch;
+        private Label label7;
     }
 }

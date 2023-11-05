@@ -44,16 +44,17 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(308, 120);
+            label1.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(308, 148);
             label1.Name = "label1";
-            label1.Size = new Size(197, 20);
+            label1.Size = new Size(355, 35);
             label1.TabIndex = 0;
             label1.Text = "LOG IN WITH VFA ACCOUNT";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(308, 184);
+            label2.Location = new Point(308, 213);
             label2.Name = "label2";
             label2.Size = new Size(46, 20);
             label2.TabIndex = 1;
@@ -62,7 +63,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(308, 290);
+            label3.Location = new Point(308, 333);
             label3.Name = "label3";
             label3.Size = new Size(70, 20);
             label3.TabIndex = 2;
@@ -70,32 +71,33 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(451, 181);
+            txtEmail.Location = new Point(427, 210);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(181, 27);
+            txtEmail.Size = new Size(212, 27);
             txtEmail.TabIndex = 3;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(451, 287);
+            txtPassword.Location = new Point(427, 330);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(181, 27);
+            txtPassword.Size = new Size(212, 27);
             txtPassword.TabIndex = 4;
             // 
             // btnLogIn
             // 
-            btnLogIn.Location = new Point(467, 392);
+            btnLogIn.Location = new Point(467, 424);
             btnLogIn.Name = "btnLogIn";
             btnLogIn.Size = new Size(105, 29);
             btnLogIn.TabIndex = 5;
             btnLogIn.Text = "LOG IN NOW";
             btnLogIn.UseVisualStyleBackColor = true;
+            btnLogIn.Click += btnLogIn_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(480, 27);
+            pictureBox1.Location = new Point(490, 24);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(82, 62);
             pictureBox1.TabIndex = 6;
@@ -119,6 +121,7 @@
             lbSignUp.TabIndex = 8;
             lbSignUp.TabStop = true;
             lbSignUp.Text = "Sign Up";
+            lbSignUp.LinkClicked += lbSignUp_LinkClicked;
             // 
             // Login_Form
             // 
@@ -135,7 +138,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Login_Form";
-            Text = "Login_Form";
+            Text = "Login";
+            Load += Login_Form_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

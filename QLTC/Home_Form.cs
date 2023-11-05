@@ -1,10 +1,25 @@
+using System.Data.SqlTypes;
+
 namespace QLTC
 {
     public partial class Home_Form : Form
     {
+        public string ID;
         public Home_Form()
         {
+
             InitializeComponent();
+
+        }
+
+        private void Home_Form_Load(object sender, EventArgs e)
+        {
+            ID = Login_Form.cusID.ToString();
+            if (ID != null)
+            {
+                ID = Login_Form.cusID.ToString();
+            }
+            updateUIForRole();
         }
 
         private void mnuExit_Click(object sender, EventArgs e)
@@ -34,5 +49,66 @@ namespace QLTC
         {
             Application.Exit();
         }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ID = null;
+            this.Close();
+            Login_Form login_Form = new Login_Form();
+            login_Form.Show();
+        }
+
+        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReportStock_Form reportStock_Form = new ReportStock_Form();
+            reportStock_Form.ShowDialog();
+        }
+
+        private void customerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CustomerManagement_Form personalManagement = new CustomerManagement_Form();
+            personalManagement.ShowDialog();
+        }
+
+        private void vaccineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Vaccine_Form vaccine_Form = new Vaccine_Form();
+            vaccine_Form.ShowDialog();
+        }
+
+        private void tsmiSchedule_Click(object sender, EventArgs e)
+        {
+            ReportSchedule_Form reportSchedule_Form = new ReportSchedule_Form();
+            reportSchedule_Form.ShowDialog();
+        }
+
+        private void updateUIForRole()
+        {
+            if (ID != String.Empty)
+            {
+                ID = Login_Form.cusID.ToString();
+                string sqlcusID = "SELECT * FROM Account WHERE cus_id = '" + ID + "'";
+                if (DataAccess.checkKey(sqlcusID))
+                {
+
+                    tslFile.Visible = true;
+                    tslVaccineInfor.Visible = true;
+                    tslBooking.Visible = true;
+                    tslPersonalInfor.Visible = true;
+                    tslReport.Visible = false;
+                }
+            }
+            else
+            {
+                tslFile.Visible = true;
+                tslVaccineInfor.Visible = false;
+                tslBooking.Visible = false;
+                tslManagement.Visible = true;
+                tslPersonalInfor.Visible = false;
+                tslReport.Visible = true;
+            }
+        }
+
+        
     }
 }
