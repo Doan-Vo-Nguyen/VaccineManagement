@@ -4,7 +4,7 @@ namespace QLTC
 {
     public partial class Home_Form : Form
     {
-        public string ID;
+        private string ID;
         public Home_Form()
         {
 
@@ -96,6 +96,7 @@ namespace QLTC
                     tslBooking.Visible = true;
                     tslPersonalInfor.Visible = true;
                     tslReport.Visible = false;
+                    tslManagement.Visible = false;
                 }
             }
             else
@@ -106,9 +107,10 @@ namespace QLTC
                 tslManagement.Visible = true;
                 tslPersonalInfor.Visible = false;
                 tslReport.Visible = true;
+                tslManagement.Visible = true;
             }
         }
 
-        
+
     }
 }

@@ -45,10 +45,11 @@
             btnView = new Button();
             btnClose = new Button();
             groupBox1 = new GroupBox();
-            label8 = new Label();
-            textBox1 = new TextBox();
-            label9 = new Label();
             textBox2 = new TextBox();
+            label9 = new Label();
+            textBox1 = new TextBox();
+            label8 = new Label();
+            btnRefresh = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -70,7 +71,7 @@
             dgvSchedule.Name = "dgvSchedule";
             dgvSchedule.RowHeadersWidth = 51;
             dgvSchedule.RowTemplate.Height = 29;
-            dgvSchedule.Size = new Size(1144, 217);
+            dgvSchedule.Size = new Size(1121, 217);
             dgvSchedule.TabIndex = 1;
             // 
             // label2
@@ -196,6 +197,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnRefresh);
             groupBox1.Controls.Add(textBox2);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(textBox1);
@@ -206,23 +208,14 @@
             groupBox1.Size = new Size(415, 244);
             groupBox1.TabIndex = 18;
             groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
+            groupBox1.Text = "Summary";
             // 
-            // label8
+            // textBox2
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(21, 37);
-            label8.Name = "label8";
-            label8.Size = new Size(139, 20);
-            label8.TabIndex = 17;
-            label8.Text = "Remaining vaccines";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(270, 34);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 18;
+            textBox2.Location = new Point(270, 94);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(125, 27);
+            textBox2.TabIndex = 20;
             // 
             // label9
             // 
@@ -233,12 +226,30 @@
             label9.TabIndex = 19;
             label9.Text = "Number of vaccines administered";
             // 
-            // textBox2
+            // textBox1
             // 
-            textBox2.Location = new Point(270, 94);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 20;
+            textBox1.Location = new Point(270, 34);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 18;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(21, 37);
+            label8.Name = "label8";
+            label8.Size = new Size(139, 20);
+            label8.TabIndex = 17;
+            label8.Text = "Remaining vaccines";
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.Location = new Point(142, 204);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(94, 29);
+            btnRefresh.TabIndex = 21;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
             // 
             // ReportStock_Form
             // 
@@ -294,5 +305,6 @@
         private Label label8;
         private TextBox textBox2;
         private Label label9;
+        private Button btnRefresh;
     }
 }

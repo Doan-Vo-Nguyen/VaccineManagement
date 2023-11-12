@@ -116,5 +116,20 @@ namespace QLTC
             reader.Close();
             return id;
         }
+
+        public static int GetLastIdentity()
+        {
+            // Assuming "YourTableName" is the name of the table with an identity column
+            string query = "SELECT SCOPE_IDENTITY() AS LastIdentity";
+                object result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+
+                    // If no identity value is found (e.g., no insert has occurred), you can handle it accordingly.
+                    return -1; // Or throw an exception, return a default value, etc.
+            }
     }
 }

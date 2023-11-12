@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            cbxAddress = new ComboBox();
+            label8 = new Label();
             txtPhonenumber = new TextBox();
             label7 = new Label();
             cbSex = new ComboBox();
@@ -66,6 +68,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(cbxAddress);
+            groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(txtPhonenumber);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(cbSex);
@@ -83,9 +87,26 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "INJECTOR INFORMATION";
             // 
+            // cbxAddress
+            // 
+            cbxAddress.FormattingEnabled = true;
+            cbxAddress.Location = new Point(844, 26);
+            cbxAddress.Name = "cbxAddress";
+            cbxAddress.Size = new Size(181, 28);
+            cbxAddress.TabIndex = 19;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(703, 33);
+            label8.Name = "label8";
+            label8.Size = new Size(62, 20);
+            label8.TabIndex = 18;
+            label8.Text = "Address";
+            // 
             // txtPhonenumber
             // 
-            txtPhonenumber.Location = new Point(850, 66);
+            txtPhonenumber.Location = new Point(844, 105);
             txtPhonenumber.Name = "txtPhonenumber";
             txtPhonenumber.Size = new Size(181, 27);
             txtPhonenumber.TabIndex = 17;
@@ -93,7 +114,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(703, 69);
+            label7.Location = new Point(703, 108);
             label7.Name = "label7";
             label7.Size = new Size(105, 20);
             label7.TabIndex = 16;
@@ -297,6 +318,7 @@
             btnOK.TabIndex = 2;
             btnOK.Text = "OK";
             btnOK.UseVisualStyleBackColor = true;
+            btnOK.Click += btnOK_Click;
             // 
             // btnCancel
             // 
@@ -414,5 +436,7 @@
         private Label label7;
         private ComboBox cbxVacName;
         private ComboBox cbxVacType;
+        private ComboBox cbxAddress;
+        private Label label8;
     }
 }

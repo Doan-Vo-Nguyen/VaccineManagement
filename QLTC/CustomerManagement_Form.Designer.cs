@@ -37,19 +37,20 @@
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            comboBox4 = new ComboBox();
-            dataGridView1 = new DataGridView();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            cbxID = new ComboBox();
+            txtFullname = new TextBox();
+            dtpBirth = new DateTimePicker();
+            cbxGender = new ComboBox();
+            cbxAddress = new ComboBox();
+            txtPhonenumber = new TextBox();
+            txtInjected = new TextBox();
+            cbxStatus = new ComboBox();
+            dgvCustomer = new DataGridView();
+            btnUpdate = new Button();
+            btnDelete = new Button();
+            btnClose = new Button();
+            btnAdd = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvCustomer).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -134,120 +135,135 @@
             label9.TabIndex = 8;
             label9.Text = "Injected";
             // 
-            // comboBox1
+            // cbxID
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(82, 76);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(200, 28);
-            comboBox1.TabIndex = 9;
+            cbxID.FormattingEnabled = true;
+            cbxID.Location = new Point(82, 76);
+            cbxID.Name = "cbxID";
+            cbxID.Size = new Size(200, 28);
+            cbxID.TabIndex = 9;
             // 
-            // textBox1
+            // txtFullname
             // 
-            textBox1.Location = new Point(399, 78);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(173, 27);
-            textBox1.TabIndex = 10;
+            txtFullname.Location = new Point(399, 78);
+            txtFullname.Name = "txtFullname";
+            txtFullname.Size = new Size(173, 27);
+            txtFullname.TabIndex = 10;
             // 
-            // dateTimePicker1
+            // dtpBirth
             // 
-            dateTimePicker1.Location = new Point(639, 76);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(182, 27);
-            dateTimePicker1.TabIndex = 11;
+            dtpBirth.Location = new Point(639, 76);
+            dtpBirth.Name = "dtpBirth";
+            dtpBirth.Size = new Size(182, 27);
+            dtpBirth.TabIndex = 11;
             // 
-            // comboBox2
+            // cbxGender
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(929, 76);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(172, 28);
-            comboBox2.TabIndex = 12;
+            cbxGender.FormattingEnabled = true;
+            cbxGender.Items.AddRange(new object[] { "Male", "Female", "Other" });
+            cbxGender.Location = new Point(929, 76);
+            cbxGender.Name = "cbxGender";
+            cbxGender.Size = new Size(172, 28);
+            cbxGender.TabIndex = 12;
             // 
-            // comboBox3
+            // cbxAddress
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(82, 173);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(200, 28);
-            comboBox3.TabIndex = 13;
+            cbxAddress.FormattingEnabled = true;
+            cbxAddress.Location = new Point(82, 173);
+            cbxAddress.Name = "cbxAddress";
+            cbxAddress.Size = new Size(200, 28);
+            cbxAddress.TabIndex = 13;
             // 
-            // textBox2
+            // txtPhonenumber
             // 
-            textBox2.Location = new Point(399, 178);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(173, 27);
-            textBox2.TabIndex = 14;
+            txtPhonenumber.Location = new Point(399, 178);
+            txtPhonenumber.Name = "txtPhonenumber";
+            txtPhonenumber.Size = new Size(173, 27);
+            txtPhonenumber.TabIndex = 14;
             // 
-            // textBox3
+            // txtInjected
             // 
-            textBox3.Location = new Point(936, 174);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(165, 27);
-            textBox3.TabIndex = 15;
+            txtInjected.Location = new Point(936, 174);
+            txtInjected.Name = "txtInjected";
+            txtInjected.Size = new Size(165, 27);
+            txtInjected.TabIndex = 15;
             // 
-            // comboBox4
+            // cbxStatus
             // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(640, 173);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(181, 28);
-            comboBox4.TabIndex = 16;
+            cbxStatus.FormattingEnabled = true;
+            cbxStatus.Items.AddRange(new object[] { "Excellent", "Good", "Fair", "Poor", "Critical" });
+            cbxStatus.Location = new Point(640, 173);
+            cbxStatus.Name = "cbxStatus";
+            cbxStatus.Size = new Size(181, 28);
+            cbxStatus.TabIndex = 16;
             // 
-            // dataGridView1
+            // dgvCustomer
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(14, 230);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1110, 264);
-            dataGridView1.TabIndex = 17;
+            dgvCustomer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCustomer.Location = new Point(14, 230);
+            dgvCustomer.Name = "dgvCustomer";
+            dgvCustomer.RowHeadersWidth = 51;
+            dgvCustomer.RowTemplate.Height = 29;
+            dgvCustomer.Size = new Size(1110, 264);
+            dgvCustomer.TabIndex = 17;
+            dgvCustomer.CellContentClick += dgvCustomer_CellContentClick;
             // 
-            // button1
+            // btnUpdate
             // 
-            button1.Location = new Point(14, 527);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 18;
-            button1.Text = "Update";
-            button1.UseVisualStyleBackColor = true;
+            btnUpdate.Location = new Point(188, 527);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(94, 29);
+            btnUpdate.TabIndex = 18;
+            btnUpdate.Text = "Update";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
-            // button2
+            // btnDelete
             // 
-            button2.Location = new Point(175, 527);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 19;
-            button2.Text = "Delete";
-            button2.UseVisualStyleBackColor = true;
+            btnDelete.Location = new Point(380, 527);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 29);
+            btnDelete.TabIndex = 19;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnClose
             // 
-            button3.Location = new Point(1030, 527);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 20;
-            button3.Text = "Close";
-            button3.UseVisualStyleBackColor = true;
+            btnClose.Location = new Point(1030, 527);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(94, 29);
+            btnClose.TabIndex = 20;
+            btnClose.Text = "Close";
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(14, 527);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(94, 29);
+            btnAdd.TabIndex = 21;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
             // 
             // CustomerManagement_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1136, 568);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(dataGridView1);
-            Controls.Add(comboBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(comboBox3);
-            Controls.Add(comboBox2);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox1);
+            Controls.Add(btnAdd);
+            Controls.Add(btnClose);
+            Controls.Add(btnDelete);
+            Controls.Add(btnUpdate);
+            Controls.Add(dgvCustomer);
+            Controls.Add(cbxStatus);
+            Controls.Add(txtInjected);
+            Controls.Add(txtPhonenumber);
+            Controls.Add(cbxAddress);
+            Controls.Add(cbxGender);
+            Controls.Add(dtpBirth);
+            Controls.Add(txtFullname);
+            Controls.Add(cbxID);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label7);
@@ -259,7 +275,7 @@
             Controls.Add(label1);
             Name = "CustomerManagement_Form";
             Text = "Customer Management";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCustomer).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -275,17 +291,18 @@
         private Label label7;
         private Label label8;
         private Label label9;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
-        private DateTimePicker dateTimePicker1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private ComboBox comboBox4;
-        private DataGridView dataGridView1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private ComboBox cbxID;
+        private TextBox txtFullname;
+        private DateTimePicker dtpBirth;
+        private ComboBox cbxGender;
+        private ComboBox cbxAddress;
+        private TextBox txtPhonenumber;
+        private TextBox txtInjected;
+        private ComboBox cbxStatus;
+        private DataGridView dgvCustomer;
+        private Button btnUpdate;
+        private Button btnDelete;
+        private Button btnClose;
+        private Button btnAdd;
     }
 }

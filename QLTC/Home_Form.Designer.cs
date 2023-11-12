@@ -44,6 +44,7 @@
             tsmiSchedule = new ToolStripMenuItem();
             label1 = new Label();
             pictureBox1 = new PictureBox();
+            scheduleToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -102,7 +103,7 @@
             // 
             // tslManagement
             // 
-            tslManagement.DropDownItems.AddRange(new ToolStripItem[] { customerToolStripMenuItem, vaccineToolStripMenuItem });
+            tslManagement.DropDownItems.AddRange(new ToolStripItem[] { customerToolStripMenuItem, vaccineToolStripMenuItem, scheduleToolStripMenuItem });
             tslManagement.Name = "tslManagement";
             tslManagement.Size = new Size(111, 24);
             tslManagement.Text = "Management";
@@ -168,6 +169,12 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
+            // scheduleToolStripMenuItem
+            // 
+            scheduleToolStripMenuItem.Name = "scheduleToolStripMenuItem";
+            scheduleToolStripMenuItem.Size = new Size(224, 26);
+            scheduleToolStripMenuItem.Text = "Schedule";
+            // 
             // Home_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -206,5 +213,6 @@
         private ToolStripMenuItem tslManagement;
         private ToolStripMenuItem customerToolStripMenuItem;
         private ToolStripMenuItem vaccineToolStripMenuItem;
+        private ToolStripMenuItem scheduleToolStripMenuItem;
     }
 }

@@ -22,14 +22,9 @@ namespace QLTC
         private void PersonalInformation_Form_Load(object sender, EventArgs e)
         {
             DataAccess.connect();
-            
+            userSession();
             txtID.Enabled = false;
             txtInjected.Enabled = false;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void userSession()
@@ -46,6 +41,8 @@ namespace QLTC
             dtp_Birth.Text = DataAccess.getFieldValues(str);
             str = "SELECT gender FROM Customer WHERE cus_id = " + ID;
             cbSex.Text = DataAccess.getFieldValues(str);
+            str = "SELECT address FROM Customer WHERE cus_id = " + ID;
+            txtAddress.Text = DataAccess.getFieldValues(str);
             str = "SELECT phonenum FROM Customer WHERE cus_id = " + ID;
             txtPhonenum.Text = DataAccess.getFieldValues(str);
             str = "SELECT status FROM Customer WHERE cus_id = " + ID;
@@ -65,6 +62,11 @@ namespace QLTC
             object[] value = { txtName.Text, formattedDateTime, cbSex.Text, txtAddress.Text, txtPhonenum.Text, txtStatus.Text, txtInjected.Text, txtID.Text };
             DataAccess.runSQL(sql, name, value);
             MessageBox.Show("Updated successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
