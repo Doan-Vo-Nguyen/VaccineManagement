@@ -12,7 +12,7 @@ namespace QLTC
 {
     public partial class CustomerManagement_Form : Form
     {
-        DataTable dtCustomer;
+        DataTable? dtCustomer;
         public CustomerManagement_Form()
         {
             InitializeComponent();

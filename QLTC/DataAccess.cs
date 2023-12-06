@@ -12,9 +12,9 @@ namespace QLTC
 {
     public class DataAccess
     {
-        public static SqlConnection conn;
-        public static SqlDataAdapter adapter;
-        public static SqlCommand cmd;
+        public static SqlConnection? conn;
+        public static SqlDataAdapter? adapter;
+        public static SqlCommand? cmd;
 
         public static void connect()
         {
@@ -54,7 +54,7 @@ namespace QLTC
 
         // FUNCTION CHANGE DATA WHEN RUN SQL COMMAND( INSERT, UPDATE, DELETE)
         // Done All
-        public static void runSQL(string sql, string[] name = null, object[] value = null)
+        public static void runSQL(string sql, string[]? name = null, object[]? value = null)
         {
             cmd = new SqlCommand(sql, conn);
             cmd.Parameters.Clear();
@@ -106,7 +106,7 @@ namespace QLTC
         // FUNCTION GET FIELD VALUE
         public static string getFieldValues(string sql)
         {
-            string id = "";
+            string? id = "";
             cmd = new SqlCommand(sql, conn);
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -116,20 +116,5 @@ namespace QLTC
             reader.Close();
             return id;
         }
-
-        public static int GetLastIdentity()
-        {
-            // Assuming "YourTableName" is the name of the table with an identity column
-            string query = "SELECT SCOPE_IDENTITY() AS LastIdentity";
-                object result = cmd.ExecuteScalar();
-
-                    if (result != null && result != DBNull.Value)
-                    {
-                        return Convert.ToInt32(result);
-                    }
-
-                    // If no identity value is found (e.g., no insert has occurred), you can handle it accordingly.
-                    return -1; // Or throw an exception, return a default value, etc.
-            }
     }
 }

@@ -4,7 +4,7 @@ namespace QLTC
 {
     public partial class Home_Form : Form
     {
-        private string ID;
+        private string? ID;
         public Home_Form()
         {
 
@@ -14,10 +14,10 @@ namespace QLTC
 
         private void Home_Form_Load(object sender, EventArgs e)
         {
-            ID = Login_Form.cusID.ToString();
+            ID = Login_Form.cusID?.ToString();
             if (ID != null)
             {
-                ID = Login_Form.cusID.ToString();
+                ID = Login_Form.cusID?.ToString();
             }
             updateUIForRole();
         }
@@ -72,8 +72,8 @@ namespace QLTC
 
         private void vaccineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Vaccine_Form vaccine_Form = new Vaccine_Form();
-            vaccine_Form.ShowDialog();
+            VaccineManagement vaccineManagement = new VaccineManagement();
+            vaccineManagement.ShowDialog();
         }
 
         private void tsmiSchedule_Click(object sender, EventArgs e)
@@ -82,11 +82,22 @@ namespace QLTC
             reportSchedule_Form.ShowDialog();
         }
 
+        private void scheduleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ScheduleManagement_Form scheduleManagement_Form = new ScheduleManagement_Form();
+            scheduleManagement_Form.ShowDialog();
+        }
+
+        private void revueneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReportRevuene_Form reportRevuene_Form = new ReportRevuene_Form();
+            reportRevuene_Form.ShowDialog();
+        }
         private void updateUIForRole()
         {
             if (ID != String.Empty)
             {
-                ID = Login_Form.cusID.ToString();
+                ID = Login_Form.cusID?.ToString();
                 string sqlcusID = "SELECT * FROM Account WHERE cus_id = '" + ID + "'";
                 if (DataAccess.checkKey(sqlcusID))
                 {
@@ -110,7 +121,5 @@ namespace QLTC
                 tslManagement.Visible = true;
             }
         }
-
-
     }
 }

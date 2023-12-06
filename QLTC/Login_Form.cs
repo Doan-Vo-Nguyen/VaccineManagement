@@ -13,8 +13,8 @@ namespace QLTC
 {
     public partial class Login_Form : Form
     {
-        public static string sqlcusID;
-        public static string cusID;
+        public static string? sqlcusID;
+        public static string? cusID;
         public Login_Form()
         {
             InitializeComponent();
@@ -29,14 +29,6 @@ namespace QLTC
         {
             sqlcusID = "";
             cusID = "";
-            if (txtEmail.Text == string.Empty)
-            {
-                MessageBox.Show("Please fill the Email", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (txtPassword.Text == string.Empty)
-            {
-                MessageBox.Show("Please fill the Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             if (txtEmail.Text != string.Empty || txtPassword.Text != string.Empty)
             {
                 string logincus_sql = "SELECT * FROM Account WHERE email = '" + txtEmail.Text + "' AND password = '" + txtPassword.Text + "'";
@@ -46,18 +38,15 @@ namespace QLTC
                 {
                     sqlcusID = "SELECT cus_id FROM Account WHERE email = '" + txtEmail.Text + "' AND password = '" + txtPassword.Text + "'";
                     cusID = DataAccess.getFieldValues(sqlcusID);
-                    MessageBox.Show(cusID);
                     MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Hide();
                     Home_Form home_Form = new Home_Form();
                     home_Form.ShowDialog();
                 }
-                else if(DataAccess.checkKey(loginadmin_sql))
+                else if (DataAccess.checkKey(loginadmin_sql))
                 {
-                    
                     string adminName_sql = "SELECT admin_name FROM Admin WHERE email = '" + txtEmail.Text + "' AND password = '" + txtPassword.Text + "'";
                     string adminName = DataAccess.getFieldValues(adminName_sql);
-                    MessageBox.Show(adminName);
                     MessageBox.Show("Login successful! Welcome back admin " + adminName + "", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Hide();
                     Home_Form home_Form = new Home_Form();
@@ -66,11 +55,19 @@ namespace QLTC
                 else
                 {
                     MessageBox.Show("Login fail!", "ALERT", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }    
+                }
             }
             else
             {
                 MessageBox.Show("Please fill all the blank!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (txtEmail.Text == string.Empty && txtPassword.Text != string.Empty)
+            {
+                MessageBox.Show("Please fill the email", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (txtPassword.Text == string.Empty && txtEmail.Text != string.Empty)
+            {
+                MessageBox.Show("Please fill the password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -80,6 +77,28 @@ namespace QLTC
             signUp_Form.ShowDialog();
         }
 
-        
+        private void btnLogIn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogIn_Click(sender, e);
+            }
+        }
+
+        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogIn.PerformClick();
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogIn.PerformClick();
+            }
+        }
     }
 }

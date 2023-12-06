@@ -19,8 +19,8 @@ namespace QLTC
     public partial class Booking_Form : Form
     {
         private ProvinceDataManager provinceDM;
-        private string ID;
-        DataTable dtBooking;
+        private string? ID;
+        DataTable? dtBooking;
         public Booking_Form()
         {
             InitializeComponent();
@@ -37,15 +37,11 @@ namespace QLTC
             LoadProvinces();
             if (ID != null)
             {
-                MessageBox.Show(ID);
                 userSession();
-            }
-            else
-            {
-                adminSession();
             }
             loadDataGridView();
             txtID.Enabled = false;
+            cbxScheduleID.Enabled = false;
             //Detach event
             cbxVacType.SelectedIndexChanged += cbxVacType_SelectedIndexChange;
         }
@@ -53,7 +49,6 @@ namespace QLTC
         private void LoadProvinces()
         {
             var provinces = provinceDM.GetProvinces();
-            cbxProvince.Items.Clear();
             foreach (var province in provinces)
             {
                 cbxProvince.Items.Add(province.Name);
@@ -63,7 +58,7 @@ namespace QLTC
         private void userSession()
         {
             string str;
-            // When choose user ID , all field of User information will fill
+            // Show all information to every field of Customer 
             str = "SELECT cus_id FROM Customer WHERE cus_id = " + ID;
             txtID.Text = DataAccess.getFieldValues(str);
             str = "SELECT fullname FROM Customer WHERE cus_id = " + ID;
@@ -80,40 +75,18 @@ namespace QLTC
             cbxVacType.SelectedIndex = 0;
             DataAccess.fillDataCombo("SELECT vacname FROM Vaccine WHERE disease LIKE N'%" + cbxVacType.SelectedValue.ToString() + "%'", cbxVacName, "vacname", "vacname");
             cbxVacName.SelectedIndex = 0;
-            MessageBox.Show(cbxVacType.Text);
-            MessageBox.Show(cbxVacName.Text);
         }
 
-        private void adminSession()
-        {
-            string str;
-            str = "SELECT cus_id FROM Customer";
-            txtID.Text = DataAccess.getFieldValues(str);
-            str = "SELECT fullname FROM Customer";
-            txtName.Text = DataAccess.getFieldValues(str);
-            str = "SELECT birth FROM Customer";
-            dtpBirth.Text = DataAccess.getFieldValues(str);
-            str = "SELECT gender FROM Customer";
-            cbSex.Text = DataAccess.getFieldValues(str);
-            str = "SELECT phonenum FROM Customer";
-            txtPhonenumber.Text = DataAccess.getFieldValues(str);
-            DataAccess.fillDataCombo("SELECT DISTINCT disease FROM Vaccine", cbxVacType, "disease", "disease");
-            cbxVacType.SelectedIndex = 0;
-            DataAccess.fillDataCombo("SELECT vacname FROM Vaccine WHERE disease LIKE N'%" + cbxVacType.SelectedValue.ToString() + "%'", cbxVacName, "vacname", "vacname");
-            cbxVacName.SelectedIndex = 0;
-        }
-        // Chọn tỉnh thì trung tâm sẽ thay đổi theo tỉnh đã chọn
+        // SELECT A PROVINCE AND THE CENTER WILL CHANGE ACCORDING TO THE SELECTED PROVINCE
         private void cbxProvince_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedProvince = cbxProvince.SelectedItem.ToString();
             var centers = provinceDM.GetVaccineCentersByProvince(selectedProvince);
-
-            // Clear the existing items in the centerComboBox
             cbxCenterInject.Items.Clear();
-
             // Add the names of the vaccine centers to the ComboBox
             foreach (var center in centers)
             {
+
                 cbxCenterInject.Items.Add(center.Name);
             }
         }
@@ -121,20 +94,20 @@ namespace QLTC
         private void loadDataGridView()
         {
             string sql;
-            sql = "SELECT sche.schedule_id, sche.cus_id, sche.vac_id, vac.vacname,disease, vac.producer, sche.injection_date, sche.province, sche.injection_center, vac.price, vac.num_injection FROM Schedule as sche INNER JOIN Vaccine as vac ON Sche.vac_id = vac.vac_id INNER JOIN Customer as cus ON sche.cus_id = cus.cus_id";
+            sql = "SELECT sche.schedule_id, sche.cus_id, vac.vacname,disease, vac.producer, sche.injection_date, cen.province, cen.center_name, vac.price, vac.num_injection, sche.total FROM Schedule as sche INNER JOIN Vaccine as vac ON Sche.vac_id = vac.vac_id INNER JOIN Customer as cus ON sche.cus_id = cus.cus_id JOIN Centers as cen ON sche.center_id = cen.center_id WHERE sche.cus_id = " + ID;
             dtBooking = DataAccess.getDataToTable(sql);
             dgvSchedule.DataSource = dtBooking;
             dgvSchedule.Columns[0].HeaderText = "Schedule ID";
             dgvSchedule.Columns[1].HeaderText = "Customer ID";
-            dgvSchedule.Columns[2].HeaderText = "Vaccine ID";
-            dgvSchedule.Columns[3].HeaderText = "Vaccine name";
-            dgvSchedule.Columns[4].HeaderText = "Disease";
-            dgvSchedule.Columns[5].HeaderText = "Vaccine Producer";
-            dgvSchedule.Columns[6].HeaderText = "Injection date";
-            dgvSchedule.Columns[7].HeaderText = "Province";
-            dgvSchedule.Columns[8].HeaderText = "VFA center";
-            dgvSchedule.Columns[9].HeaderText = "Price";
-            dgvSchedule.Columns[10].HeaderText = "Number of injections";
+            dgvSchedule.Columns[2].HeaderText = "Vaccine name";
+            dgvSchedule.Columns[3].HeaderText = "Disease";
+            dgvSchedule.Columns[4].HeaderText = "Vaccine Producer";
+            dgvSchedule.Columns[5].HeaderText = "Injection date";
+            dgvSchedule.Columns[6].HeaderText = "Province";
+            dgvSchedule.Columns[7].HeaderText = "VFA center";
+            dgvSchedule.Columns[8].HeaderText = "Price";
+            dgvSchedule.Columns[9].HeaderText = "Number of injections";
+            dgvSchedule.Columns[10].HeaderText = "Total";
             dgvSchedule.Columns[0].Width = 100;
             dgvSchedule.Columns[1].Width = 300;
             dgvSchedule.Columns[2].Width = 200;
@@ -151,9 +124,9 @@ namespace QLTC
 
         }
 
+        // WHEN VACTYPE CHANGE, IT WILL FILL VACNAME TO THE VACNAME CELL
         private void cbxVacType_SelectedIndexChange(object sender, EventArgs e)
         {
-            string str;
             if (cbxVacType.Text == "")
             {
                 //cbxVacName.Text = "";
@@ -161,15 +134,19 @@ namespace QLTC
             }
             // When choose Vac type  , all field of SERVICE INFORMATION will fill
             DataAccess.fillDataCombo("SELECT vacname FROM Vaccine WHERE disease LIKE N'%" + cbxVacType.SelectedValue.ToString() + "%'", cbxVacName, "vacname", "vacname");
+
+
         }
 
+        // WHEN VACNAME CHANGE, IT WILL FILL PRICE TO THE PRICE CELL
         private void cbxVacName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string str;
+            string strPrice;
             if (cbxVacName.Text != "")
             {
-                str = "SELECT price FROM Vaccine WHERE vacname LIKE N'%" + cbxVacName.SelectedValue.ToString() + "%'";
-                txtPrice.Text = DataAccess.getFieldValues(str);
+                strPrice = "SELECT price FROM Vaccine WHERE vacname LIKE N'%" + cbxVacName.SelectedValue.ToString() + "%'";
+                txtPrice.Text = DataAccess.getFieldValues(strPrice);
+                txtTotal.Text = DataAccess.getFieldValues(strPrice);
             }
             else
             {
@@ -177,12 +154,10 @@ namespace QLTC
             }
         }
 
-
-
+        // CHECK ID NULL OR NOT
         private void checkIDNull()
         {
             ID = Login_Form.cusID.ToString();
-            MessageBox.Show(ID);
             if (ID != null)
             {
                 ID = Login_Form.cusID.ToString();
@@ -192,12 +167,6 @@ namespace QLTC
                 ID = "";
             }
         }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnOK_Click(object sender, EventArgs e)
         {
             // Format date time from dd/mm/yyyy to yyyy-mm-dd
@@ -211,30 +180,31 @@ namespace QLTC
             {
                 MessageBox.Show("Please select a VFA center to inject!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            string addSql;
             int vacId = int.Parse(DataAccess.getFieldValues("SELECT vac_id FROM Vaccine WHERE vacname LIKE N'%" + cbxVacName.SelectedValue.ToString() + "%'"));
             // Call the procedure
             try
             {
+                if (CheckDuplicatedSchedule(formattedDateTime, txtID.Text))
+                {
+                    MessageBox.Show("You cannot register for more 2 schedules on the same day!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                string center = DataAccess.getFieldValues("SELECT DISTINCT center_id FROM Centers WHERE center_name = N'" + cbxCenterInject.Text + "' AND province = N'" + cbxProvince.Text + "'");
+                int centerID = int.Parse(center);
                 // Your existing code to insert into the Schedule table
-                string addSqlSchedule = "INSERT INTO Schedule VALUES(@cus_id, @vac_id, @injection_date, @province, @injection_center)";
-                string[] nameSchedule = { "@cus_id", "@vac_id", "@injection_date","@province", "@injection_center" };
-                object[] valueSchedule = { txtID.Text, vacId, formattedDateTime, cbxProvince.Text, cbxCenterInject.Text };
+                string addSqlSchedule = "INSERT INTO Schedule VALUES(@cus_id, @vac_id, @injection_date, @center_id, @total)";
+                string[] nameSchedule = { "@cus_id", "@vac_id", "@injection_date", "@center_id", "@total" };
+                object[] valueSchedule = { txtID.Text, vacId, formattedDateTime, centerID, txtTotal.Text };
                 DataAccess.runSQL(addSqlSchedule, nameSchedule, valueSchedule);
-
                 // Call the stored procedure to insert into IntermediacteCalendar
-
                 using (SqlCommand cmd = new SqlCommand("InsertVaccinationSchedule", DataAccess.conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     // Parameters for the stored procedure
                     cmd.Parameters.AddWithValue("@cus_id", txtID.Text);
                     cmd.Parameters.AddWithValue("@vac_id", vacId); // Replace with the actual vaccine ID
+                    cmd.Parameters.AddWithValue("@center_id", centerID);
                     cmd.Parameters.AddWithValue("@injection_date", formattedDateTime); // Replace with the actual injection date
-                    cmd.Parameters.AddWithValue("@province", cbxProvince.Text);
-                    cmd.Parameters.AddWithValue("@injection_center", cbxCenterInject.Text);
-
                     // Execute the stored procedure
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Schedule add successfully!", "ALERT", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -244,8 +214,119 @@ namespace QLTC
             catch (Exception ex)
             {
                 // Handle exceptions
-                Console.WriteLine("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private bool CheckDuplicatedSchedule(string injectionDate, string cusID)
+        {
+            // SQL query to check for duplicated schedules
+            string sqlDuplicated = "SELECT COUNT(*) as count FROM Schedule WHERE injection_date = @injectionDate AND cus_id = @cusID";
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sqlDuplicated, DataAccess.conn))
+                {
+
+                    cmd.Parameters.AddWithValue("@injectionDate", injectionDate);
+                    cmd.Parameters.AddWithValue("@cusID", cusID);
+                    int num = Convert.ToInt32(cmd.ExecuteScalar());
+                    return num > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show("Error checking duplicated schedule: " + ex.Message);
+                return false;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to delete this?", "ALERT!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string sqlDelete = "DELETE FROM Schedule WHERE schedule_id = @id";
+                string[] name = { "@id" };
+                object[] value = { cbxScheduleID.Text };
+                DataAccess.runSQL(sqlDelete, name, value);
+                MessageBox.Show("Schedule deleted successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                reset();
+                loadDataGridView();
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            // Format date time from dd/mm/yyyy to yyyy-mm-dd
+            DateTime selectedDateTime = dtpDateInject.Value;
+            string formattedDateTime = selectedDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            string sqlUpdate;
+            if (dtBooking?.Rows.Count == 0)
+            {
+                MessageBox.Show("There are no data available", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                string center = DataAccess.getFieldValues("SELECT DISTINCT center_id FROM Centers WHERE center_name = " + cbxCenterInject.Text + " AND province = " + cbxProvince.Text);
+                int centerID = int.Parse(center);
+                sqlUpdate = "UPDATE Schedule SET  injection_date = @injectionDate, center_id = @center_id WHERE schedule_id = @id";
+                string[] name = { "@injectionDate", "@center_id", "@id" };
+                object[] value = { formattedDateTime, centerID, cbxScheduleID.Text };
+                DataAccess.runSQL(sqlUpdate, name, value);
+                MessageBox.Show("Schedule updated successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadDataGridView();
+                reset();
+                btnCancel.Enabled = true;
+            }
+        }
+
+        //SELECT A COLUMN OF DATA IN DATAGRIDVIEW , IT WILL POPULATE THE CORRESPONDING CELLS 
+        private void dgvSchedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int i;
+            i = dgvSchedule.CurrentRow.Index;
+            cbxScheduleID.Text = dgvSchedule.Rows[i].Cells[0].Value.ToString();
+            txtID.Text = dgvSchedule.Rows[i].Cells[1].Value.ToString();
+            cbxVacName.Text = dgvSchedule.Rows[i].Cells[2].Value.ToString();
+            cbxVacType.Text = dgvSchedule.Rows[i].Cells[3].Value.ToString();
+            dtpDateInject.Text = dgvSchedule.Rows[i].Cells[5].Value.ToString();
+            cbxProvince.Text = dgvSchedule.Rows[i].Cells[6].Value.ToString();
+            cbxCenterInject.Text = dgvSchedule.Rows[i].Cells[7].Value.ToString();
+            txtPrice.Text = dgvSchedule.Rows[i].Cells[8].Value.ToString();
+            txtTotal.Text = dgvSchedule.Rows[i].Cells[10].Value.ToString();
+        }
+
+        // WHEN COMPLETELY CHOOSE SERVICE, IT WILL FILL TOTAL CELL.
+        private void txtTotal_TextChanged(object sender, EventArgs e)
+        {
+            double sum;
+            if (txtPrice.Text == string.Empty)
+            {
+                sum = 0;
+            }
+            else
+            {
+                sum = double.Parse(txtPrice.Text);
+            }
+            txtTotal.Text = sum.ToString();
+        }
+        // RESET THE SERVICE BOX
+        private void reset()
+        {
+            cbxScheduleID.Text = string.Empty;
+            cbxVacType.Text = string.Empty;
+            cbxVacName.Text = string.Empty;
+            cbxProvince.Text = string.Empty;
+            dtpDateInject.Text = DateTime.Now.ToShortDateString();
+            cbxCenterInject.Text = string.Empty;
+            txtPrice.Text = "0";
+            txtTotal.Text = "0";
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

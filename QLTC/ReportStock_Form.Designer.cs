@@ -32,24 +32,22 @@
             dgvSchedule = new DataGridView();
             label2 = new Label();
             label3 = new Label();
-            label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            label7 = new Label();
             cbxProvince = new ComboBox();
             cbxCenter = new ComboBox();
-            cbxType = new ComboBox();
             cbxStatus = new ComboBox();
             dtpDate = new DateTimePicker();
-            txtNameID = new TextBox();
             btnView = new Button();
             btnClose = new Button();
             groupBox1 = new GroupBox();
-            textBox2 = new TextBox();
-            label9 = new Label();
-            textBox1 = new TextBox();
-            label8 = new Label();
             btnRefresh = new Button();
+            txtInjectedVac = new TextBox();
+            label9 = new Label();
+            txtRemainVac = new TextBox();
+            label8 = new Label();
+            label4 = new Label();
+            cbxCenterID = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -92,19 +90,10 @@
             label3.TabIndex = 3;
             label3.Text = "Center";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(28, 158);
-            label4.Name = "label4";
-            label4.Size = new Size(94, 20);
-            label4.TabIndex = 4;
-            label4.Text = "Vaccine Type";
-            // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(358, 258);
+            label5.Location = new Point(374, 160);
             label5.Name = "label5";
             label5.Size = new Size(49, 20);
             label5.TabIndex = 5;
@@ -113,20 +102,11 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(28, 253);
+            label6.Location = new Point(28, 160);
             label6.Name = "label6";
             label6.Size = new Size(41, 20);
             label6.TabIndex = 6;
             label6.Text = "Date";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(358, 158);
-            label7.Name = "label7";
-            label7.Size = new Size(128, 20);
-            label7.TabIndex = 7;
-            label7.Text = "Vaccine Name/ ID";
             // 
             // cbxProvince
             // 
@@ -146,35 +126,20 @@
             cbxCenter.Size = new Size(192, 28);
             cbxCenter.TabIndex = 11;
             // 
-            // cbxType
-            // 
-            cbxType.FormattingEnabled = true;
-            cbxType.Location = new Point(128, 155);
-            cbxType.Name = "cbxType";
-            cbxType.Size = new Size(199, 28);
-            cbxType.TabIndex = 12;
-            // 
             // cbxStatus
             // 
             cbxStatus.FormattingEnabled = true;
-            cbxStatus.Location = new Point(504, 250);
+            cbxStatus.Location = new Point(504, 157);
             cbxStatus.Name = "cbxStatus";
             cbxStatus.Size = new Size(192, 28);
             cbxStatus.TabIndex = 13;
             // 
             // dtpDate
             // 
-            dtpDate.Location = new Point(128, 253);
+            dtpDate.Location = new Point(128, 155);
             dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(199, 27);
             dtpDate.TabIndex = 14;
-            // 
-            // txtNameID
-            // 
-            txtNameID.Location = new Point(504, 151);
-            txtNameID.Name = "txtNameID";
-            txtNameID.Size = new Size(192, 27);
-            txtNameID.TabIndex = 15;
             // 
             // btnView
             // 
@@ -184,6 +149,7 @@
             btnView.TabIndex = 16;
             btnView.Text = "View";
             btnView.UseVisualStyleBackColor = true;
+            btnView.Click += btnView_Click;
             // 
             // btnClose
             // 
@@ -198,9 +164,9 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(btnRefresh);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(txtInjectedVac);
             groupBox1.Controls.Add(label9);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txtRemainVac);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(btnView);
             groupBox1.Location = new Point(718, 54);
@@ -210,12 +176,22 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Summary";
             // 
-            // textBox2
+            // btnRefresh
             // 
-            textBox2.Location = new Point(270, 94);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 20;
+            btnRefresh.Location = new Point(142, 204);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(94, 29);
+            btnRefresh.TabIndex = 21;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // txtInjectedVac
+            // 
+            txtInjectedVac.Location = new Point(270, 94);
+            txtInjectedVac.Name = "txtInjectedVac";
+            txtInjectedVac.Size = new Size(125, 27);
+            txtInjectedVac.TabIndex = 20;
             // 
             // label9
             // 
@@ -226,12 +202,12 @@
             label9.TabIndex = 19;
             label9.Text = "Number of vaccines administered";
             // 
-            // textBox1
+            // txtRemainVac
             // 
-            textBox1.Location = new Point(270, 34);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 18;
+            txtRemainVac.Location = new Point(270, 34);
+            txtRemainVac.Name = "txtRemainVac";
+            txtRemainVac.Size = new Size(125, 27);
+            txtRemainVac.TabIndex = 18;
             // 
             // label8
             // 
@@ -242,38 +218,44 @@
             label8.TabIndex = 17;
             label8.Text = "Remaining vaccines";
             // 
-            // btnRefresh
+            // label4
             // 
-            btnRefresh.Location = new Point(142, 204);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(94, 29);
-            btnRefresh.TabIndex = 21;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
+            label4.AutoSize = true;
+            label4.Location = new Point(28, 258);
+            label4.Name = "label4";
+            label4.Size = new Size(71, 20);
+            label4.TabIndex = 19;
+            label4.Text = "Center ID";
+            // 
+            // cbxCenterID
+            // 
+            cbxCenterID.FormattingEnabled = true;
+            cbxCenterID.Location = new Point(128, 258);
+            cbxCenterID.Name = "cbxCenterID";
+            cbxCenterID.Size = new Size(199, 28);
+            cbxCenterID.TabIndex = 20;
             // 
             // ReportStock_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1168, 572);
+            Controls.Add(cbxCenterID);
+            Controls.Add(label4);
             Controls.Add(btnClose);
-            Controls.Add(txtNameID);
             Controls.Add(dtpDate);
             Controls.Add(cbxStatus);
-            Controls.Add(cbxType);
             Controls.Add(cbxCenter);
             Controls.Add(cbxProvince);
-            Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
-            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(dgvSchedule);
             Controls.Add(label1);
             Controls.Add(groupBox1);
             Name = "ReportStock_Form";
-            Text = "Report Stock";
+            Text = " ";
             Load += ReportStock_Form_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).EndInit();
             groupBox1.ResumeLayout(false);
@@ -288,23 +270,21 @@
         private DataGridView dgvSchedule;
         private Label label2;
         private Label label3;
-        private Label label4;
         private Label label5;
         private Label label6;
-        private Label label7;
         private ComboBox cbxProvince;
         private ComboBox cbxCenter;
-        private ComboBox cbxType;
         private ComboBox cbxStatus;
         private DateTimePicker dtpDate;
-        private TextBox txtNameID;
         private Button btnView;
         private Button btnClose;
         private GroupBox groupBox1;
-        private TextBox textBox1;
+        private TextBox txtRemainVac;
         private Label label8;
-        private TextBox textBox2;
+        private TextBox txtInjectedVac;
         private Label label9;
         private Button btnRefresh;
+        private Label label4;
+        private ComboBox cbxCenterID;
     }
 }

@@ -34,21 +34,21 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
-            comboBox4 = new ComboBox();
-            comboBox5 = new ComboBox();
-            dataGridView1 = new DataGridView();
+            cbxScheduleID = new ComboBox();
+            cbxCusID = new ComboBox();
+            cbxVacID = new ComboBox();
+            cbxProvince = new ComboBox();
+            cbxCenter = new ComboBox();
+            dgvSchedule = new DataGridView();
             button1 = new Button();
             button2 = new Button();
             label7 = new Label();
             label8 = new Label();
             groupBox1 = new GroupBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
             button3 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            txtInjectedVac = new TextBox();
+            txtNumPeople = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -74,7 +74,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(31, 224);
+            label3.Location = new Point(31, 219);
             label3.Name = "label3";
             label3.Size = new Size(78, 20);
             label3.TabIndex = 2;
@@ -107,55 +107,57 @@
             label6.TabIndex = 5;
             label6.Text = "VFA Center";
             // 
-            // comboBox1
+            // cbxScheduleID
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(125, 58);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(207, 28);
-            comboBox1.TabIndex = 6;
+            cbxScheduleID.FormattingEnabled = true;
+            cbxScheduleID.Location = new Point(125, 58);
+            cbxScheduleID.Name = "cbxScheduleID";
+            cbxScheduleID.Size = new Size(207, 28);
+            cbxScheduleID.TabIndex = 6;
             // 
-            // comboBox2
+            // cbxCusID
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(507, 63);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(207, 28);
-            comboBox2.TabIndex = 7;
+            cbxCusID.FormattingEnabled = true;
+            cbxCusID.Location = new Point(507, 63);
+            cbxCusID.Name = "cbxCusID";
+            cbxCusID.Size = new Size(207, 28);
+            cbxCusID.TabIndex = 7;
             // 
-            // comboBox3
+            // cbxVacID
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(125, 221);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(207, 28);
-            comboBox3.TabIndex = 8;
+            cbxVacID.FormattingEnabled = true;
+            cbxVacID.Location = new Point(125, 216);
+            cbxVacID.Name = "cbxVacID";
+            cbxVacID.Size = new Size(207, 28);
+            cbxVacID.TabIndex = 8;
             // 
-            // comboBox4
+            // cbxProvince
             // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(125, 136);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(207, 28);
-            comboBox4.TabIndex = 9;
+            cbxProvince.FormattingEnabled = true;
+            cbxProvince.Location = new Point(125, 136);
+            cbxProvince.Name = "cbxProvince";
+            cbxProvince.Size = new Size(207, 28);
+            cbxProvince.TabIndex = 9;
+            cbxProvince.SelectedIndexChanged += cbxProvince_SelectedIndexChanged;
             // 
-            // comboBox5
+            // cbxCenter
             // 
-            comboBox5.FormattingEnabled = true;
-            comboBox5.Location = new Point(507, 136);
-            comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(207, 28);
-            comboBox5.TabIndex = 10;
+            cbxCenter.FormattingEnabled = true;
+            cbxCenter.Location = new Point(507, 136);
+            cbxCenter.Name = "cbxCenter";
+            cbxCenter.Size = new Size(207, 28);
+            cbxCenter.TabIndex = 10;
             // 
-            // dataGridView1
+            // dgvSchedule
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(25, 267);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1087, 237);
-            dataGridView1.TabIndex = 11;
+            dgvSchedule.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSchedule.Location = new Point(25, 267);
+            dgvSchedule.Name = "dgvSchedule";
+            dgvSchedule.RowHeadersWidth = 51;
+            dgvSchedule.RowTemplate.Height = 29;
+            dgvSchedule.Size = new Size(1087, 237);
+            dgvSchedule.TabIndex = 11;
+            dgvSchedule.CellContentClick += dgvSchedule_CellContentClick;
             // 
             // button1
             // 
@@ -196,8 +198,8 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(button3);
-            groupBox1.Controls.Add(textBox2);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txtInjectedVac);
+            groupBox1.Controls.Add(txtNumPeople);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label8);
@@ -208,20 +210,6 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Statistical";
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(262, 40);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 16;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(262, 98);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 17;
-            // 
             // button3
             // 
             button3.Location = new Point(123, 153);
@@ -231,6 +219,20 @@
             button3.Text = "Refresh";
             button3.UseVisualStyleBackColor = true;
             // 
+            // txtInjectedVac
+            // 
+            txtInjectedVac.Location = new Point(262, 98);
+            txtInjectedVac.Name = "txtInjectedVac";
+            txtInjectedVac.Size = new Size(125, 27);
+            txtInjectedVac.TabIndex = 17;
+            // 
+            // txtNumPeople
+            // 
+            txtNumPeople.Location = new Point(262, 40);
+            txtNumPeople.Name = "txtNumPeople";
+            txtNumPeople.Size = new Size(125, 27);
+            txtNumPeople.TabIndex = 16;
+            // 
             // ReportSchedule_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -238,12 +240,12 @@
             ClientSize = new Size(1136, 568);
             Controls.Add(groupBox1);
             Controls.Add(button2);
-            Controls.Add(dataGridView1);
-            Controls.Add(comboBox5);
-            Controls.Add(comboBox4);
-            Controls.Add(comboBox3);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
+            Controls.Add(dgvSchedule);
+            Controls.Add(cbxCenter);
+            Controls.Add(cbxProvince);
+            Controls.Add(cbxVacID);
+            Controls.Add(cbxCusID);
+            Controls.Add(cbxScheduleID);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -252,7 +254,8 @@
             Controls.Add(label1);
             Name = "ReportSchedule_Form";
             Text = "Report Schedule";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += ReportSchedule_Form_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvSchedule).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
@@ -267,19 +270,19 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
-        private ComboBox comboBox4;
-        private ComboBox comboBox5;
-        private DataGridView dataGridView1;
+        private ComboBox cbxScheduleID;
+        private ComboBox cbxCusID;
+        private ComboBox cbxVacID;
+        private ComboBox cbxProvince;
+        private ComboBox cbxCenter;
+        private DataGridView dgvSchedule;
         private Button button1;
         private Button button2;
         private Label label7;
         private Label label8;
         private GroupBox groupBox1;
         private Button button3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox txtInjectedVac;
+        private TextBox txtNumPeople;
     }
 }

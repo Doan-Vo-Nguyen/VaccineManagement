@@ -44,6 +44,10 @@
             cbxProvince = new ComboBox();
             label6 = new Label();
             groupBox2 = new GroupBox();
+            cbxScheduleID = new ComboBox();
+            label15 = new Label();
+            txtTotal = new TextBox();
+            label14 = new Label();
             cbxVacType = new ComboBox();
             cbxVacName = new ComboBox();
             cbxCenterInject = new ComboBox();
@@ -188,16 +192,16 @@
             // cbxProvince
             // 
             cbxProvince.FormattingEnabled = true;
-            cbxProvince.Location = new Point(513, 125);
+            cbxProvince.Location = new Point(498, 117);
             cbxProvince.Name = "cbxProvince";
-            cbxProvince.Size = new Size(150, 28);
+            cbxProvince.Size = new Size(180, 28);
             cbxProvince.TabIndex = 12;
             cbxProvince.SelectedIndexChanged += cbxProvince_SelectedIndexChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(419, 125);
+            label6.Location = new Point(392, 125);
             label6.Name = "label6";
             label6.Size = new Size(65, 20);
             label6.TabIndex = 4;
@@ -205,6 +209,10 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(cbxScheduleID);
+            groupBox2.Controls.Add(label15);
+            groupBox2.Controls.Add(txtTotal);
+            groupBox2.Controls.Add(label14);
             groupBox2.Controls.Add(cbxVacType);
             groupBox2.Controls.Add(cbxVacName);
             groupBox2.Controls.Add(cbxCenterInject);
@@ -219,15 +227,49 @@
             groupBox2.Controls.Add(label9);
             groupBox2.Location = new Point(31, 227);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1069, 196);
+            groupBox2.Size = new Size(1069, 225);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "SERVICE INFORMATION";
             // 
+            // cbxScheduleID
+            // 
+            cbxScheduleID.FormattingEnabled = true;
+            cbxScheduleID.Location = new Point(186, 35);
+            cbxScheduleID.Name = "cbxScheduleID";
+            cbxScheduleID.Size = new Size(196, 28);
+            cbxScheduleID.TabIndex = 16;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(64, 46);
+            label15.Name = "label15";
+            label15.Size = new Size(88, 20);
+            label15.TabIndex = 15;
+            label15.Text = "Schedule ID";
+            // 
+            // txtTotal
+            // 
+            txtTotal.Location = new Point(883, 192);
+            txtTotal.Name = "txtTotal";
+            txtTotal.Size = new Size(180, 27);
+            txtTotal.TabIndex = 14;
+            txtTotal.TextChanged += txtTotal_TextChanged;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(713, 195);
+            label14.Name = "label14";
+            label14.Size = new Size(42, 20);
+            label14.TabIndex = 13;
+            label14.Text = "Total";
+            // 
             // cbxVacType
             // 
             cbxVacType.FormattingEnabled = true;
-            cbxVacType.Location = new Point(206, 46);
+            cbxVacType.Location = new Point(498, 35);
             cbxVacType.Name = "cbxVacType";
             cbxVacType.Size = new Size(180, 28);
             cbxVacType.TabIndex = 11;
@@ -236,31 +278,30 @@
             // cbxVacName
             // 
             cbxVacName.FormattingEnabled = true;
-            cbxVacName.Location = new Point(513, 43);
+            cbxVacName.Location = new Point(883, 38);
             cbxVacName.Name = "cbxVacName";
-            cbxVacName.Size = new Size(150, 28);
+            cbxVacName.Size = new Size(180, 28);
             cbxVacName.TabIndex = 10;
             cbxVacName.SelectedIndexChanged += cbxVacName_SelectedIndexChanged;
             // 
             // cbxCenterInject
             // 
             cbxCenterInject.FormattingEnabled = true;
-            cbxCenterInject.Items.AddRange(new object[] { "VFA Long Xuyên", "VFA Vũng Tàu", "VFA Bắc Giang", "VFA Bắc Kạn", "VFA Bạc Liêu", "VFA Bắc Ninh", "VFA Bến Tre", "VFA Quy Nhơn", "VFA Thủ Dầu Một", "VFA Đồng Xoài", "VFA Phan Thiết", "VFA Cà Mau", "VFA Cao Bằng", "VFA Buôn Ma Thuột", "VFA Gia Nghĩa", "VFA Điện Biên Phủ", "VFA Biên Hòa", "VFA Cao Lãnh", "VFA Pleiku", "VFA Hà Giang", "VFA Phủ Lý", "VFA Hà Tĩnh", "VFA Hải Dương", "VFA Vị Thanh", "VFA Hòa Bình", "VFA Hưng Yên", "VFA Nha Trang", "VFA Rạch Giá", "VFA Kon Tum", "VFA Lai Châu", "VFA Đà Lạt", "VFA Lạng Sơn", "VFA Lào Cai", "VFA Tân An", "VFA Nam Định", "VFA Vinh", "VFA Ninh Bình", "VFA Phan Rang – Tháp Chàm", "VFA Việt Trì", "VFA Tuy Hòa", "VFA Đồng Hới", "VFA Tam Kỳ", "VFA Quảng Ngãi", "VFA Hạ Long", "VFA Đông Hà", "VFA Sóc Trăng", "VFA Sơn La", "VFA Tây Ninh", "VFA Thái Bình", "VFA Thái Nguyên", "VFA Thanh Hóa", "VFA Huế", "VFA Mỹ Tho", "VFA Trà Vinh", "VFA Tuyên Quang", "VFA Vĩnh Long", "VFA Vĩnh Yên", "VFA Yên Bái" });
-            cbxCenterInject.Location = new Point(869, 125);
+            cbxCenterInject.Location = new Point(883, 117);
             cbxCenterInject.Name = "cbxCenterInject";
             cbxCenterInject.Size = new Size(180, 28);
             cbxCenterInject.TabIndex = 9;
             // 
             // dtpDateInject
             // 
-            dtpDateInject.Location = new Point(206, 121);
+            dtpDateInject.Location = new Point(186, 120);
             dtpDateInject.Name = "dtpDateInject";
-            dtpDateInject.Size = new Size(180, 27);
+            dtpDateInject.Size = new Size(196, 27);
             dtpDateInject.TabIndex = 8;
             // 
             // txtPrice
             // 
-            txtPrice.Location = new Point(869, 44);
+            txtPrice.Location = new Point(498, 192);
             txtPrice.Name = "txtPrice";
             txtPrice.Size = new Size(180, 27);
             txtPrice.TabIndex = 7;
@@ -268,7 +309,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(669, 128);
+            label13.Location = new Point(696, 125);
             label13.Name = "label13";
             label13.Size = new Size(181, 20);
             label13.TabIndex = 4;
@@ -277,7 +318,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(22, 125);
+            label12.Location = new Point(6, 125);
             label12.Name = "label12";
             label12.Size = new Size(178, 20);
             label12.TabIndex = 3;
@@ -286,7 +327,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(703, 49);
+            label11.Location = new Point(404, 195);
             label11.Name = "label11";
             label11.Size = new Size(41, 20);
             label11.TabIndex = 2;
@@ -295,7 +336,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(404, 46);
+            label10.Location = new Point(696, 38);
             label10.Name = "label10";
             label10.Size = new Size(103, 20);
             label10.TabIndex = 1;
@@ -304,7 +345,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(25, 51);
+            label9.Location = new Point(388, 38);
             label9.Name = "label9";
             label9.Size = new Size(94, 20);
             label9.TabIndex = 0;
@@ -357,16 +398,18 @@
             btnUpdate.TabIndex = 6;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // dgvSchedule
             // 
             dgvSchedule.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSchedule.Location = new Point(31, 429);
+            dgvSchedule.Location = new Point(32, 458);
             dgvSchedule.Name = "dgvSchedule";
             dgvSchedule.RowHeadersWidth = 51;
             dgvSchedule.RowTemplate.Height = 29;
-            dgvSchedule.Size = new Size(1069, 188);
+            dgvSchedule.Size = new Size(1069, 162);
             dgvSchedule.TabIndex = 7;
+            dgvSchedule.CellContentClick += dgvSchedule_CellContentClick;
             // 
             // btnDelete
             // 
@@ -376,6 +419,7 @@
             btnDelete.TabIndex = 8;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // Booking_Form
             // 
@@ -438,5 +482,9 @@
         private ComboBox cbxVacType;
         private ComboBox cbxAddress;
         private Label label8;
+        private TextBox txtTotal;
+        private Label label14;
+        private ComboBox cbxScheduleID;
+        private Label label15;
     }
 }

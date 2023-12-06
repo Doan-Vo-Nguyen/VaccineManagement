@@ -75,6 +75,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(212, 27);
             txtEmail.TabIndex = 3;
+            txtEmail.KeyDown += txtEmail_KeyDown;
             // 
             // txtPassword
             // 
@@ -82,6 +83,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(212, 27);
             txtPassword.TabIndex = 4;
+            txtPassword.KeyDown += txtPassword_KeyDown;
             // 
             // btnLogIn
             // 
@@ -92,6 +94,7 @@
             btnLogIn.Text = "LOG IN NOW";
             btnLogIn.UseVisualStyleBackColor = true;
             btnLogIn.Click += btnLogIn_Click;
+            btnLogIn.KeyDown += btnLogIn_KeyDown;
             // 
             // pictureBox1
             // 

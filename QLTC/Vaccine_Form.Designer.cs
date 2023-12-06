@@ -40,13 +40,12 @@
             txtVacProc = new TextBox();
             txtPrice = new TextBox();
             dgvVacInfor = new DataGridView();
-            btnAdd = new Button();
-            btnDelete = new Button();
-            btnUpdate = new Button();
             btnCancel = new Button();
             btnExit = new Button();
             btnSearch = new Button();
             label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvVacInfor).BeginInit();
             SuspendLayout();
             // 
@@ -149,42 +148,17 @@
             dgvVacInfor.RowTemplate.Height = 29;
             dgvVacInfor.Size = new Size(1074, 283);
             dgvVacInfor.TabIndex = 11;
-            // 
-            // btnAdd
-            // 
-            btnAdd.Location = new Point(28, 528);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(94, 29);
-            btnAdd.TabIndex = 12;
-            btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            btnDelete.Location = new Point(193, 528);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(94, 29);
-            btnDelete.TabIndex = 13;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.Location = new Point(373, 528);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(94, 29);
-            btnUpdate.TabIndex = 14;
-            btnUpdate.Text = "Update";
-            btnUpdate.UseVisualStyleBackColor = true;
+            dgvVacInfor.CellContentClick += dgvVacInfor_CellContentClick;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(723, 528);
+            btnCancel.Location = new Point(176, 528);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(94, 29);
             btnCancel.TabIndex = 15;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnExit
             // 
@@ -198,34 +172,58 @@
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(551, 528);
+            btnSearch.Location = new Point(28, 528);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(94, 29);
             btnSearch.TabIndex = 17;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(852, 148);
+            label7.BackColor = Color.Transparent;
+            label7.ForeColor = Color.Red;
+            label7.Location = new Point(573, 53);
             label7.Name = "label7";
-            label7.Size = new Size(50, 20);
+            label7.Size = new Size(174, 20);
             label7.TabIndex = 18;
-            label7.Text = "label7";
+            label7.Text = "* Condition for searching";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.ForeColor = Color.Red;
+            label8.Location = new Point(167, 122);
+            label8.Name = "label8";
+            label8.Size = new Size(174, 20);
+            label8.TabIndex = 19;
+            label8.Text = "* Condition for searching";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BackColor = Color.Transparent;
+            label9.ForeColor = Color.Red;
+            label9.Location = new Point(573, 126);
+            label9.Name = "label9";
+            label9.Size = new Size(174, 20);
+            label9.TabIndex = 20;
+            label9.Text = "* Condition for searching";
             // 
             // Vaccine_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1134, 569);
+            Controls.Add(label9);
+            Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(btnSearch);
             Controls.Add(btnExit);
             Controls.Add(btnCancel);
-            Controls.Add(btnUpdate);
-            Controls.Add(btnDelete);
-            Controls.Add(btnAdd);
             Controls.Add(dgvVacInfor);
             Controls.Add(txtPrice);
             Controls.Add(txtVacProc);
@@ -260,12 +258,11 @@
         private TextBox txtVacProc;
         private TextBox txtPrice;
         private DataGridView dgvVacInfor;
-        private Button btnAdd;
-        private Button btnDelete;
-        private Button btnUpdate;
         private Button btnCancel;
         private Button btnExit;
         private Button btnSearch;
         private Label label7;
+        private Label label8;
+        private Label label9;
     }
 }

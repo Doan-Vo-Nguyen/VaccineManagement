@@ -112,6 +112,7 @@
             txtID.Name = "txtID";
             txtID.Size = new Size(249, 27);
             txtID.TabIndex = 6;
+            txtID.KeyDown += txtID_KeyDown;
             // 
             // txtName
             // 
@@ -119,6 +120,7 @@
             txtName.Name = "txtName";
             txtName.Size = new Size(250, 27);
             txtName.TabIndex = 7;
+            txtName.KeyDown += txtName_KeyDown;
             // 
             // dtpDate
             // 
@@ -126,6 +128,7 @@
             dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(110, 27);
             dtpDate.TabIndex = 8;
+            dtpDate.KeyDown += dtpDate_KeyDown;
             // 
             // cbSex
             // 
@@ -136,6 +139,7 @@
             cbSex.Size = new Size(118, 28);
             cbSex.TabIndex = 9;
             cbSex.Tag = "";
+            cbSex.KeyDown += cbSex_KeyDown;
             // 
             // label7
             // 
@@ -152,6 +156,7 @@
             txtPhoneNum.Name = "txtPhoneNum";
             txtPhoneNum.Size = new Size(247, 27);
             txtPhoneNum.TabIndex = 12;
+            txtPhoneNum.KeyDown += txtPhoneNum_KeyDown;
             // 
             // btnSignUp
             // 
@@ -162,6 +167,7 @@
             btnSignUp.Text = "SIGN UP ";
             btnSignUp.UseVisualStyleBackColor = true;
             btnSignUp.Click += btnSignUp_Click;
+            btnSignUp.KeyDown += btnSignUp_KeyDown;
             // 
             // label8
             // 
@@ -206,6 +212,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(249, 27);
             txtEmail.TabIndex = 18;
+            txtEmail.KeyDown += txtEmail_KeyDown;
             // 
             // txtPassword
             // 
@@ -213,6 +220,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(249, 27);
             txtPassword.TabIndex = 19;
+            txtPassword.KeyDown += txtPassword_KeyDown;
             // 
             // cbxProvince
             // 
@@ -222,6 +230,7 @@
             cbxProvince.Name = "cbxProvince";
             cbxProvince.Size = new Size(250, 28);
             cbxProvince.TabIndex = 20;
+            cbxProvince.KeyDown += cbxProvince_KeyDown;
             // 
             // label11
             // 

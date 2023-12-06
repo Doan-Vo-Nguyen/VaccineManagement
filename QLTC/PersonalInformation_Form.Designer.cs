@@ -30,15 +30,15 @@
         {
             label1 = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            dataGridView2 = new DataGridView();
+            dgvSchedule = new DataGridView();
             gb_PersonalInfor = new GroupBox();
+            cbxStatus = new ComboBox();
+            cbxProvince = new ComboBox();
             dtp_Birth = new DateTimePicker();
             txtInjected = new TextBox();
             cbSex = new ComboBox();
-            txtStatus = new TextBox();
             txtPhonenum = new TextBox();
             txtName = new TextBox();
-            txtAddress = new TextBox();
             txtID = new TextBox();
             lb_Injected = new Label();
             lb_Status = new Label();
@@ -51,7 +51,7 @@
             gb_Schedule = new GroupBox();
             btnUpdate = new Button();
             btnClose = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
             gb_PersonalInfor.SuspendLayout();
             gb_Schedule.SuspendLayout();
             SuspendLayout();
@@ -66,25 +66,25 @@
             label1.TabIndex = 0;
             label1.Text = "Personal Information";
             // 
-            // dataGridView2
+            // dgvSchedule
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(5, 24);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.RowTemplate.Height = 29;
-            dataGridView2.Size = new Size(1126, 189);
-            dataGridView2.TabIndex = 2;
+            dgvSchedule.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSchedule.Location = new Point(5, 24);
+            dgvSchedule.Name = "dgvSchedule";
+            dgvSchedule.RowHeadersWidth = 51;
+            dgvSchedule.RowTemplate.Height = 29;
+            dgvSchedule.Size = new Size(1126, 189);
+            dgvSchedule.TabIndex = 2;
             // 
             // gb_PersonalInfor
             // 
+            gb_PersonalInfor.Controls.Add(cbxStatus);
+            gb_PersonalInfor.Controls.Add(cbxProvince);
             gb_PersonalInfor.Controls.Add(dtp_Birth);
             gb_PersonalInfor.Controls.Add(txtInjected);
             gb_PersonalInfor.Controls.Add(cbSex);
-            gb_PersonalInfor.Controls.Add(txtStatus);
             gb_PersonalInfor.Controls.Add(txtPhonenum);
             gb_PersonalInfor.Controls.Add(txtName);
-            gb_PersonalInfor.Controls.Add(txtAddress);
             gb_PersonalInfor.Controls.Add(txtID);
             gb_PersonalInfor.Controls.Add(lb_Injected);
             gb_PersonalInfor.Controls.Add(lb_Status);
@@ -100,6 +100,23 @@
             gb_PersonalInfor.TabIndex = 3;
             gb_PersonalInfor.TabStop = false;
             gb_PersonalInfor.Text = "Personal Information";
+            // 
+            // cbxStatus
+            // 
+            cbxStatus.FormattingEnabled = true;
+            cbxStatus.Items.AddRange(new object[] { "Excellent", "Good", "Fair", "Poor", "Critical" });
+            cbxStatus.Location = new Point(659, 131);
+            cbxStatus.Name = "cbxStatus";
+            cbxStatus.Size = new Size(181, 28);
+            cbxStatus.TabIndex = 18;
+            // 
+            // cbxProvince
+            // 
+            cbxProvince.FormattingEnabled = true;
+            cbxProvince.Location = new Point(81, 130);
+            cbxProvince.Name = "cbxProvince";
+            cbxProvince.Size = new Size(170, 28);
+            cbxProvince.TabIndex = 17;
             // 
             // dtp_Birth
             // 
@@ -124,13 +141,6 @@
             cbSex.Size = new Size(168, 28);
             cbSex.TabIndex = 14;
             // 
-            // txtStatus
-            // 
-            txtStatus.Location = new Point(659, 132);
-            txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(181, 27);
-            txtStatus.TabIndex = 13;
-            // 
             // txtPhonenum
             // 
             txtPhonenum.Location = new Point(411, 131);
@@ -144,13 +154,6 @@
             txtName.Name = "txtName";
             txtName.Size = new Size(173, 27);
             txtName.TabIndex = 10;
-            // 
-            // txtAddress
-            // 
-            txtAddress.Location = new Point(90, 131);
-            txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(161, 27);
-            txtAddress.TabIndex = 9;
             // 
             // txtID
             // 
@@ -189,7 +192,7 @@
             // lb_Address
             // 
             lb_Address.AutoSize = true;
-            lb_Address.Location = new Point(22, 134);
+            lb_Address.Location = new Point(6, 134);
             lb_Address.Name = "lb_Address";
             lb_Address.Size = new Size(62, 20);
             lb_Address.TabIndex = 4;
@@ -225,7 +228,7 @@
             // lb_ID
             // 
             lb_ID.AutoSize = true;
-            lb_ID.Location = new Point(33, 35);
+            lb_ID.Location = new Point(20, 35);
             lb_ID.Name = "lb_ID";
             lb_ID.Size = new Size(24, 20);
             lb_ID.TabIndex = 0;
@@ -233,7 +236,7 @@
             // 
             // gb_Schedule
             // 
-            gb_Schedule.Controls.Add(dataGridView2);
+            gb_Schedule.Controls.Add(dgvSchedule);
             gb_Schedule.Location = new Point(21, 295);
             gb_Schedule.Name = "gb_Schedule";
             gb_Schedule.Size = new Size(1137, 219);
@@ -265,7 +268,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1170, 526);
+            ClientSize = new Size(1170, 518);
             Controls.Add(btnClose);
             Controls.Add(btnUpdate);
             Controls.Add(label1);
@@ -274,7 +277,7 @@
             Name = "PersonalInformation_Form";
             Text = "Personal Information";
             Load += PersonalInformation_Form_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSchedule).EndInit();
             gb_PersonalInfor.ResumeLayout(false);
             gb_PersonalInfor.PerformLayout();
             gb_Schedule.ResumeLayout(false);
@@ -286,7 +289,7 @@
 
         private Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private DataGridView dataGridView2;
+        private DataGridView dgvSchedule;
         private GroupBox gb_PersonalInfor;
         private GroupBox gb_Schedule;
         private Button btnUpdate;
@@ -300,12 +303,12 @@
         private Label lb_Address;
         private TextBox txtInjected;
         private ComboBox cbSex;
-        private TextBox txtStatus;
         private TextBox txtPhonenum;
         private TextBox txtName;
-        private TextBox txtAddress;
         private TextBox txtID;
         private Label lb_Injected;
         private DateTimePicker dtp_Birth;
+        private ComboBox cbxProvince;
+        private ComboBox cbxStatus;
     }
 }
