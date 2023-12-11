@@ -80,29 +80,39 @@ namespace QLTC
             // Add the names of the vaccine centers to the ComboBox
             foreach (var center in centers)
             {
-
                 cbxCenter.Items.Add(center.Name);
             }
         }
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            string sqlTotal = "SELECT SUM(sche.total) as sum FROM Schedule as sche JOIN Centers as cen ON sche.center_id = cen.center_id WHERE cen.center_name = N'" + cbxCenter.Text + "'";
-            string sum = DataAccess.getFieldValues(sqlTotal);
-            txtTotalRevuene.Text = sum.ToString();
-            if (cbxQuarter.Text != "")
+            // Check for center selection
+            if (!string.IsNullOrEmpty(cbxCenter.Text))
+            {
+                // View total revenue for chosen center
+                string sqlTotal = "SELECT SUM(sche.total) as sum FROM Schedule as sche JOIN Centers as cen ON sche.center_id = cen.center_id WHERE cen.center_name = N'" + cbxCenter.Text + "'";
+                string sum = DataAccess.getFieldValues(sqlTotal);
+                txtTotalRevuene.Text = sum.ToString();
+                return;
+            }
+
+            // Check for quarter selection
+            if (!string.IsNullOrEmpty(cbxQuarter.Text))
             {
                 viewQuarter();
+                return;
             }
-            getTotalRevenue(dtpStartDay.Value, dtpEndDate.Value);
 
-
+            // Check for date range selection
+            if (dtpStartDay.Value != DateTime.Now && dtpEndDate.Value != DateTime.Now)
+            {
+                getTotalRevenue(dtpStartDay, dtpEndDate);
+            }
         }
 
         private void viewQuarter()
         {
             int quarter = int.Parse(cbxQuarter.Text);
-            // Replace "YourConnectionString" with your actual connection string
             string sql = "SELECT SUM(total) AS totalRevenue FROM Schedule WHERE MONTH(injection_date) BETWEEN ";
             switch (quarter)
             {
@@ -134,25 +144,34 @@ namespace QLTC
                         {
                             totalRevenue = reader.GetDecimal(reader.GetOrdinal("totalRevenue"));
                         }
+                        else
+                        {
+                            totalRevenue = 0;
+                        }    
                         txtTotalRevuene.Text = totalRevenue.ToString();
                     }
                 }
             }
         }
-        private void getTotalRevenue(DateTime startDate, DateTime endDate)
+        private string dateTimeFormatted(DateTimePicker dtp)
         {
-            DateTime selectedStartDateTime = dtpStartDay.Value;
-            string formattedStartDateTime = selectedStartDateTime.ToString("yyyy-MM-dd HH:mm:ss");
-            DateTime selectedEndDateTime = dtpEndDate.Value;
-            string formattedEndDateTime = selectedEndDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            // Format date time from dd/mm/yyyy to yyyy-mm-dd
+            DateTime selectedDateTime = dtp.Value;
+            string formattedDateTime = selectedDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            return formattedDateTime;
+        }
+        private void getTotalRevenue(DateTimePicker startDate, DateTimePicker endDate)
+        {
+            string start = dateTimeFormatted(startDate);
+            string end = dateTimeFormatted(endDate);
 
             decimal totalRevenue = 0;
             // Execute SQL query to retrieve revenue data based on start and end dates
             string sql = "SELECT SUM(total) AS TotalRevenue FROM Schedule WHERE injection_date BETWEEN @StartDate AND @EndDate";
             using (SqlCommand command = new SqlCommand(sql, DataAccess.conn))
             {
-                command.Parameters.AddWithValue("@StartDate", formattedStartDateTime);
-                command.Parameters.AddWithValue("@EndDate", formattedEndDateTime);
+                command.Parameters.AddWithValue("@StartDate", start);
+                command.Parameters.AddWithValue("@EndDate", end);
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -162,6 +181,10 @@ namespace QLTC
                         {
                             totalRevenue = reader.GetDecimal(reader.GetOrdinal("TotalRevenue"));
                         }
+                        else
+                        {
+                            totalRevenue = 0;
+                        }    
                     }
 
                     txtTotalRevuene.Text = totalRevenue.ToString();

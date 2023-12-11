@@ -30,22 +30,20 @@
         {
             label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
             cbxScheduleID = new ComboBox();
             cbxCusID = new ComboBox();
-            cbxVacID = new ComboBox();
             cbxProvince = new ComboBox();
             cbxCenter = new ComboBox();
             dgvSchedule = new DataGridView();
-            button1 = new Button();
-            button2 = new Button();
+            btnView = new Button();
+            btnClose = new Button();
             label7 = new Label();
             label8 = new Label();
             groupBox1 = new GroupBox();
-            button3 = new Button();
+            btnRefresh = new Button();
             txtInjectedVac = new TextBox();
             txtNumPeople = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
@@ -70,15 +68,6 @@
             label2.Size = new Size(88, 20);
             label2.TabIndex = 1;
             label2.Text = "Schedule ID";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(31, 219);
-            label3.Name = "label3";
-            label3.Size = new Size(78, 20);
-            label3.TabIndex = 2;
-            label3.Text = "Vaccine ID";
             // 
             // label4
             // 
@@ -123,14 +112,6 @@
             cbxCusID.Size = new Size(207, 28);
             cbxCusID.TabIndex = 7;
             // 
-            // cbxVacID
-            // 
-            cbxVacID.FormattingEnabled = true;
-            cbxVacID.Location = new Point(125, 216);
-            cbxVacID.Name = "cbxVacID";
-            cbxVacID.Size = new Size(207, 28);
-            cbxVacID.TabIndex = 8;
-            // 
             // cbxProvince
             // 
             cbxProvince.FormattingEnabled = true;
@@ -155,27 +136,29 @@
             dgvSchedule.Name = "dgvSchedule";
             dgvSchedule.RowHeadersWidth = 51;
             dgvSchedule.RowTemplate.Height = 29;
-            dgvSchedule.Size = new Size(1087, 237);
+            dgvSchedule.Size = new Size(1093, 237);
             dgvSchedule.TabIndex = 11;
             dgvSchedule.CellContentClick += dgvSchedule_CellContentClick;
             // 
-            // button1
+            // btnView
             // 
-            button1.Location = new Point(10, 153);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 12;
-            button1.Text = "View";
-            button1.UseVisualStyleBackColor = true;
+            btnView.Location = new Point(10, 153);
+            btnView.Name = "btnView";
+            btnView.Size = new Size(94, 29);
+            btnView.TabIndex = 12;
+            btnView.Text = "View";
+            btnView.UseVisualStyleBackColor = true;
+            btnView.Click += btnView_Click;
             // 
-            // button2
+            // btnClose
             // 
-            button2.Location = new Point(1030, 527);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 13;
-            button2.Text = "Close";
-            button2.UseVisualStyleBackColor = true;
+            btnClose.Location = new Point(1024, 527);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(94, 29);
+            btnClose.TabIndex = 13;
+            btnClose.Text = "Close";
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // label7
             // 
@@ -197,10 +180,10 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(button3);
+            groupBox1.Controls.Add(btnRefresh);
             groupBox1.Controls.Add(txtInjectedVac);
             groupBox1.Controls.Add(txtNumPeople);
-            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(btnView);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label8);
             groupBox1.Location = new Point(725, 41);
@@ -210,14 +193,14 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Statistical";
             // 
-            // button3
+            // btnRefresh
             // 
-            button3.Location = new Point(123, 153);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 18;
-            button3.Text = "Refresh";
-            button3.UseVisualStyleBackColor = true;
+            btnRefresh.Location = new Point(123, 153);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(94, 29);
+            btnRefresh.TabIndex = 18;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
             // 
             // txtInjectedVac
             // 
@@ -239,17 +222,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1136, 568);
             Controls.Add(groupBox1);
-            Controls.Add(button2);
+            Controls.Add(btnClose);
             Controls.Add(dgvSchedule);
             Controls.Add(cbxCenter);
             Controls.Add(cbxProvince);
-            Controls.Add(cbxVacID);
             Controls.Add(cbxCusID);
             Controls.Add(cbxScheduleID);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "ReportSchedule_Form";
@@ -266,22 +247,20 @@
 
         private Label label1;
         private Label label2;
-        private Label label3;
         private Label label4;
         private Label label5;
         private Label label6;
         private ComboBox cbxScheduleID;
         private ComboBox cbxCusID;
-        private ComboBox cbxVacID;
         private ComboBox cbxProvince;
         private ComboBox cbxCenter;
         private DataGridView dgvSchedule;
-        private Button button1;
-        private Button button2;
+        private Button btnView;
+        private Button btnClose;
         private Label label7;
         private Label label8;
         private GroupBox groupBox1;
-        private Button button3;
+        private Button btnRefresh;
         private TextBox txtInjectedVac;
         private TextBox txtNumPeople;
     }

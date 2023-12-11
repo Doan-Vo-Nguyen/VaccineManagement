@@ -14,14 +14,18 @@ namespace QLTC
     public partial class ScheduleManagement_Form : Form
     {
         DataTable? dtCusManagent;
+        private ProvinceDataManager provinceDM;
         public ScheduleManagement_Form()
         {
             InitializeComponent();
+            provinceDM = new ProvinceDataManager();
         }
 
         private void ScheduleManagement_Form_Load(object sender, EventArgs e)
         {
             loadDataGridView();
+            LoadProvinces();
+            loadComboBox();
         }
 
         private void loadDataGridView()
@@ -55,6 +59,21 @@ namespace QLTC
             dgvSchedule.AllowUserToAddRows = false;
             dgvSchedule.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
+        private void LoadProvinces()
+        {
+            var provinces = provinceDM.GetProvinces();
+            foreach (var province in provinces)
+            {
+                cbxProvince.Items.Add(province.Name);
+            }
+        }
+        private void loadComboBox()
+        {
+            string sqlCusID = "SELECT cus_id FROM Customer";
+            DataAccess.fillDataCombo(sqlCusID, cbxCusID, "cus_id", "cus_id");
+            string sqlScheID = "SELECT schedule_id FROM Schedule";
+            DataAccess.fillDataCombo(sqlScheID, cbxScheduleID, "schedule_id", "schedule_id");
+        }
         private void cbxVacType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxVacType.Text == "")
@@ -76,6 +95,37 @@ namespace QLTC
             else
             {
                 MessageBox.Show("Choose vaccine name!");
+            }
+        }
+        private void cbxProvince_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedProvince = cbxProvince.SelectedItem.ToString();
+            var centers = provinceDM.GetVaccineCentersByProvince(selectedProvince);
+            cbxCenterInject.Items.Clear();
+            // Add the names of the vaccine centers to the ComboBox
+            foreach (var center in centers)
+            {
+
+                cbxCenterInject.Items.Add(center.Name);
+            }
+        }
+        private void cbxCusID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string str, cusID;
+            cusID = cbxCusID.Text;
+            if (cusID != string.Empty)
+            {
+                // Show all information to every field of Customer 
+                str = "SELECT fullname FROM Customer WHERE cus_id = " + cusID;
+                txtName.Text = DataAccess.getFieldValues(str);
+                str = "SELECT birth FROM Customer WHERE cus_id = " + cusID;
+                dtpBirth.Text = DataAccess.getFieldValues(str);
+                str = "SELECT gender FROM Customer WHERE cus_id = " + cusID;
+                cbSex.Text = DataAccess.getFieldValues(str);
+                str = "SELECT address FROM Customer WHERE cus_id = " + cusID;
+                cbxAddress.Text = DataAccess.getFieldValues(str);
+                str = "SELECT phonenum FROM Customer WHERE cus_id = " + cusID;
+                txtPhonenumber.Text = DataAccess.getFieldValues(str);
             }
         }
         private void btnAdd_Click(object sender, EventArgs e)
@@ -100,6 +150,11 @@ namespace QLTC
                     MessageBox.Show("You cannot register for more 2 schedules on the same day!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (getVaccineNumber() > 0)
+                {
+                    MessageBox.Show("Vaccine is out of stock, please understand", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 string center = DataAccess.getFieldValues("SELECT DISTINCT center_id FROM Centers WHERE center_name = N'" + cbxCenterInject.Text + "' AND province = N'" + cbxProvince.Text + "'");
                 int centerID = int.Parse(center);
                 // Your existing code to insert into the Schedule table
@@ -120,6 +175,7 @@ namespace QLTC
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Schedule add successfully!", "ALERT", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadDataGridView();
+                    updateVaccineNumber(cbxCenterInject);
                 }
             }
             catch (Exception ex)
@@ -152,31 +208,24 @@ namespace QLTC
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to delete this?", "ALERT!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (cbxScheduleID.Text == String.Empty)
             {
-                string sqlDelete = "DELETE FROM Schedule WHERE schedule_id = @id";
-                string[] name = { "@id" };
-                object[] value = { cbxScheduleID.Text };
-                DataAccess.runSQL(sqlDelete, name, value);
-                MessageBox.Show("Schedule deleted successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                reset();
-                loadDataGridView();
+                MessageBox.Show("Please select a schedule to delete!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-        }
-        private void reset()
-        {
-            cbxScheduleID.Text = string.Empty;
-            cbxVacType.Text = string.Empty;
-            cbxVacName.Text = string.Empty;
-            cbxProvince.Text = string.Empty;
-            dtpDateInject.Text = DateTime.Now.ToShortDateString();
-            cbxCenterInject.Text = string.Empty;
-            txtPrice.Text = "0";
-            txtTotal.Text = "0";
-        }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
+
+            if (MessageBox.Show("Do you want to delete this?", "ALERT!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            string sqlDelete = "DELETE FROM Schedule WHERE schedule_id = @id";
+            string[] name = { "@id" };
+            object[] value = { cbxScheduleID.Text };
+            DataAccess.runSQL(sqlDelete, name, value);
+            MessageBox.Show("Schedule deleted successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             reset();
+            loadDataGridView();
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -203,6 +252,35 @@ namespace QLTC
                 btnCancel.Enabled = true;
             }
         }
+        private int getVaccineNumber()
+        {
+            string center = DataAccess.getFieldValues("SELECT DISTINCT center_id FROM Centers WHERE center_name = N'" + cbxCenterInject.Text + "' AND province = N'" + cbxProvince.Text + "'");
+            int centerID = int.Parse(center);
+            string sqlNumber = "SELECT quanity FROM VaccineWarehouse WHERE center_id = " + centerID;
+            int number = int.Parse(DataAccess.getFieldValues(sqlNumber));
+            return number;
+        }
+        private void updateVaccineNumber(System.Windows.Forms.ComboBox cbx)
+        {
+            int vacNumber = getVaccineNumber();
+            try
+            {
+                if (cbx != null && getVaccineNumber() != 0)
+                {
+                    int quanity = vacNumber - 1;
+                    string center = DataAccess.getFieldValues("SELECT DISTINCT center_id FROM Centers WHERE center_name = N'" + cbxCenterInject.Text + "' AND province = N'" + cbxProvince.Text + "'");
+                    int centerID = int.Parse(center);
+                    string sqlUpdate = "UPDATE VaccineWarehouse set quanity = @quanity WHERE center_id = @center_id";
+                    string[] name = { "@quanity", "@center_id" };
+                    object[] value = { quanity, centerID };
+                    DataAccess.runSQL(sqlUpdate, name, value);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Invalid!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void dgvSchedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int i;
@@ -217,9 +295,26 @@ namespace QLTC
             txtPrice.Text = dgvSchedule.Rows[i].Cells[8].Value.ToString();
             txtTotal.Text = dgvSchedule.Rows[i].Cells[10].Value.ToString();
         }
+        private void reset()
+        {
+            cbxScheduleID.Text = string.Empty;
+            cbxVacType.Text = string.Empty;
+            cbxVacName.Text = string.Empty;
+            cbxProvince.Text = string.Empty;
+            dtpDateInject.Text = DateTime.Now.ToShortDateString();
+            cbxCenterInject.Text = string.Empty;
+            txtPrice.Text = "0";
+            txtTotal.Text = "0";
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            reset();
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        
     }
 }

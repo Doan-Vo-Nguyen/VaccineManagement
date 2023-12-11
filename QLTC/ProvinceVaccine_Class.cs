@@ -23,7 +23,7 @@ namespace QLTC
             public List<Province> GetProvinces()
             {
                 List<Province> provinces = new List<Province>();
-                    string sql = "SELECT DISTINCT province FROM Centers"; // Thay thế bằng truy vấn SQL của bạn
+                    string sql = "SELECT DISTINCT province FROM Centers";
                     using (SqlCommand command = new SqlCommand(sql, DataAccess.conn))
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -42,7 +42,7 @@ namespace QLTC
                 List<VaccineCenter> vaccineCenters = new List<VaccineCenter>();
                 {
 
-                    string sql = "SELECT DISTINCT center_name FROM Centers WHERE province = @Province"; // Thay thế bằng truy vấn SQL của bạn
+                    string sql = "SELECT DISTINCT center_name FROM Centers WHERE province = @Province"; 
 
                     using (SqlCommand command = new SqlCommand(sql, DataAccess.conn))
                     {

@@ -13,7 +13,6 @@ namespace QLTC
     public partial class Vaccine_Form : Form
     {
         DataTable? dtVaccine;
-        private string? ID;
         public Vaccine_Form()
         {
             InitializeComponent();

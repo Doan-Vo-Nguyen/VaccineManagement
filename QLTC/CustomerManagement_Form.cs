@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace QLTC
 {
@@ -17,6 +18,7 @@ namespace QLTC
         {
             InitializeComponent();
             loadDataGridView();
+            loadComboBox();
         }
 
         private void loadDataGridView()
@@ -43,7 +45,12 @@ namespace QLTC
             dgvCustomer.Columns[7].Width = 200;
             dgvCustomer.AllowUserToAddRows = false;
             dgvCustomer.EditMode = DataGridViewEditMode.EditProgrammatically;
+        }
 
+        private void loadComboBox()
+        {
+            string sqlCusId = "SELECT cus_id FROM Customer";
+            DataAccess.fillDataCombo(sqlCusId, cbxID, "cus_id", "cus_id");
         }
         // CHOOSE DATA ROW FROM DATAGRIDVIEW, IT WILL DISPLAY TO OTHER.
         private void dgvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -59,7 +66,55 @@ namespace QLTC
             cbxStatus.Text = dgvCustomer.Rows[i].Cells[6].Value.ToString();
             txtInjected.Text = dgvCustomer.Rows[i].Cells[7].Value.ToString();
         }
-
+        private void cbxID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string str, cusID;
+            cusID = cbxID.Text;
+            if (cusID != string.Empty)
+            {
+                // Show all information to every field of Customer 
+                str = "SELECT fullname FROM Customer WHERE cus_id = " + cusID;
+                txtFullname.Text = DataAccess.getFieldValues(str);
+                str = "SELECT birth FROM Customer WHERE cus_id = " + cusID;
+                dtpBirth.Text = DataAccess.getFieldValues(str);
+                str = "SELECT gender FROM Customer WHERE cus_id = " + cusID;
+                cbxGender.Text = DataAccess.getFieldValues(str);
+                str = "SELECT address FROM Customer WHERE cus_id = " + cusID;
+                cbxAddress.Text = DataAccess.getFieldValues(str);
+                str = "SELECT phonenum FROM Customer WHERE cus_id = " + cusID;
+                txtPhonenumber.Text = DataAccess.getFieldValues(str);
+            }
+        }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            //Format date time from dd/ mm / yyyy to yyyy-mm - dd
+            DateTime selectedDateTime = dtpBirth.Value;
+            string formattedDateTime = selectedDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = string.Format("SELECT count(*) from Customer WHERE cus_id ='{0}'", cbxID.Text);
+            if (cbxID.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter ID!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (txtFullname.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter name!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (dtpBirth.Value == DateTime.Now)
+            {
+                MessageBox.Show("Invalid date, try again!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (DataAccess.executeScalar(sql) == 0)
+            {
+                string addCus = "INSERT INTO Customer VALUES(@fullname, @birth, @gender, @address, @phonenum, @status, @injected)";
+                string[] name = { "@fullname", "@birth", "@gender", "@address", "@phonenum", "@status", "@injected" };
+                object[] value = { txtFullname.Text, formattedDateTime, cbxGender.Text, cbxAddress.Text, txtPhonenumber.Text, cbxStatus.Text, txtInjected.Text };
+                DataAccess.runSQL(addCus, name, value);
+            }
+            else
+            {
+                MessageBox.Show("User have already existed!Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             // Format date time from dd/mm/yyyy to yyyy-mm-dd
@@ -74,10 +129,31 @@ namespace QLTC
             MessageBox.Show("Customer updated successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             loadDataGridView();
         }
+        private int getInjectedNumber()
+        {
+            string sqlNumber = "SELECT injected FROM Customer WHERE cus_id = " + cbxID.Text;
+            int number = int.Parse(DataAccess.getFieldValues(sqlNumber));
+            return number;
+        }
 
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show("You sure?", "ALERT!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                int injectedNumber = getInjectedNumber() + 1;
+                string sqlUpdateInjected = "UPDATE Customer SET injected = @injected WHERE cus_id = @cusID";
+                string[] name = { "@injected", "@cusID" };
+                object[] value = { injectedNumber, cbxID.Text };
+                DataAccess.runSQL(sqlUpdateInjected, name, value);
+                MessageBox.Show("Customer's injected number updated successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        
     }
 }

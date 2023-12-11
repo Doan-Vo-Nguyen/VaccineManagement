@@ -65,13 +65,11 @@ namespace QLTC
 
         private void loadComboBox()
         {
-            string sqlScheID, sqlCusID, sqlVacID;
+            string sqlScheID, sqlCusID;
             sqlScheID = "SELECT schedule_id FROM Schedule";
             DataAccess.fillDataCombo(sqlScheID, cbxScheduleID, "schedule_id", "schedule_id");
             sqlCusID = "SELECT DISTINCT cus_id FROM Schedule";
             DataAccess.fillDataCombo(sqlCusID, cbxCusID, "cus_id", "cus_id");
-            sqlVacID = "SELECT vac_id FROM Schedule";
-            DataAccess.fillDataCombo(sqlVacID, cbxVacID, "vac_id", "vac_id");
         }
         private void dgvSchedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -79,7 +77,6 @@ namespace QLTC
             i = dgvSchedule.CurrentRow.Index;
             cbxScheduleID.Text = dgvSchedule.Rows[i].Cells[0].Value.ToString();
             cbxCusID.Text = dgvSchedule.Rows[i].Cells[1].Value.ToString();
-            cbxVacID.Text = dgvSchedule.Rows[i].Cells[2].Value.ToString();
             cbxProvince.Text = dgvSchedule.Rows[i].Cells[6].Value.ToString();
             cbxCenter.Text = dgvSchedule.Rows[i].Cells[7].Value.ToString();
 
@@ -96,6 +93,30 @@ namespace QLTC
 
                 cbxCenter.Items.Add(center.Name);
             }
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            if (cbxCenter.Text != string.Empty)
+            {
+                string sqlCusInject = "SELECT count(DISTINCT sche.cus_id) FROM Schedule as sche JOIN Customer as cus " +
+                    "ON sche.cus_id = cus.cus_id JOIN Centers as cen " +
+                    "ON sche.center_id = cen.center_id WHERE cen.center_name = N'" + cbxCenter.Text + "' OR sche.schedule_id = " + cbxScheduleID.Text;
+                txtNumPeople.Text = DataAccess.getFieldValues(sqlCusInject);
+                string sqlInjectedVac = "SELECT DISTINCT count(sche.vac_id) FROM Schedule as sche JOIN Vaccine as vac " +
+                    "ON sche.vac_id = vac.vac_id JOIN Centers as cen " +
+                    "ON sche.center_id = cen.center_id WHERE cen.center_name = N'" + cbxCenter.Text + "' OR sche.schedule_id = " + cbxScheduleID.Text;
+                txtInjectedVac.Text = DataAccess.getFieldValues(sqlInjectedVac);
+            }
+            else
+            {
+                MessageBox.Show("Please select the Center name to make a query", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -50,6 +50,7 @@
             btnDelete = new Button();
             btnClose = new Button();
             btnAdd = new Button();
+            btnConfirm = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvCustomer).BeginInit();
             SuspendLayout();
             // 
@@ -142,6 +143,7 @@
             cbxID.Name = "cbxID";
             cbxID.Size = new Size(200, 28);
             cbxID.TabIndex = 9;
+            cbxID.SelectedIndexChanged += cbxID_SelectedIndexChanged;
             // 
             // txtFullname
             // 
@@ -169,6 +171,7 @@
             // cbxAddress
             // 
             cbxAddress.FormattingEnabled = true;
+            cbxAddress.Items.AddRange(new object[] { "Hà Nội", "Hồ Chí Minh", "Hải Phòng", "Cần Thơ", "Đà Nẵng", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu", "Bắc Ninh", "Bến Tre", "Bình Định", "Bình Dương", "Bình Phước", "Bình Thuận", "Cà Mau", "Cao Bằng", "Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp", "Gia Lai", "Hà Giang", "Hà Nam", "Hà Tĩnh", "Hải Dương", "Hậu Giang", "Hòa Bình", "Hưng Yên", "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng", "Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Nghệ An", "Ninh Bình", "Ninh Thuận", "Phú Thọ", "Phú Yên", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng", "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa", "Thừa Thiên Huế", "Tiền Giang", "Trà Vinh", "Tuyên Quang", "Vĩnh Long", "Vĩnh Phúc", "Yên Bái", "Quảng Trị" });
             cbxAddress.Location = new Point(82, 173);
             cbxAddress.Name = "cbxAddress";
             cbxAddress.Size = new Size(200, 28);
@@ -210,7 +213,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(188, 527);
+            btnUpdate.Location = new Point(399, 527);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(94, 29);
             btnUpdate.TabIndex = 18;
@@ -220,7 +223,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(380, 527);
+            btnDelete.Location = new Point(578, 527);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 19;
@@ -239,18 +242,31 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(14, 527);
+            btnAdd.Location = new Point(232, 527);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(94, 29);
             btnAdd.TabIndex = 21;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
+            // btnConfirm
+            // 
+            btnConfirm.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnConfirm.Location = new Point(14, 527);
+            btnConfirm.Name = "btnConfirm";
+            btnConfirm.Size = new Size(158, 29);
+            btnConfirm.TabIndex = 22;
+            btnConfirm.Text = "Confirm Injected";
+            btnConfirm.UseVisualStyleBackColor = true;
+            btnConfirm.Click += btnConfirm_Click;
             // 
             // CustomerManagement_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1136, 568);
+            Controls.Add(btnConfirm);
             Controls.Add(btnAdd);
             Controls.Add(btnClose);
             Controls.Add(btnDelete);
@@ -304,5 +320,6 @@
         private Button btnDelete;
         private Button btnClose;
         private Button btnAdd;
+        private Button btnConfirm;
     }
 }

@@ -27,8 +27,8 @@ namespace QLTC
             DataAccess.connect();
             LoadProvinces();
             LoadDataGridView();
-            string sqlCenID = "SELECT center_id FROM VaccineWarehouse";
-            DataAccess.fillDataCombo(sqlCenID, cbxCenterID, "center_id", "center_id");
+            loadComboBox();
+            
         }
 
         // Khi chọn tỉnh thì hàm sẽ thực hiện thay đổi center theo tỉnh đã chọn
@@ -78,10 +78,13 @@ namespace QLTC
             dgvSchedule.Columns[5].Width = 200;
             dgvSchedule.AllowUserToAddRows = false;
             dgvSchedule.EditMode = DataGridViewEditMode.EditProgrammatically;
-
         }
         
-
+        private void loadComboBox()
+        {
+            string sqlCenID = "SELECT center_id FROM VaccineWarehouse";
+            DataAccess.fillDataCombo(sqlCenID, cbxCenterID, "center_id", "center_id");
+        }
         private void btnView_Click(object sender, EventArgs e)
         {
             if (cbxCenter.Text != string.Empty || cbxCenterID.Text != string.Empty)
@@ -97,7 +100,6 @@ namespace QLTC
             }
 
         }
-
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             cbxCenterID.Text = string.Empty;

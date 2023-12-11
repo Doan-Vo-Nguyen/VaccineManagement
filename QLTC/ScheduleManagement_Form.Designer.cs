@@ -223,6 +223,7 @@
             cbxProvince.Name = "cbxProvince";
             cbxProvince.Size = new Size(188, 28);
             cbxProvince.TabIndex = 12;
+            cbxProvince.SelectedIndexChanged += cbxProvince_SelectedIndexChanged;
             // 
             // dtpDateInject
             // 
@@ -338,6 +339,7 @@
             cbxCusID.Name = "cbxCusID";
             cbxCusID.Size = new Size(181, 28);
             cbxCusID.TabIndex = 20;
+            cbxCusID.SelectedIndexChanged += cbxCusID_SelectedIndexChanged;
             // 
             // cbxAddress
             // 

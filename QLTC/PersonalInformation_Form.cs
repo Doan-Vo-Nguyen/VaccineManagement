@@ -15,11 +15,9 @@ namespace QLTC
     {
         private string? ID;
         DataTable? dtSchedule;
-        private ProvinceDataManager provinceDM;
         public PersonalInformation_Form()
         {
             InitializeComponent();
-            provinceDM = new ProvinceDataManager();
         }
         private void PersonalInformation_Form_Load(object sender, EventArgs e)
         {
@@ -27,19 +25,15 @@ namespace QLTC
             ID = Login_Form.cusID;
             if (ID != null)
             {
-                MessageBox.Show(ID);
                 userSession();
             }
             loadDataGridView();
             txtID.Enabled = false;
             txtInjected.Enabled = false;
-            LoadProvinces();
         }
         private void userSession()
         {
             string str;
-            // When choose user ID , all field of User information will 
-            MessageBox.Show(ID);
             // When choose user ID , all field of User information will fill
             str = "SELECT cus_id FROM Customer WHERE cus_id = " + ID;
             txtID.Text = DataAccess.getFieldValues(str);
@@ -88,15 +82,6 @@ namespace QLTC
             dgvSchedule.Columns[8].Width = 100;
             dgvSchedule.AllowUserToAddRows = false;
             dgvSchedule.EditMode = DataGridViewEditMode.EditProgrammatically;
-
-        }
-        private void LoadProvinces()
-        {
-            var provinces = provinceDM.GetProvinces();
-            foreach (var province in provinces)
-            {
-                cbxProvince.Items.Add(province.Name);
-            }
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
