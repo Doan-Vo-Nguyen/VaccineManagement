@@ -50,7 +50,6 @@
             btnDelete = new Button();
             btnClose = new Button();
             btnAdd = new Button();
-            btnConfirm = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvCustomer).BeginInit();
             SuspendLayout();
             // 
@@ -213,7 +212,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(399, 527);
+            btnUpdate.Location = new Point(206, 527);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(94, 29);
             btnUpdate.TabIndex = 18;
@@ -223,12 +222,13 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(578, 527);
+            btnDelete.Location = new Point(403, 527);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 19;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnClose
             // 
@@ -242,7 +242,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(232, 527);
+            btnAdd.Location = new Point(14, 527);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(94, 29);
             btnAdd.TabIndex = 21;
@@ -250,23 +250,11 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
-            // btnConfirm
-            // 
-            btnConfirm.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnConfirm.Location = new Point(14, 527);
-            btnConfirm.Name = "btnConfirm";
-            btnConfirm.Size = new Size(158, 29);
-            btnConfirm.TabIndex = 22;
-            btnConfirm.Text = "Confirm Injected";
-            btnConfirm.UseVisualStyleBackColor = true;
-            btnConfirm.Click += btnConfirm_Click;
-            // 
             // CustomerManagement_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1136, 568);
-            Controls.Add(btnConfirm);
             Controls.Add(btnAdd);
             Controls.Add(btnClose);
             Controls.Add(btnDelete);
@@ -320,6 +308,5 @@
         private Button btnDelete;
         private Button btnClose;
         private Button btnAdd;
-        private Button btnConfirm;
     }
 }

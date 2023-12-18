@@ -65,6 +65,7 @@
             label5 = new Label();
             label4 = new Label();
             btnAdd = new Button();
+            btnConfirm = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -72,7 +73,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(208, 685);
+            btnDelete.Location = new Point(423, 685);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 17;
@@ -93,7 +94,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(393, 685);
+            btnUpdate.Location = new Point(617, 685);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(94, 29);
             btnUpdate.TabIndex = 15;
@@ -123,7 +124,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(594, 685);
+            btnCancel.Location = new Point(806, 685);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(94, 29);
             btnCancel.TabIndex = 12;
@@ -416,7 +417,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(48, 685);
+            btnAdd.Location = new Point(246, 685);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(94, 29);
             btnAdd.TabIndex = 18;
@@ -424,11 +425,24 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
+            // btnConfirm
+            // 
+            btnConfirm.BackColor = Color.Transparent;
+            btnConfirm.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnConfirm.Location = new Point(49, 685);
+            btnConfirm.Name = "btnConfirm";
+            btnConfirm.Size = new Size(136, 29);
+            btnConfirm.TabIndex = 19;
+            btnConfirm.Text = "Confirm Injected";
+            btnConfirm.UseVisualStyleBackColor = false;
+            btnConfirm.Click += btnConfirm_Click;
+            // 
             // ScheduleManagement_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1163, 726);
+            Controls.Add(btnConfirm);
             Controls.Add(btnAdd);
             Controls.Add(btnDelete);
             Controls.Add(dgvSchedule);
@@ -489,5 +503,6 @@
         private TextBox txtTotal;
         private Label label15;
         private ComboBox cbxCusID;
+        private Button btnConfirm;
     }
 }

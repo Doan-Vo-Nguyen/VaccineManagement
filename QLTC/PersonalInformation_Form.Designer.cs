@@ -213,9 +213,9 @@
             lb_Birth.AutoSize = true;
             lb_Birth.Location = new Point(604, 35);
             lb_Birth.Name = "lb_Birth";
-            lb_Birth.Size = new Size(41, 20);
+            lb_Birth.Size = new Size(40, 20);
             lb_Birth.TabIndex = 2;
-            lb_Birth.Text = "Date";
+            lb_Birth.Text = "Birth";
             // 
             // lb_Name
             // 

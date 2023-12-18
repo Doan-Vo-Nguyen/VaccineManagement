@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,26 +26,41 @@ namespace QLTC
             string sql = string.Format("SELECT count(*) from Customer WHERE cus_id ='{0}'", txtID.Text);
             if (txtName.Text != string.Empty && cbSex.Text != string.Empty && cbxProvince.Text != string.Empty)
             {
-
                 if (DataAccess.executeScalar(sql) == 0)
                 {
-                    string sql_add = "INSERT INTO Customer(cus_id, fullname ,birth, gender, address, phonenum, status, injected) VALUES(@id, @fullname, @birth ,@gender, @address, @phoneNum, @status, @injected)";
-                    string[] name = { "@id", "@fullname", "@birth", "@gender", "@address", "@phoneNum", "@status", "@injected" };
-                    object[] value = { txtID.Text, txtName.Text, formattedDateTime, cbSex.Text, cbxProvince.Text, txtPhoneNum.Text, "Empty", 0 };
-                    DataAccess.runSQL(sql_add, name, value);
-                    // get id from the user just added
-                    string sql_addAccount = "INSERT INTO Account(cus_id, email, password) VALUES(@cus_id, @email, @password)";
-                    string[] nameAccount = { "@cus_id", "@email", "@password" };
-                    object[] valueAccount = { txtID.Text, txtEmail.Text, txtPassword.Text };
-                    DataAccess.runSQL(sql_addAccount, nameAccount, valueAccount);
-                    MessageBox.Show("Signup successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Hide();
-                    Login_Form login_Form = new Login_Form();
-                    login_Form.ShowDialog();
+                    try
+                    {
+                        // Validate email format before inserting customer
+                        var addr = new System.Net.Mail.MailAddress(txtEmail.Text);
+                        if (addr.Address == txtEmail.Text)
+                        {
+                            string sql_add = "INSERT INTO Customer(cus_id, fullname ,birth, gender, address, phonenum, status, injected) VALUES(@id, @fullname, @birth ,@gender, @address, @phoneNum, @status, @injected)";
+                            string[] name = { "@id", "@fullname", "@birth", "@gender", "@address", "@phoneNum", "@status", "@injected" };
+                            object[] value = { txtID.Text, txtName.Text, formattedDateTime, cbSex.Text, cbxProvince.Text, txtPhoneNum.Text, "Empty", 0 };
+                            DataAccess.runSQL(sql_add, name, value);
+                            // get id from the user just added
+                            string sql_addAccount = "INSERT INTO Account(cus_id, email, password) VALUES(@cus_id, @email, @password)";
+                            string[] nameAccount = { "@cus_id", "@email", "@password" };
+                            object[] valueAccount = { txtID.Text, txtEmail.Text, txtPassword.Text };
+                            DataAccess.runSQL(sql_addAccount, nameAccount, valueAccount);
+                            MessageBox.Show("Signup successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Hide();
+                            Login_Form login_Form = new Login_Form();
+                            login_Form.ShowDialog();
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Incorrect email format! Please type again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("User have already existed!Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("User have already existed! Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

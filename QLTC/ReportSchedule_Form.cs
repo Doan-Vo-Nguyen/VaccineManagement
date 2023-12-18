@@ -29,27 +29,29 @@ namespace QLTC
         private void loadDataGridView()
         {
             string sql;
-            sql = "SELECT sche.schedule_id, sche.cus_id, sche.vac_id ,vac.disease, vac.producer, sche.injection_date, cen.province, cen.center_name, vac.num_injection FROM Schedule as sche INNER JOIN Vaccine as vac ON Sche.vac_id = vac.vac_id INNER JOIN Customer as cus ON sche.cus_id = cus.cus_id JOIN Centers as cen ON sche.center_id = cen.center_id";
+            sql = "SELECT sche.schedule_id, sche.cus_id, cus.fullname, sche.vac_id ,vac.disease, vac.producer, sche.injection_date, cen.province, cen.center_name, vac.num_injection FROM Schedule as sche INNER JOIN Vaccine as vac ON Sche.vac_id = vac.vac_id INNER JOIN Customer as cus ON sche.cus_id = cus.cus_id JOIN Centers as cen ON sche.center_id = cen.center_id";
             dtSchedule = DataAccess.getDataToTable(sql);
             dgvSchedule.DataSource = dtSchedule;
             dgvSchedule.Columns[0].HeaderText = "Schedule ID";
             dgvSchedule.Columns[1].HeaderText = "Customer ID";
-            dgvSchedule.Columns[2].HeaderText = "Vaccine ID";
-            dgvSchedule.Columns[3].HeaderText = "Disease";
-            dgvSchedule.Columns[4].HeaderText = "Vaccine Producer";
-            dgvSchedule.Columns[5].HeaderText = "Injection date";
-            dgvSchedule.Columns[6].HeaderText = "Province";
-            dgvSchedule.Columns[7].HeaderText = "VFA center";
-            dgvSchedule.Columns[8].HeaderText = "Number of injections";
+            dgvSchedule.Columns[2].HeaderText = "Customer name";
+            dgvSchedule.Columns[3].HeaderText = "Vaccine ID";
+            dgvSchedule.Columns[4].HeaderText = "Disease";
+            dgvSchedule.Columns[5].HeaderText = "Vaccine Producer";
+            dgvSchedule.Columns[6].HeaderText = "Injection date";
+            dgvSchedule.Columns[7].HeaderText = "Province";
+            dgvSchedule.Columns[8].HeaderText = "VFA center";
+            dgvSchedule.Columns[9].HeaderText = "Number of injections";
             dgvSchedule.Columns[0].Width = 100;
-            dgvSchedule.Columns[1].Width = 300;
+            dgvSchedule.Columns[1].Width = 200;
             dgvSchedule.Columns[2].Width = 200;
-            dgvSchedule.Columns[3].Width = 300;
+            dgvSchedule.Columns[3].Width = 100;
             dgvSchedule.Columns[4].Width = 200;
             dgvSchedule.Columns[5].Width = 100;
             dgvSchedule.Columns[6].Width = 100;
             dgvSchedule.Columns[7].Width = 100;
             dgvSchedule.Columns[8].Width = 100;
+            dgvSchedule.Columns[9].Width = 100;
             dgvSchedule.AllowUserToAddRows = false;
             dgvSchedule.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
@@ -101,11 +103,10 @@ namespace QLTC
             {
                 string sqlCusInject = "SELECT count(DISTINCT sche.cus_id) FROM Schedule as sche JOIN Customer as cus " +
                     "ON sche.cus_id = cus.cus_id JOIN Centers as cen " +
-                    "ON sche.center_id = cen.center_id WHERE cen.center_name = N'" + cbxCenter.Text + "' OR sche.schedule_id = " + cbxScheduleID.Text;
+                    "ON sche.center_id = cen.center_id WHERE cen.center_name = N'" + cbxCenter.Text + "' OR sche.schedule_id = " + cbxScheduleID.Text + "AND sche.state = 'X'";
                 txtNumPeople.Text = DataAccess.getFieldValues(sqlCusInject);
-                string sqlInjectedVac = "SELECT DISTINCT count(sche.vac_id) FROM Schedule as sche JOIN Vaccine as vac " +
-                    "ON sche.vac_id = vac.vac_id JOIN Centers as cen " +
-                    "ON sche.center_id = cen.center_id WHERE cen.center_name = N'" + cbxCenter.Text + "' OR sche.schedule_id = " + cbxScheduleID.Text;
+                string sqlInjectedVac = "SELECT DISTINCT count(sche.schedule_id) FROM Schedule as sche JOIN Centers as cen " +
+                    "ON sche.center_id = cen.center_id WHERE cen.center_name = N'" + cbxCenter.Text + "' OR sche.schedule_id = " + cbxScheduleID.Text + "AND sche.state = 'X'";
                 txtInjectedVac.Text = DataAccess.getFieldValues(sqlInjectedVac);
             }
             else

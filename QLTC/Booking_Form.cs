@@ -188,7 +188,7 @@ namespace QLTC
                     MessageBox.Show("You cannot register for more 2 schedules on the same day!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if(getVaccineNumber() > 0)
+                if (getVaccineNumber() == 0)
                 {
                     MessageBox.Show("Vaccine is out of stock, please understand", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -317,17 +317,19 @@ namespace QLTC
             int vacNumber = getVaccineNumber();
             try
             {
-                if (cbx != null && getVaccineNumber() != 0) 
+                if (cbx != null && getVaccineNumber() != 0)
                 {
                     int quanity = vacNumber - 1;
                     string center = DataAccess.getFieldValues("SELECT DISTINCT center_id FROM Centers WHERE center_name = N'" + cbxCenterInject.Text + "' AND province = N'" + cbxProvince.Text + "'");
                     int centerID = int.Parse(center);
                     string sqlUpdate = "UPDATE VaccineWarehouse set quanity = @quanity WHERE center_id = @center_id";
                     string[] name = { "@quanity", "@center_id" };
-                    object[] value = {quanity, centerID };
+                    object[] value = { quanity, centerID };
                     DataAccess.runSQL(sqlUpdate, name, value);
                 }
-            } catch {
+            }
+            catch
+            {
                 MessageBox.Show("Invalid!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -382,6 +384,6 @@ namespace QLTC
             this.Close();
         }
 
-        
+
     }
 }

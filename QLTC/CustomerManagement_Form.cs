@@ -105,10 +105,11 @@ namespace QLTC
             }
             if (DataAccess.executeScalar(sql) == 0)
             {
-                string addCus = "INSERT INTO Customer VALUES(@fullname, @birth, @gender, @address, @phonenum, @status, @injected)";
-                string[] name = { "@fullname", "@birth", "@gender", "@address", "@phonenum", "@status", "@injected" };
-                object[] value = { txtFullname.Text, formattedDateTime, cbxGender.Text, cbxAddress.Text, txtPhonenumber.Text, cbxStatus.Text, txtInjected.Text };
+                string addCus = "INSERT INTO Customer VALUES(@cus_id, @fullname, @birth, @gender, @address, @phonenum, @status, @injected)";
+                string[] name = { "@cus_id", "@fullname", "@birth", "@gender", "@address", "@phonenum", "@status", "@injected" };
+                object[] value = { cbxID.Text, txtFullname.Text, formattedDateTime, cbxGender.Text, cbxAddress.Text, txtPhonenumber.Text, cbxStatus.Text, txtInjected.Text };
                 DataAccess.runSQL(addCus, name, value);
+                MessageBox.Show("Add successfully!Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -129,31 +130,44 @@ namespace QLTC
             MessageBox.Show("Customer updated successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             loadDataGridView();
         }
-        private int getInjectedNumber()
+
+
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            string sqlNumber = "SELECT injected FROM Customer WHERE cus_id = " + cbxID.Text;
-            int number = int.Parse(DataAccess.getFieldValues(sqlNumber));
-            return number;
+            if (cbxID.Text == String.Empty)
+            {
+                MessageBox.Show("Please select a customer to delete!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (MessageBox.Show("Do you want to delete this?", "ALERT!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
+            string sqlDelete = "DELETE FROM Customer WHERE cus_id = @id";
+            string[] name = { "@id" };
+            object[] value = { cbxID.Text };
+            DataAccess.runSQL(sqlDelete, name, value);
+            MessageBox.Show("Customer deleted successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            reset();
+            loadDataGridView();
         }
 
-        private void btnConfirm_Click(object sender, EventArgs e)
+        private void reset()
         {
-
-            if (MessageBox.Show("You sure?", "ALERT!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                int injectedNumber = getInjectedNumber() + 1;
-                string sqlUpdateInjected = "UPDATE Customer SET injected = @injected WHERE cus_id = @cusID";
-                string[] name = { "@injected", "@cusID" };
-                object[] value = { injectedNumber, cbxID.Text };
-                DataAccess.runSQL(sqlUpdateInjected, name, value);
-                MessageBox.Show("Customer's injected number updated successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            cbxID.Text = string.Empty;
+            txtFullname.Text = string.Empty;
+            txtInjected.Text = string.Empty;
+            txtPhonenumber.Text = string.Empty;
+            cbxAddress.Text = string.Empty;
+            dtpBirth.Text = DateTime.Now.ToShortDateString();
+            cbxGender.Text = string.Empty;
+            cbxStatus.Text = string.Empty;
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        
+
     }
 }

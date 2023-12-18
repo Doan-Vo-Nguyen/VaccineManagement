@@ -21,6 +21,7 @@ namespace QLTC
         private void VaccineManagement_Load(object sender, EventArgs e)
         {
             loadDataGridView();
+            loadComboBox();
         }
 
         private void loadDataGridView()
@@ -79,13 +80,19 @@ namespace QLTC
             dgvVacInfor.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
 
+        private void loadComboBox()
+        {
+            string sqlVacDisease;
+            sqlVacDisease = "SELECT DISTINCT disease FROM Vaccine";
+            DataAccess.fillDataCombo(sqlVacDisease, cbxDisease, "disease", "disease");
+        }
         private void dgvVacInfor_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int i;
             i = dgvVacInfor.CurrentRow.Index;
             txtID.Text = dgvVacInfor.Rows[i].Cells[0].Value.ToString();
             txtVacName.Text = dgvVacInfor.Rows[i].Cells[1].Value.ToString();
-            txtVacType.Text = dgvVacInfor.Rows[i].Cells[2].Value.ToString();
+            cbxDisease.Text = dgvVacInfor.Rows[i].Cells[2].Value.ToString();
             txtVacProc.Text = dgvVacInfor.Rows[i].Cells[3].Value.ToString();
             txtBatch.Text = dgvVacInfor.Rows[i].Cells[4].Value.ToString();
             dtpMFG.Text = dgvVacInfor.Rows[i].Cells[5].Value.ToString();
@@ -99,12 +106,16 @@ namespace QLTC
         {
             string mfgDate = dateTimeFormatted(dtpMFG);
             string expiryDate = dateTimeFormatted(dtpExpiry);
-            if (txtVacName.Text != String.Empty || txtVacProc.Text != String.Empty || txtBatch.Text != String.Empty)
+            if (txtVacName.Text != String.Empty && txtVacProc.Text != String.Empty && txtBatch.Text != String.Empty
+                && cbxDisease.Text != String.Empty && txtBatch.Text != String.Empty && txtPrice.Text != String.Empty
+                && txtNumInject.Text != String.Empty && txtDisInject.Text != String.Empty)
             {
                 string addSql = "INSERT INTO Vaccine VALUES(@vacname, @vactype, @producer, @proBatch, @mfg, @expiry, @price, @numInject, @distanceInject)";
                 string[] name = { "@vacname", "@vactype", "producer", "@proBatch", "@mfg", "@expiry", "@price", "@numInject", "@distanceInject" };
-                object[] value = { txtVacName.Text, txtVacType.Text, txtVacProc.Text, txtBatch.Text, mfgDate, expiryDate, txtPrice.Text, txtNumInject.Text, txtDisInject.Text };
+                object[] value = { txtVacName.Text, cbxDisease.Text, txtVacProc.Text, txtBatch.Text, mfgDate, expiryDate, txtPrice.Text, txtNumInject.Text, txtDisInject.Text };
                 DataAccess.runSQL(addSql, name, value);
+                MessageBox.Show("Vaccine add successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadDataGridView();
             }
             else
             {
@@ -122,16 +133,22 @@ namespace QLTC
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to delete this?", "ALERT!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (txtID.Text == String.Empty)
             {
-                string sqlDelete = "DELETE FROM Vaccine WHERE vac_id = @id";
-                string[] name = { "@id" };
-                object[] value = { txtID.Text };
-                DataAccess.runSQL(sqlDelete, name, value);
-                MessageBox.Show("Vaccine deleted successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                reset();
-                loadDataGridView();
+                MessageBox.Show("Please select a schedule to delete!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+            if (MessageBox.Show("Do you want to delete this?", "ALERT!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
+            string sqlDelete = "DELETE FROM Vaccine WHERE vac_id = @id";
+            string[] name = { "@id" };
+            object[] value = { txtID.Text };
+            DataAccess.runSQL(sqlDelete, name, value);
+            MessageBox.Show("Vaccine deleted successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            reset();
+            loadDataGridView();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -143,33 +160,34 @@ namespace QLTC
                 MessageBox.Show("There are no data available", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            else
+            if (txtID.Text == String.Empty)
             {
-                string sqlUpdate = "UPDATE Schedule SET vacname = @vacName, disease = @vacType, producer = @producer, production_batch = @proBatch" +
-                    "mfg = @mfg, expiry = @expiry, price = @price, num_injection = @numInject, distance_injection = @disInject WHERE vac_id = @id";
-                string[] name = { "@injectionDate", "@center_id", "@id" };
-                object[] value = { txtVacName.Text, txtVacType.Text, txtVacProc.Text, txtBatch.Text, mfgDate, expiryDate, txtPrice.Text, txtNumInject.Text, txtDisInject.Text, txtID.Text };
-                DataAccess.runSQL(sqlUpdate, name, value);
-                MessageBox.Show("Schedule updated successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                loadDataGridView();
-                reset();
-                btnCancel.Enabled = true;
+                MessageBox.Show("Choose vaccine to update", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
+            string sqlUpdate = "UPDATE Vaccine SET vacname = @vacName, disease = @vacType, producer = @producer, production_batch = @proBatch, mfg = @mfg, expiry = @expiry, price = @price, num_injection = @numInject, distance_injection = @disInject WHERE vac_id = @id";
+            string[] name = { "@vacName", "@vacType", "@producer", "@proBatch", "@mfg", "@expiry", "@price", "@numInject", "@disInject", "@id" };
+            object[] value = { txtVacName.Text, cbxDisease.Text, txtVacProc.Text, txtBatch.Text, mfgDate, expiryDate, txtPrice.Text, txtNumInject.Text, txtDisInject.Text, txtID.Text };
+            DataAccess.runSQL(sqlUpdate, name, value);
+            MessageBox.Show("Schedule updated successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            loadDataGridView();
+            reset();
+            btnCancel.Enabled = true;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string sql;
-            if (txtVacName.Text != string.Empty || txtVacProc.Text != string.Empty || txtVacType.Text != string.Empty)
+            if (txtVacName.Text != string.Empty || txtVacProc.Text != string.Empty || cbxDisease.Text != string.Empty)
             {
                 sql = "SELECT * FROM Vaccine WHERE 1=1";
                 if (txtVacName.Text != "")
                 {
                     sql = sql + " AND vacname LIKE N'%" + txtVacName.Text + "%'";
                 }
-                if (txtVacType.Text != "")
+                if (cbxDisease.Text != "")
                 {
-                    sql = sql + " AND disease LIKE N'%" + txtVacType.Text + "%'";
+                    sql = sql + " AND disease LIKE N'%" + cbxDisease.Text + "%'";
                 }
                 if (txtVacProc.Text != "")
                 {
@@ -199,7 +217,7 @@ namespace QLTC
         {
             txtID.Text = string.Empty;
             txtVacName.Text = string.Empty;
-            txtVacType.Text = string.Empty;
+            cbxDisease.Text = string.Empty;
             txtVacProc.Text = string.Empty;
             txtBatch.Text = string.Empty;
             dtpMFG.Text = DateTime.Now.ToShortDateString();
@@ -207,6 +225,7 @@ namespace QLTC
             txtPrice.Text = string.Empty;
             txtNumInject.Text = "0";
             txtDisInject.Text = "0";
+            loadDataGridView();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -219,6 +238,6 @@ namespace QLTC
             this.Close();
         }
 
-        
+
     }
 }

@@ -64,20 +64,20 @@
             // 
             tslFile.DropDownItems.AddRange(new ToolStripItem[] { logOutToolStripMenuItem, tslExit });
             tslFile.Name = "tslFile";
-            tslFile.Size = new Size(46, 24);
-            tslFile.Text = "File";
+            tslFile.Size = new Size(75, 24);
+            tslFile.Text = "Options";
             // 
             // logOutToolStripMenuItem
             // 
             logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            logOutToolStripMenuItem.Size = new Size(145, 26);
+            logOutToolStripMenuItem.Size = new Size(224, 26);
             logOutToolStripMenuItem.Text = "Log Out";
             logOutToolStripMenuItem.Click += logOutToolStripMenuItem_Click;
             // 
             // tslExit
             // 
             tslExit.Name = "tslExit";
-            tslExit.Size = new Size(145, 26);
+            tslExit.Size = new Size(224, 26);
             tslExit.Text = "Exit";
             tslExit.Click += tslExit_Click;
             // 
@@ -140,21 +140,21 @@
             // tsmiStock
             // 
             tsmiStock.Name = "tsmiStock";
-            tsmiStock.Size = new Size(224, 26);
+            tsmiStock.Size = new Size(152, 26);
             tsmiStock.Text = "Stock";
             tsmiStock.Click += stockToolStripMenuItem_Click;
             // 
             // tsmiSchedule
             // 
             tsmiSchedule.Name = "tsmiSchedule";
-            tsmiSchedule.Size = new Size(224, 26);
+            tsmiSchedule.Size = new Size(152, 26);
             tsmiSchedule.Text = "Schedule";
             tsmiSchedule.Click += tsmiSchedule_Click;
             // 
             // revueneToolStripMenuItem
             // 
             revueneToolStripMenuItem.Name = "revueneToolStripMenuItem";
-            revueneToolStripMenuItem.Size = new Size(224, 26);
+            revueneToolStripMenuItem.Size = new Size(152, 26);
             revueneToolStripMenuItem.Text = "Revuene";
             revueneToolStripMenuItem.Click += revueneToolStripMenuItem_Click;
             // 

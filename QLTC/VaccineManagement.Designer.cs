@@ -37,7 +37,6 @@
             dgvVacInfor = new DataGridView();
             txtPrice = new TextBox();
             txtVacProc = new TextBox();
-            txtVacType = new TextBox();
             txtVacName = new TextBox();
             txtID = new TextBox();
             label6 = new Label();
@@ -57,6 +56,7 @@
             txtDisInject = new TextBox();
             txtNumInject = new TextBox();
             label10 = new Label();
+            cbxDisease = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvVacInfor).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -87,7 +87,7 @@
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(94, 29);
             btnCancel.TabIndex = 33;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "Refresh";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
@@ -145,13 +145,6 @@
             txtVacProc.Name = "txtVacProc";
             txtVacProc.Size = new Size(163, 27);
             txtVacProc.TabIndex = 27;
-            // 
-            // txtVacType
-            // 
-            txtVacType.Location = new Point(669, 34);
-            txtVacType.Name = "txtVacType";
-            txtVacType.Size = new Size(168, 27);
-            txtVacType.TabIndex = 26;
             // 
             // txtVacName
             // 
@@ -272,6 +265,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(cbxDisease);
             groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(txtDisInject);
             groupBox1.Controls.Add(txtNumInject);
@@ -280,7 +274,6 @@
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(txtVacType);
             groupBox1.Controls.Add(dtpMFG);
             groupBox1.Controls.Add(txtVacName);
             groupBox1.Controls.Add(label4);
@@ -331,6 +324,14 @@
             label10.TabIndex = 44;
             label10.Text = "Number injection";
             // 
+            // cbxDisease
+            // 
+            cbxDisease.FormattingEnabled = true;
+            cbxDisease.Location = new Point(669, 33);
+            cbxDisease.Name = "cbxDisease";
+            cbxDisease.Size = new Size(168, 28);
+            cbxDisease.TabIndex = 48;
+            // 
             // VaccineManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -366,7 +367,6 @@
         private DataGridView dgvVacInfor;
         private TextBox txtPrice;
         private TextBox txtVacProc;
-        private TextBox txtVacType;
         private TextBox txtVacName;
         private TextBox txtID;
         private Label label6;
@@ -386,5 +386,6 @@
         private TextBox txtDisInject;
         private TextBox txtNumInject;
         private Label label10;
+        private ComboBox cbxDisease;
     }
 }

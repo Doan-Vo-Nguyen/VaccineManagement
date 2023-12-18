@@ -31,7 +31,7 @@ namespace QLTC
         private void loadDataGridView()
         {
             string sql;
-            sql = "SELECT sche.schedule_id, sche.cus_id, vac.vacname,disease, vac.producer, sche.injection_date, cen.province, cen.center_name, vac.price, vac.num_injection, sche.total FROM Schedule as sche INNER JOIN Vaccine as vac ON Sche.vac_id = vac.vac_id INNER JOIN Customer as cus ON sche.cus_id = cus.cus_id JOIN Centers as cen ON sche.center_id = cen.center_id";
+            sql = "SELECT sche.schedule_id, sche.cus_id, vac.vacname,disease, vac.producer, sche.injection_date, cen.province, cen.center_name, vac.price, sche.total, sche.state FROM Schedule as sche INNER JOIN Vaccine as vac ON Sche.vac_id = vac.vac_id INNER JOIN Customer as cus ON sche.cus_id = cus.cus_id JOIN Centers as cen ON sche.center_id = cen.center_id";
             dtCusManagent = DataAccess.getDataToTable(sql);
             dgvSchedule.DataSource = dtCusManagent;
             dgvSchedule.Columns[0].HeaderText = "Schedule ID";
@@ -43,10 +43,10 @@ namespace QLTC
             dgvSchedule.Columns[6].HeaderText = "Province";
             dgvSchedule.Columns[7].HeaderText = "VFA center";
             dgvSchedule.Columns[8].HeaderText = "Price";
-            dgvSchedule.Columns[9].HeaderText = "Number of injections";
-            dgvSchedule.Columns[10].HeaderText = "Total";
+            dgvSchedule.Columns[9].HeaderText = "Total";
+            dgvSchedule.Columns[10].HeaderText = "State";
             dgvSchedule.Columns[0].Width = 100;
-            dgvSchedule.Columns[1].Width = 300;
+            dgvSchedule.Columns[1].Width = 100;
             dgvSchedule.Columns[2].Width = 200;
             dgvSchedule.Columns[3].Width = 300;
             dgvSchedule.Columns[4].Width = 200;
@@ -281,6 +281,55 @@ namespace QLTC
                 MessageBox.Show("Invalid!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private int getInjectedNumber()
+        {
+            string sqlNumber = "SELECT injected FROM Customer WHERE cus_id = " + cbxCusID.Text;
+            int number = int.Parse(DataAccess.getFieldValues(sqlNumber));
+            return number;
+        }
+
+        private void updateInjectedCustomer(string cbxCusId)
+        {
+            int injectedNumber = getInjectedNumber() + 1;
+            string sqlUpdateInjected = "UPDATE Customer SET injected = @injected WHERE cus_id = @cusID";
+            string[] name = { "@injected", "@cusID", "@sche_id" };
+            object[] value = { injectedNumber, cbxCusId};
+            DataAccess.runSQL(sqlUpdateInjected, name, value);
+        }
+
+        private void updateState(string cbxCusId, string cbxScheduleId)
+        {
+            string sqlUpdateState = "UPDATE Schedule SET state = @state WHERE cus_id = @cusID AND schedule_id = @sche_id";
+            string[] name = { "@state", "@cusID", "@sche_id" };
+            object[] value = { "X", cbxCusId, cbxScheduleId };
+            DataAccess.runSQL(sqlUpdateState, name, value);
+        }
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            string getState = "SELECT state FROM Schedule WHERE cus_id = " + cbxCusID.Text + " AND schedule_id = " + cbxScheduleID.Text;
+            string state = DataAccess.getFieldValues(getState);
+            if(state != "X")
+            {
+                if (MessageBox.Show("Are you sure you want to perform this action?", "ALERT!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    updateState(cbxCusID.Text, cbxScheduleID.Text);
+                    updateInjectedCustomer(cbxCusID.Text);
+                    MessageBox.Show("Successfully", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadDataGridView();
+                }
+                else
+                {
+                    MessageBox.Show("Failed", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("You cannot confirm twice!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }    
+              
+        }
         private void dgvSchedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int i;
@@ -293,7 +342,7 @@ namespace QLTC
             cbxProvince.Text = dgvSchedule.Rows[i].Cells[6].Value.ToString();
             cbxCenterInject.Text = dgvSchedule.Rows[i].Cells[7].Value.ToString();
             txtPrice.Text = dgvSchedule.Rows[i].Cells[8].Value.ToString();
-            txtTotal.Text = dgvSchedule.Rows[i].Cells[10].Value.ToString();
+            txtTotal.Text = dgvSchedule.Rows[i].Cells[9].Value.ToString();
         }
         private void reset()
         {
@@ -314,7 +363,5 @@ namespace QLTC
         {
             this.Close();
         }
-
-        
     }
 }
