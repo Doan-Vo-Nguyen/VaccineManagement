@@ -79,8 +79,8 @@ namespace QLTC
             i = dgvSchedule.CurrentRow.Index;
             cbxScheduleID.Text = dgvSchedule.Rows[i].Cells[0].Value.ToString();
             cbxCusID.Text = dgvSchedule.Rows[i].Cells[1].Value.ToString();
-            cbxProvince.Text = dgvSchedule.Rows[i].Cells[6].Value.ToString();
-            cbxCenter.Text = dgvSchedule.Rows[i].Cells[7].Value.ToString();
+            cbxProvince.Text = dgvSchedule.Rows[i].Cells[7].Value.ToString();
+            cbxCenter.Text = dgvSchedule.Rows[i].Cells[8].Value.ToString();
 
         }
 
@@ -105,7 +105,7 @@ namespace QLTC
                     "ON sche.cus_id = cus.cus_id JOIN Centers as cen " +
                     "ON sche.center_id = cen.center_id WHERE cen.center_name = N'" + cbxCenter.Text + "' OR sche.schedule_id = " + cbxScheduleID.Text + "AND sche.state = 'X'";
                 txtNumPeople.Text = DataAccess.getFieldValues(sqlCusInject);
-                string sqlInjectedVac = "SELECT DISTINCT count(sche.schedule_id) FROM Schedule as sche JOIN Centers as cen " +
+                string sqlInjectedVac = "SELECT count(sche.schedule_id) FROM Schedule as sche JOIN Centers as cen " +
                     "ON sche.center_id = cen.center_id WHERE cen.center_name = N'" + cbxCenter.Text + "' OR sche.schedule_id = " + cbxScheduleID.Text + "AND sche.state = 'X'";
                 txtInjectedVac.Text = DataAccess.getFieldValues(sqlInjectedVac);
             }

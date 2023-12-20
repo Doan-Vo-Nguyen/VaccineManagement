@@ -142,7 +142,7 @@
             // 
             // btnView
             // 
-            btnView.Location = new Point(10, 153);
+            btnView.Location = new Point(6, 153);
             btnView.Name = "btnView";
             btnView.Size = new Size(94, 29);
             btnView.TabIndex = 12;
@@ -172,11 +172,11 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(6, 98);
+            label8.Location = new Point(10, 98);
             label8.Name = "label8";
-            label8.Size = new Size(231, 20);
+            label8.Size = new Size(218, 20);
             label8.TabIndex = 15;
-            label8.Text = "Number of vaccines administered";
+            label8.Text = "Number of schedule vaccinated";
             // 
             // groupBox1
             // 
@@ -204,7 +204,7 @@
             // 
             // txtInjectedVac
             // 
-            txtInjectedVac.Location = new Point(262, 98);
+            txtInjectedVac.Location = new Point(262, 95);
             txtInjectedVac.Name = "txtInjectedVac";
             txtInjectedVac.Size = new Size(125, 27);
             txtInjectedVac.TabIndex = 17;

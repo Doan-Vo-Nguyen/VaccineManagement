@@ -196,9 +196,9 @@ namespace QLTC
                 string center = DataAccess.getFieldValues("SELECT DISTINCT center_id FROM Centers WHERE center_name = N'" + cbxCenterInject.Text + "' AND province = N'" + cbxProvince.Text + "'");
                 int centerID = int.Parse(center);
                 // Your existing code to insert into the Schedule table
-                string addSqlSchedule = "INSERT INTO Schedule VALUES(@cus_id, @vac_id, @injection_date, @center_id, @total)";
-                string[] nameSchedule = { "@cus_id", "@vac_id", "@injection_date", "@center_id", "@total" };
-                object[] valueSchedule = { txtID.Text, vacId, formattedDateTime, centerID, txtTotal.Text };
+                string addSqlSchedule = "INSERT INTO Schedule VALUES(@cus_id, @vac_id, @injection_date, @center_id, @total, @state)";
+                string[] nameSchedule = { "@cus_id", "@vac_id", "@injection_date", "@center_id", "@total", "@state" };
+                object[] valueSchedule = { txtID.Text, vacId, formattedDateTime, centerID, txtTotal.Text, "" };
                 DataAccess.runSQL(addSqlSchedule, nameSchedule, valueSchedule);
                 // Call the stored procedure to insert into IntermediacteCalendar
                 using (SqlCommand cmd = new SqlCommand("InsertVaccinationSchedule", DataAccess.conn))

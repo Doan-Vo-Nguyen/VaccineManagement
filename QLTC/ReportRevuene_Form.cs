@@ -27,6 +27,7 @@ namespace QLTC
             loadDataGridView();
             loadComboBox();
             LoadProvinces();
+            cbxScheduleID.Enabled = false;
         }
         private void loadDataGridView()
         {

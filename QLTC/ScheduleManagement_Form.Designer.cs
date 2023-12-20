@@ -73,7 +73,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(423, 685);
+            btnDelete.Location = new Point(430, 685);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 17;
@@ -84,17 +84,17 @@
             // dgvSchedule
             // 
             dgvSchedule.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSchedule.Location = new Point(48, 449);
+            dgvSchedule.Location = new Point(27, 449);
             dgvSchedule.Name = "dgvSchedule";
             dgvSchedule.RowHeadersWidth = 51;
             dgvSchedule.RowTemplate.Height = 29;
-            dgvSchedule.Size = new Size(1084, 230);
+            dgvSchedule.Size = new Size(1105, 230);
             dgvSchedule.TabIndex = 16;
             dgvSchedule.CellContentClick += dgvSchedule_CellContentClick;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(617, 685);
+            btnUpdate.Location = new Point(623, 685);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(94, 29);
             btnUpdate.TabIndex = 15;
@@ -124,11 +124,11 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(806, 685);
+            btnCancel.Location = new Point(808, 685);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(94, 29);
             btnCancel.TabIndex = 12;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "Refresh";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
@@ -150,9 +150,9 @@
             groupBox2.Controls.Add(label11);
             groupBox2.Controls.Add(label10);
             groupBox2.Controls.Add(label9);
-            groupBox2.Location = new Point(48, 226);
+            groupBox2.Location = new Point(26, 226);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1086, 217);
+            groupBox2.Size = new Size(1108, 217);
             groupBox2.TabIndex = 10;
             groupBox2.TabStop = false;
             groupBox2.Text = "SERVICE INFORMATION";
@@ -326,9 +326,9 @@
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
-            groupBox1.Location = new Point(48, 47);
+            groupBox1.Location = new Point(26, 47);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1086, 173);
+            groupBox1.Size = new Size(1108, 173);
             groupBox1.TabIndex = 9;
             groupBox1.TabStop = false;
             groupBox1.Text = "INJECTOR INFORMATION";
@@ -429,7 +429,7 @@
             // 
             btnConfirm.BackColor = Color.Transparent;
             btnConfirm.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnConfirm.Location = new Point(49, 685);
+            btnConfirm.Location = new Point(27, 685);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(136, 29);
             btnConfirm.TabIndex = 19;

@@ -158,9 +158,9 @@ namespace QLTC
                 string center = DataAccess.getFieldValues("SELECT DISTINCT center_id FROM Centers WHERE center_name = N'" + cbxCenterInject.Text + "' AND province = N'" + cbxProvince.Text + "'");
                 int centerID = int.Parse(center);
                 // Your existing code to insert into the Schedule table
-                string addSqlSchedule = "INSERT INTO Schedule VALUES(@cus_id, @vac_id, @injection_date, @center_id, @total)";
-                string[] nameSchedule = { "@cus_id", "@vac_id", "@injection_date", "@center_id", "@total" };
-                object[] valueSchedule = { cbxCusID.Text, vacId, formattedDateTime, centerID, txtTotal.Text };
+                string addSqlSchedule = "INSERT INTO Schedule VALUES(@cus_id, @vac_id, @injection_date, @center_id, @total, @state)";
+                string[] nameSchedule = { "@cus_id", "@vac_id", "@injection_date", "@center_id", "@total", "@state" };
+                object[] valueSchedule = { cbxCusID.Text, vacId, formattedDateTime, centerID, txtTotal.Text, ""};
                 DataAccess.runSQL(addSqlSchedule, nameSchedule, valueSchedule);
                 // Call the stored procedure to insert into IntermediacteCalendar
                 using (SqlCommand cmd = new SqlCommand("InsertVaccinationSchedule", DataAccess.conn))
@@ -293,7 +293,7 @@ namespace QLTC
             int injectedNumber = getInjectedNumber() + 1;
             string sqlUpdateInjected = "UPDATE Customer SET injected = @injected WHERE cus_id = @cusID";
             string[] name = { "@injected", "@cusID", "@sche_id" };
-            object[] value = { injectedNumber, cbxCusId};
+            object[] value = { injectedNumber, cbxCusId };
             DataAccess.runSQL(sqlUpdateInjected, name, value);
         }
 
@@ -308,7 +308,7 @@ namespace QLTC
         {
             string getState = "SELECT state FROM Schedule WHERE cus_id = " + cbxCusID.Text + " AND schedule_id = " + cbxScheduleID.Text;
             string state = DataAccess.getFieldValues(getState);
-            if(state != "X")
+            if (state != "X")
             {
                 if (MessageBox.Show("Are you sure you want to perform this action?", "ALERT!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -327,8 +327,8 @@ namespace QLTC
             {
                 MessageBox.Show("You cannot confirm twice!", "ALERT!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }    
-              
+            }
+
         }
         private void dgvSchedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

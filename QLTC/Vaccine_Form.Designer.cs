@@ -237,7 +237,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Vaccine_Form";
-            Text = "Vaccine_Form";
+            Text = "Vaccine Form";
             Load += Vaccine_Form_Load;
             ((System.ComponentModel.ISupportInitialize)dgvVacInfor).EndInit();
             ResumeLayout(false);

@@ -367,7 +367,7 @@
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(94, 29);
             btnCancel.TabIndex = 3;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "Refresh";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
@@ -408,7 +408,7 @@
             dgvSchedule.Name = "dgvSchedule";
             dgvSchedule.RowHeadersWidth = 51;
             dgvSchedule.RowTemplate.Height = 29;
-            dgvSchedule.Size = new Size(1069, 162);
+            dgvSchedule.Size = new Size(1069, 184);
             dgvSchedule.TabIndex = 7;
             dgvSchedule.CellContentClick += dgvSchedule_CellContentClick;
             // 
